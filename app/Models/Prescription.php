@@ -9,6 +9,7 @@ class Prescription extends Model
 {
     use HasFactory;
     protected $Prescription = 'tblPrescription';
+    
     protected $fillable = ['intPrescriptionId',
                             'intAppointmentId',
                             'strComment',

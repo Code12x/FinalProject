@@ -9,6 +9,7 @@ class Payments extends Model
 {
     use HasFactory;
     protected $Payments = 'tblPayments';
+    
     protected $fillable = ['intPaymentId',
                             'intPatientId',
                             'dmlAmount',

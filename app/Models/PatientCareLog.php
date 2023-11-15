@@ -9,6 +9,7 @@ class PatientCareLog extends Model
 {
     use HasFactory;
     protected $PatientCareLog = 'tblPatientCareLog';
+    
     protected $fillable = ['intPatientId',
                             'dteLogDate',
                             'bitMorningMed',

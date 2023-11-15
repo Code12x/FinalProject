@@ -9,6 +9,7 @@ class roster extends Model
 {
     use HasFactory;
     protected $Roster = 'tblRoster';
+    
     protected $fillable = ['intRosterId', 
                             'dteRosterDate',
                             'intSupervisor',

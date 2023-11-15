@@ -9,6 +9,7 @@ class Employees extends Model
 {
     use HasFactory;
     protected $Employees = 'tblEmployees';
+    
     protected $fillable = ['intEmployeeId',
                             'intUserId',
                             'dmlSalary'];

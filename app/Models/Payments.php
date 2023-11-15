@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payments extends Model
 {
     use HasFactory;
-    protected $Payments = 'tblPayments';
     
+    protected $table = 'tblPayments';
+
     protected $fillable = ['intPaymentId',
                             'intPatientId',
                             'dmlAmount',

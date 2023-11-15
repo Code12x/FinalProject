@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PatientCareLog extends Model
 {
     use HasFactory;
-    protected $PatientCareLog = 'tblPatientCareLog';
     
+    protected $table = 'tblPatientCareLog';
+
     protected $fillable = ['intPatientId',
                             'dteLogDate',
                             'bitMorningMed',

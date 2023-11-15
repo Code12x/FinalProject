@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class roster extends Model
 {
     use HasFactory;
-    protected $Roster = 'tblRoster';
     
+    protected $table = 'tblRoster';
+
     protected $fillable = ['intRosterId', 
                             'dteRosterDate',
                             'intSupervisor',

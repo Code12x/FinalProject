@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class roster extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     
     protected $table = 'tblRoster';

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// route for homepage
+////* Admin */
+Route::get('/admin/home', [AdminController::class, 'home']);
+Route::get('/admin/report', [AdminController::class, 'report']);
+Route::get('/admin/payment', [AdminController::class, 'payment']);
+Route::get('/admin/approval', [AdminController::class, 'approval']);
+
+// route for launchpage
 Route::get('/', function () {
     return view('/shared/homepage');
 });

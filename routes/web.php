@@ -20,6 +20,7 @@ Route::get('/admin/report', [AdminController::class, 'report']);
 Route::get('/admin/payment', [AdminController::class, 'payment']);
 Route::get('/admin/approval', [AdminController::class, 'approval']);
 
+// family home page view
 Route::get('/familyhomepage', function () {
     return view('shared/familyhomepage');
 });

@@ -8,7 +8,13 @@
 </head>
 <body>
     <header>
-
+        <div class="navigationBar">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
+            <a href="#">Testimonies</a>
+            <a href="#">Contact</a>
+        </div>
     </header>
 
 

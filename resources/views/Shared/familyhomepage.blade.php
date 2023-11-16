@@ -29,7 +29,7 @@
     <div class="patientInfo">
         <?php
             if(isset($_POST['submit'])) {
-                echo "hi";
+
             }
         ?>
     </div>

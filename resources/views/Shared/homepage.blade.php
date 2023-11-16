@@ -20,9 +20,9 @@
 
 
 
-    <div id="logInSignUp">
-        <a href="#">Log In</a>
-        <a href="#">Sign Up</a>
+    <div id="logInSignUpButtons">
+        <button action="{{ route('Authentication/Login') }}" method="get"></button>
+        <button action="{{ route('Authentication/Register') }}" method="get"></button>
     </div>
 
 

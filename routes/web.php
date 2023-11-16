@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// route for homepage
 Route::get('/', function () {
-    return view('welcome');
+    return view('/shared/homepage');
 });

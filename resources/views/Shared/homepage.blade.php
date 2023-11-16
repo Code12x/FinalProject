@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shady Oaks Retirement Village
     </title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <header>
-        <div class="navigationBar">
+        <div id="navigationBar">
             <a href="#">About</a>
             <a href="#">Services</a>
             <a href="#">Pricing</a>
@@ -19,7 +20,7 @@
 
 
 
-    <div class="">
+    <div id="logInSignUp">
         <a href="#">Log In</a>
         <a href="#">Sign Up</a>
     </div>

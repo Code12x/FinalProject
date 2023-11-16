@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+////* Admin */
+Route::get('/admin/home', [AdminController::class, 'home']);
+Route::get('/admin/report', [AdminController::class, 'report']);
+Route::get('/admin/payment', [AdminController::class, 'payment']);
+Route::get('/admin/approval', [AdminController::class, 'approval']);
 
 // Log in and Registration 
 Route::get('Authentication/login', function(){

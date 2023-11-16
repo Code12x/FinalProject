@@ -21,8 +21,17 @@
 
             <label for="">Patient ID</label>
             <input type="number" name="patientId">
+            <input type="submit" value="submit" name="submit">
         </form>
 
+    </div>
+
+    <div class="patientInfo">
+        <?php
+            if(isset($_POST['submit'])) {
+                echo "hi";
+            }
+        ?>
     </div>
 
     <footer>

@@ -21,8 +21,8 @@
 
 
     <div id="logInSignUpButtons">
-        <button action="{{ route('Authentication/Login') }}" method="get"></button>
-        <button action="{{ route('Authentication/Register') }}" method="get"></button>
+        <button action="Authentication/Login" method="get">Login</button>
+        <button action="Authentication/Register" method="get">Register</button>
     </div>
 
 

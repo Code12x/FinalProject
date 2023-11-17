@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 ////* Admin */
-Route::get('/admin/home', [AdminController::class, 'home']);
-Route::get('/admin/report', [AdminController::class, 'report']);
-Route::get('/admin/payment', [AdminController::class, 'payment']);
-Route::get('/admin/approval', [AdminController::class, 'approval']);
+Route::middleware(['auth:1'])->group(function () {
+    Route::get('/admin/home', [AdminController::class, 'home']);
+    Route::get('/admin/report', [AdminController::class, 'report']);
+    Route::get('/admin/payment', [AdminController::class, 'payment']);
+    Route::get('/admin/approval', [AdminController::class, 'approval']);
+});

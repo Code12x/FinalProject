@@ -13,13 +13,13 @@
 <body>
     <form action="/Authentication/register" method="post" onchange="showInputs()">
         <label for="Email">Email:</label><br>
-        <select id="dropdown" name="dropdown">
-            <option value="admin">Admin</option>
-            <option value="suprivisor">Suprivisor</option>
-            <option value="doctor">Doctor</option>
-            <option value="caregiver">Caregiver</option>
-            <option value="patient">Patient</option>
-            <option value="familymember">Family Member</option>
+        <select id="dropdown" name="intRoleId">
+            <option value="1">Admin</option>
+            <option value="2">Suprivisor</option>
+            <option value="3">Doctor</option>
+            <option value="4">Caregiver</option>
+            <option value="5">Patient</option>
+            <option value="6">Family Member</option>
         </select>
         <br>
         <label for="firstname">First name:</label><br>
@@ -61,7 +61,7 @@
         var dropdown = document.getElementById('dropdown');
         var patientInputs = document.getElementById('patientInputs');
 
-        if (dropdown.value === 'patient') {
+        if (dropdown.value === '5') {
             patientInputs.style.display = 'block';
         } else {
             patientInputs.style.display = 'none';

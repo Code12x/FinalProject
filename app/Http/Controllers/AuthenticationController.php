@@ -35,12 +35,18 @@ class AuthenticationController extends Controller
         return $user;
     }
 
+    public function logout()
+    {
+        session()->flush();
+        return redirect('/Authentication/login');
+    }
+
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['intUserId'] = 5;
-        $data['intPatientId'] = 5;
-        $data['intEmployeeId'] = 5;
+        $data['intUserId'] = 7;
+        $data['intPatientId'] = 7;
+        $data['intEmployeeId'] = 7;
         $data['bitApproved'] = 0;
 
 

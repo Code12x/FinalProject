@@ -14,12 +14,12 @@
     <form action="/Authentication/register" method="post" onchange="showInputs()">
         <label for="Email">Email:</label><br>
         <select id="dropdown" name="intRoleId">
-            <option value="1">Admin</option>
-            <option value="2">Suprivisor</option>
-            <option value="3">Doctor</option>
-            <option value="4">Caregiver</option>
-            <option value="5">Patient</option>
-            <option value="6">Family Member</option>
+            <option value="0">Admin</option>
+            <option value="1">Suprivisor</option>
+            <option value="2">Doctor</option>
+            <option value="3">Caregiver</option>
+            <option value="4">Patient</option>
+            <option value="5">Family Member</option>
         </select>
         <br>
         <label for="firstname">First name:</label><br>

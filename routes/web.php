@@ -1,18 +1,25 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Models\PatientCareLog;
+use App\Http\Controllers\AuthenticationController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+////* Admin */
+Route::get('/admin/home', [AdminController::class, 'home']);
+Route::get('/admin/report', [AdminController::class, 'report']);
+Route::get('/admin/payment', [AdminController::class, 'payment']);
+Route::get('/admin/approval', [AdminController::class, 'approval']);
+
+// Log in and Registration 
+Route::get('Authentication/login', function(){
+    return view('Authentication\Login');
+});
+
+Route::get('Authentication/register', function(){
+    return view('Authentication\Register');
+});
+
+Route::post('Authentication/register', [AuthenticationController::class, 'register']);
 
 route::get('/caregivers_home', function () {
     return view('shared/caregivers_home');

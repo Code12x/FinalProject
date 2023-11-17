@@ -11,9 +11,28 @@ class AuthenticationController extends Controller
 {
     public function login(Request $request)
     {
+        $request->validate([
+            'Email'=>'required',
+            'Password'=>'required',
+        ]);
+
         $data = $request->all();
 
-        return $data;
+        $user = User::where('strEmail', $data['Email'])
+        ->where('strPassword', $data['Password'])
+        ->get();
+
+        if ($user->count() == 1) {
+            $user = $user[0];
+            //create session 
+            // $request->session()->put('userId' => $user['intUserId']);
+
+            session(['userId' => $user['intUserId']]);
+        } else {
+            return redirect('/Authentication/login');
+        }
+
+        return $user;
     }
 
     public function register(Request $request)

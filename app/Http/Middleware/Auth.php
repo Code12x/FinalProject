@@ -17,16 +17,19 @@ class Auth
     public function handle(Request $request, Closure $next, $accessLevel): Response
     {
         $user = AuthFunction::User($request);
-        if (!$user) {
-            return response(Response::HTTP_UNAUTHORIZED);
-            // return view('unauthorized');
-        } else if ($user->role->intAccessLevel != $accessLevel || $accessLevel == "*") {
-            return response(Response::HTTP_UNAUTHORIZED);
-            // return view('unauthorized');
-        } else if (!$user->bitApproved) {
-            // return redirect()->route('unauthorized');
-            // return view('unauthorized', ['message' => "Your account is not approved yet!"]);
-            return response(Response::HTTP_UNAUTHORIZED);
+        if ($accessLevel != "*")
+        {
+            if (!$user) {
+                return response("1",Response::HTTP_UNAUTHORIZED);
+                // return view('unauthorized');
+            } else if($user->role->intAccessLevel != $accessLevel ){
+                return response($accessLevel,Response::HTTP_UNAUTHORIZED);
+                // return view('unauthorized');
+            } else if (!$user->bitApproved) {
+                // return redirect()->route('unauthorized');
+                // return view('unauthorized', ['message' => "Your account is not approved yet!"]);
+                return response("3",Response::HTTP_UNAUTHORIZED);
+            }
         }
 
         $request->attributes->add(['user' => $user]);

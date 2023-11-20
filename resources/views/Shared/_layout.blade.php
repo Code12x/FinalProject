@@ -64,7 +64,7 @@
 
     <script>
         function logout() {
-            window.location = '/logout';
+            window.location = '/Authentication/logout';
         }
     </script>
     @yield('script')

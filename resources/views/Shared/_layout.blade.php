@@ -37,12 +37,12 @@
             @elseif ($user->role->intAccessLevel == 4) {{-- Caregiver --}}
                 <li class="nav-li">
                     <a href="#"></a>
-                </li>
-            @elseif ($user->role->intAccessLevel == 5) {{-- Family --}}
+            </li>
+            @elseif ($user->role->intAccessLevel == 5) {{-- Patient --}}
                 <li class="nav-li">
                     <a href="#"></a>
                 </li>
-            @elseif ($user->role->intAccessLevel == 6) {{-- Patient --}}
+            @elseif ($user->role->intAccessLevel == 6) {{-- Family --}}
                 <li class="nav-li">
                     <a href="#"></a>
                 </li>
@@ -64,7 +64,7 @@
 
     <script>
         function logout() {
-            window.location = '/logout';
+            window.location = '/Authentication/logout';
         }
     </script>
     @yield('script')

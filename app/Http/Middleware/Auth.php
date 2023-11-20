@@ -14,23 +14,29 @@ class Auth
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $accessLevel): Response
+    public function handle(Request $request, Closure $next, $accessLevel = null): Response
     {
         $user = AuthFunction::User($request);
-        if (!$user) {
-            return response(Response::HTTP_UNAUTHORIZED);
-            // return view('unauthorized');
-        } else if ($user->role->intAccessLevel != $accessLevel || $accessLevel == "*") {
-            return response(Response::HTTP_UNAUTHORIZED);
-            // return view('unauthorized');
-        } else if (!$user->bitApproved) {
-            // return redirect()->route('unauthorized');
-            // return view('unauthorized', ['message' => "Your account is not approved yet!"]);
-            return response(Response::HTTP_UNAUTHORIZED);
+       
+        // return response($accessLevel == "*");
+        if ($accessLevel != null)
+        {
+            if (!$user) {
+                return response(Response::HTTP_UNAUTHORIZED);
+                // return view('unauthorized');
+            } else if($user->role->intAccessLevel != $accessLevel ){
+                return response($accessLevel,Response::HTTP_UNAUTHORIZED);
+                // return view('unauthorized');
+            } else if (!$user->bitApproved) {
+                // return redirect()->route('unauthorized');
+                // return view('unauthorized', ['message' => "Your account is not approved yet!"]);
+                return response(Response::HTTP_UNAUTHORIZED);
+            }
         }
-
-        $request->attributes->add(['user' => $user]);
         
+        $request->attributes->add(['user' => $user]);
+        // dd($request);
+        // return response($request);
         return $next($request);
     }
 }

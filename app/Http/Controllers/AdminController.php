@@ -15,8 +15,10 @@ class AdminController extends Controller
     public function Report(Request $request) {
         $user = $request->attributes->get('user');
 
+
         
-        return view('Admin/admin_report', ['user' => $user, 'rows' => $rows]);
+        // return view('Admin/admin_report', ['user' => $user, 'rows' => $rows]);
+        return "hi";
     }
 
     public function Approval(Request $request) {

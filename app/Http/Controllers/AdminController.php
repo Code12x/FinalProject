@@ -30,4 +30,14 @@ class AdminController extends Controller
         $user = $request->attributes->get('user');
         return "money";
     }
+
+    public function createrolepage(Request $request) {
+        $user = $request->attributes->get('user');
+        return view("Admin/create_role", ['user' => $user]);
+    }
+
+    public function createrole(Request $request) {
+        $user = $request->attributes->get('user');
+        return view("Admin/admin_home", ['user' => $user]);
+    }
 }

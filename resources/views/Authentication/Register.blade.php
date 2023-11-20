@@ -42,13 +42,13 @@
 
         <div id="patientInputs" class="hidden">
             <label for="familycode">Family Code:</label>
-            <input type="password" id="familycode" name="familycode">
+            <input type="password" id="familycode" name="strFamilyCode">
             <br>
             <label for="emergancycontact">Emergency Contact:</label>
-            <input type="text" id="emergencycontact" name="emergencycontact">
+            <input type="text" id="emergencycontact" name="strEmergencyContactPhone">
             <br>
             <label for="relationemergancycontact">Relation to emergancy contact:</label>
-            <input type="text" id="relationemergancycontact" name="relationemergancycontact">
+            <input type="text" id="relationemergancycontact" name="strEmergencyContactRelation">
         </div>
 
         <input type="submit" value="Submit">
@@ -61,7 +61,7 @@
         var dropdown = document.getElementById('dropdown');
         var patientInputs = document.getElementById('patientInputs');
 
-        if (dropdown.value === '5') {
+        if (dropdown.value === '4') {
             patientInputs.style.display = 'block';
         } else {
             patientInputs.style.display = 'none';

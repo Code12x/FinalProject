@@ -44,9 +44,9 @@ class AuthenticationController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['intUserId'] = 7;
-        $data['intPatientId'] = 7;
-        $data['intEmployeeId'] = 7;
+        $data['intUserId'] = 10;
+        $data['intPatientId'] = 10;
+        $data['intEmployeeId'] = 10;
         $data['bitApproved'] = 0;
 
 
@@ -58,15 +58,15 @@ class AuthenticationController extends Controller
 
         User::create($data);
 
-        if($data['intRoleId'] = 5)
+        if($data['intRoleId'] == 4)
         {
             Patient::create($data);
         }
-        else if($data['intRoleId'] != 6)
+        else if($data['intRoleId'] != 5)
         {
             Employees::create($data);
         }
 
-        return $data;
+        return redirect('/Authentication/login');
     }
 }

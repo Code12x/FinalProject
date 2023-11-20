@@ -20,7 +20,7 @@ class Auth
         if (!$user) {
             return response(Response::HTTP_UNAUTHORIZED);
             // return view('unauthorized');
-        } else if ($user->role->intAccessLevel != $accessLevel) {
+        } else if ($user->role->intAccessLevel != $accessLevel || $accessLevel == "*") {
             return response(Response::HTTP_UNAUTHORIZED);
             // return view('unauthorized');
         } else if (!$user->bitApproved) {

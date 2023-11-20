@@ -14,18 +14,18 @@ class Auth
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $accessLevel = null): Response
+    public function handle(Request $request, Closure $next, ...$accessLevel)
     {
         $user = AuthFunction::User($request);
        
         // return response($accessLevel == "*");
-        if ($accessLevel != null)
+        if (!in_array("*", $accessLevel))
         {
             if (!$user) {
                 return response(Response::HTTP_UNAUTHORIZED);
                 // return view('unauthorized');
-            } else if($user->role->intAccessLevel != $accessLevel ){
-                return response($accessLevel,Response::HTTP_UNAUTHORIZED);
+            } else if(!in_array($user->role->intAccessLevel, $accessLevel)){
+                return response(Response::HTTP_UNAUTHORIZED);
                 // return view('unauthorized');
             } else if (!$user->bitApproved) {
                 // return redirect()->route('unauthorized');
@@ -33,10 +33,9 @@ class Auth
                 return response(Response::HTTP_UNAUTHORIZED);
             }
         }
-        
+
         $request->attributes->add(['user' => $user]);
-        // dd($request);
-        // return response($request);
+
         return $next($request);
     }
 }

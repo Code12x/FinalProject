@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Auth;
-use App\Models\Role;
 use Illuminate\Http\Request;
 
 
@@ -16,14 +14,20 @@ class AdminController extends Controller
 
     public function Report(Request $request) {
         $user = $request->attributes->get('user');
-        return view('Admin/admin_report', ['user' => $user]);
+
+
+        
+        // return view('Admin/admin_report', ['user' => $user, 'rows' => $rows]);
+        return "hi";
     }
 
-    public function Approval() {
+    public function Approval(Request $request) {
+        $user = $request->attributes->get('user');
         return "approve";
     }
 
-    public function Payment() {
+    public function Payment(Request $request) {
+        $user = $request->attributes->get('user');
         return "money";
     }
 }

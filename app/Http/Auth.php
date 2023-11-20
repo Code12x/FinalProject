@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,13 @@ class Auth {
 
         User: $user = User::where('intUserId', $userId)->get();
 
-        if (count($user) > 0) return $user[0];
-        else return null;
+        if (count($user) <= 0) return null;
+
+        $user = $user[0];
+
+        $role = Role::where('intRoleId', $user->intRoleId)->get()[0];
+        $user['role'] = $role;
+
+        return $user;
     }
 }

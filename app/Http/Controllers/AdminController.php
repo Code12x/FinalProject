@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 
 class AdminController extends Controller
@@ -37,7 +38,16 @@ class AdminController extends Controller
     }
 
     public function createrole(Request $request) {
+        $request->validate([
+            'strName'=>'required',
+             'intAccessLevel'=>'required',
+        ]);
+
+        $data = $request->all();
+        $data['intRoleId'] = 8;
+
+        Role::create($data);
         $user = $request->attributes->get('user');
-        return view("Admin/admin_home", ['user' => $user]);
+        return view("Admin/create_role", ['user' => $user]);
     }
 }

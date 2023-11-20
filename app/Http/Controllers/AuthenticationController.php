@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
             return redirect('/Authentication/login');
         }
 
-        return $user;
+        return redirect('/home');
     }
 
     public function logout()

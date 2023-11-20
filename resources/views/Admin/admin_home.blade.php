@@ -4,9 +4,6 @@
 
 @section('css')
 <style>
-    h1 {
-        color: red;
-    }
 </style>
 @endsection
 

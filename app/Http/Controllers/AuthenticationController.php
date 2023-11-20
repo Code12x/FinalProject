@@ -24,21 +24,23 @@ class AuthenticationController extends Controller
 
         if ($user->count() == 1) {
             $user = $user[0];
-            //create session 
-            // $request->session()->put('userId' => $user['intUserId']);
-
-            session(['userId' => $user['intUserId']]);
+            if($user["bitApproved"] == 0)
+            {
+                return view('/Authentication/login')->with('message', 'Not Authorized');
+            } else {
+                session(['userId' => $user['intUserId']]);
+            }
         } else {
-            return redirect('/Authentication/login');
+            return view('/Authentication/login')->with('message', 'Incorrect Log in Information');
         }
 
-        return $user;
+        return redirect('/home');
     }
 
     public function logout()
     {
         session()->flush();
-        return redirect('/Authentication/login');
+        return redirect('/home');
     }
 
     public function register(Request $request)
@@ -67,6 +69,6 @@ class AuthenticationController extends Controller
             Employees::create($data);
         }
 
-        return redirect('/Authentication/login');
+        return redirect('/login');
     }
 }

@@ -6,13 +6,13 @@ use App\Http\Controllers\HomeController;
 
 // Log in and Registration -----------------------------------------------------------------------------------------
 // Login
-Route::get('Authentication/login', function(){ return view('Authentication\Login');});
+Route::get('Authentication/login', function(){ return view('Authentication/Login');});
 Route::post('Authentication/login', [AuthenticationController::class, 'login']);
 
 // Logout
 Route::get('Authentication/logout', [AuthenticationController::class, 'logout']);
 // Register
-Route::get('Authentication/register', function(){ return view('Authentication\Register');});
+Route::get('Authentication/register', function(){ return view('Authentication/Register');});
 Route::post('Authentication/register', [AuthenticationController::class, 'register']);
 // ----------------------------------------------------------------------------------------
 

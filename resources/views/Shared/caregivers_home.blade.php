@@ -9,7 +9,9 @@
 </head>
 <body>
     <header>
-
+        <div class="header">
+            <img src="{{url('/images/logo.jpg')}}" alt="logo">
+        </div>
     </header>
     
     <div class="content">

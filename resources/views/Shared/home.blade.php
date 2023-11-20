@@ -15,6 +15,9 @@
     </header>
     
     <div class="content">
+        <h1 class="main">Home Page</h1>
+        <button type="button" class="buttonsHome" onclick="window.location='{{ url("Authentication/login") }}'">Log In</button>
+        <button type="button" class="buttonsHome" onclick="window.location='{{ url("Authentication/register") }}'">Register</button>
     </div>
     
     @section('footer')

@@ -9,11 +9,13 @@
     min-width: 150px;
     min-height: 150px;
     justify-content: center;
-    background-color: lightgray;
+    align-items: center;
+    padding-top: 2%;
+    background-color: #c16228;
 }
 
 label.caretaker_checks {
-    align-self: center;
+    color: white;
 }
 
 input.caretaker_checks {
@@ -22,14 +24,67 @@ input.caretaker_checks {
 
 input[type=text].caretaker_checks {
     border: none;
-    background-color: lightgray;
+    background-color: #c16228;
 }
 
 input[type=submit]#caregiverSubmit {
-    background-color: green;
+    background-color: #d39829;
     color: white;
     margin-top: 5%;
     border: none;
     width: 8%;
     height: 20%;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=submit]#caregiverSubmit:hover {
+    background-color: #c16228;
+    transition: 1s;
+}
+
+div.header {
+    justify-content: center;
+    display: flex;
+    margin: 0;
+    padding: 1%;
+    color: white;
+    background-color: #603c1c;
+    box-shadow: 0 5px 5px #888888;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+h1 {
+    margin: none;
+    padding: none;
+}
+
+button.buttonsHome {
+    display: inline-block;
+    background-color: #d39829;
+    color: white;
+    padding: 2% 4%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    border: solid black 1px;
+}
+
+button.buttonsHome:hover {
+    background-color: #c16228;
+    transition: 1s;
+}
+
+div.content {
+    margin-left: 1%;
+}
+
+img {
+    border: none;
 }

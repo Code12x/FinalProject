@@ -21,6 +21,13 @@ Route::get('Authentication/register', function(){
 
 Route::post('Authentication/register', [AuthenticationController::class, 'register']);
 
+
+//Caregiver
 route::get('/caregivers_home', function () {
     return view('shared/caregivers_home');
+});
+
+//Home
+route::get('/', function () {
+    return view('shared/home');
 });

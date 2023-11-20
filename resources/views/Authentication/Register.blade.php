@@ -12,7 +12,7 @@
 </head>
 <body>
     <form action="" method="post" onchange="showInputs()">
-        <label for="Email">Email:</label><br>
+        <label for="dropdown">Email:</label><br>
         <select id="dropdown" name="intRoleId">
             <option value="0">Admin</option>
             <option value="1">Suprivisor</option>

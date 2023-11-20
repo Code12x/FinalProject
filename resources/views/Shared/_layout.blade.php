@@ -26,6 +26,9 @@
                 <li class="nav-li">
                     <a href="/admin/approval">Approve Registration</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/admin/createrole">Create Role</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
                     <a href="#"></a>

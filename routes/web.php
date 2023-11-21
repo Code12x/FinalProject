@@ -34,5 +34,5 @@ Route::middleware(['auth:1'])->group(function () {
 // -------------------------------------------- Doctor ---------------------------------------------------
 Route::get('/doctor/home', [DoctorController::class, 'home'])->middleware('auth:3');
 Route::get('/doctor/patientpage', [DoctorController::class, 'patient'])->middleware('auth:3');
-Route::get('/doctor/getOldAppointments/{date}', [DoctorController::class, 'getOldAppointments'])->middleware('auth:3');
+Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments'])->middleware('auth:3');
 Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments'])->middleware('auth:3');

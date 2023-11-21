@@ -19,15 +19,18 @@ class DoctorController extends Controller
         return view("Doctor/patientpage", ['user' => $user]);
     }
 
-    public function getOldAppointments($date) 
+    public function getOldAppointments() 
     {
-        $appointments = Appointment::all();
+        $system_date = '2023-11-24';
+        $appointments = Appointment::where('dteAppointmentDate', '<', $system_date)->get();
         return response()->json($appointments);
     }
 
     public function getNewAppointments($date) 
     {
-        $appointments = Appointment::all();
+        $system_date = '2023-11-24';
+        $appointments = Appointment::where('dteAppointmentDate', '>=', $system_date)
+        ->where('dteAppointmentDate', '<=', $date)->get();
         return response()->json($appointments);
     }
 }

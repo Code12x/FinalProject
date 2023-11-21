@@ -43,8 +43,8 @@
 <div>
     <h1>New appointments</h1>
     <label for="tilldate">Display appointments until:</label><br>
-    <input type="date" id = "tilldate" name = "tilldate">
-    <input type="submit" value="Submit">
+    <input type="date" id = "tilldate" name = "tilldate" value="2023-11-25">
+    <input type="submit" value="Submit" id="submitbtn">
 </div>
 
 <table id="newappointmentsTable" border="1">
@@ -65,35 +65,26 @@
     // Old appointments
     $(document).ready(function () 
     {
-        $.ajax({
-            url: '/doctor/getOldAppointments/1',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) 
+        $.get('/doctor/getOldAppointments', function (data) {
+            $.each(data, function (index, appointment) 
             {
-                $.each(data, function (index, appointment) 
-                {
-                    $('#oldappointmentsTable tbody').append(`
-                        <tr>
-                            <td>${appointment.intAppointmentId}</td>
-                            <td>${appointment.intPatientId}</td>
-                            <td>${appointment.intDoctorId}</td>
-                            <td>${appointment.dteAppointmentDate}</td>
-                        </tr>
-                    `);
-                });
-            }
+                $('#oldappointmentsTable tbody').append(`
+                    <tr>
+                        <td>${appointment.intAppointmentId}</td>
+                        <td>${appointment.intPatientId}</td>
+                        <td>${appointment.intDoctorId}</td>
+                        <td>${appointment.dteAppointmentDate}</td>
+                    </tr>
+                `);
+            });
         });
     });
 
     // New appointments
-    $(document).ready(function () 
+    $(document).on("click", "#submitbtn", function () 
     {
-        $.ajax({
-            url: '/doctor/getNewAppointments/1',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) 
+        var untilldate = $("#tilldate").val();
+        $.get(`/doctor/getNewAppointments/${untilldate}`, function (data) {
             {
                 $.each(data, function (index, appointment) 
                 {

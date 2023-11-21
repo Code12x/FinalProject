@@ -12,6 +12,8 @@ class User extends Authenticatable
 
     protected $table = 'tblUsers';
 
+    protected $primaryKey = 'intUserId';
+
     protected $fillable = [
         'intUserId',
         'intRoleId',
@@ -22,5 +24,6 @@ class User extends Authenticatable
         'strPassword',
         'dteDateOfBirth',
         'bitApproved',
+        'bitDenied',
     ];
 }

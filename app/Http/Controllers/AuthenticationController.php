@@ -44,7 +44,7 @@ class AuthenticationController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['intUserId'] = 10;
+        $data['intUserId'] = 3;
         $data['intPatientId'] = 10;
         $data['intEmployeeId'] = 10;
         $data['bitApproved'] = 0;

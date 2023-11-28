@@ -54,7 +54,7 @@ class DoctorController extends Controller
         $data['intPrescriptionId'] = 9;
         
         $data['intAppointmentId'] = $id;
-        
+
         Prescription::create($data);
 
         return redirect('/doctor/home');

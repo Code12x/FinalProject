@@ -35,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Data will be inserted here dynamically -->
+        
     </tbody>
 </table>
 </div>
@@ -54,10 +54,11 @@
             <th>Patient ID</th>
             <th>Doctor ID</th>
             <th>Appointment Date</th>
+            <th>Patient Page Button</th>
         </tr>
     </thead>
     <tbody>
-        <!-- Data will be inserted here dynamically -->
+        
     </tbody>
 </table>
 
@@ -83,6 +84,20 @@
     // New appointments
     $(document).on("click", "#submitbtn", function () 
     {
+        $('#newappointmentsTable ').html(`
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Appointment Date</th>
+                <th>test</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>`);
+
         var untilldate = $("#tilldate").val();
         $.get(`/doctor/getNewAppointments/${untilldate}`, function (data) {
             {
@@ -94,12 +109,20 @@
                             <td>${appointment.intPatientId}</td>
                             <td>${appointment.intDoctorId}</td>
                             <td>${appointment.dteAppointmentDate}</td>
+                            <td>
+                                <button onclick="navigateToPatientPage(${appointment.intPatientId})" class="">Test</button>
+                            </td>
                         </tr>
                     `);
                 });
             }
         });
     });
+
+    function navigateToPatientPage(intPatientId) {
+        window.location.href = `/doctor/patientpage/${intPatientId}`;
+    }
+
 </script>
 
 </body>

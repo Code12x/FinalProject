@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use App\Models\Perscription;
 
 class DoctorController extends Controller
 {
@@ -11,12 +12,6 @@ class DoctorController extends Controller
     {
         $user = $request->attributes->get('user');
         return view("Doctor/doctorhome", ['user' => $user]);
-    }
-
-    public function patient(Request $request) 
-    {
-        $user = $request->attributes->get('user');
-        return view("Doctor/patientpage", ['user' => $user]);
     }
 
     public function getOldAppointments() 
@@ -33,4 +28,17 @@ class DoctorController extends Controller
         ->where('dteAppointmentDate', '<=', $date)->get();
         return response()->json($appointments);
     }
+
+    public function patient(Request $request, $id) 
+    {
+        $user = $request->attributes->get('user');
+
+        $oldperscriptions = Perscription::join('Appointment', 'Perscription.intAppointmentId', '=', 'Appointment.intAppointmentId')
+        ->where('intAppointmentId', '=', `${id}`)
+        ->get();
+
+        return view("Doctor/patientpage", ['user' => $user]);
+    }
+
+    // public function getPatientInfo(Request $request)
 }

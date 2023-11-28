@@ -28,13 +28,16 @@
                 <li class="nav-li">
                     <a href="/admin/approval">Approve Registration</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/admin/createrole">Create Role</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
                     <a href="#"></a>
                 </li>
             @elseif ($user->role->intAccessLevel == 3) {{-- Doctor --}}
                 <li class="nav-li">
-                    <a href="#"></a>
+                    <a href="/doctor/home">Doctor Home</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 4) {{-- Caregiver --}}
                 <li class="nav-li">

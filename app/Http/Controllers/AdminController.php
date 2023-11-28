@@ -10,7 +10,8 @@ use App\Models\roster;
 use App\Models\User;
 use App\ViewModels\AdminReport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
+use App\Models\Role;
+
 
 class AdminController extends Controller
 {
@@ -131,5 +132,24 @@ class AdminController extends Controller
         } else {
             return ['success' => false];
         }
+    }
+
+    public function createrolepage(Request $request) {
+        $user = $request->attributes->get('user');
+        return view("Admin/create_role", ['user' => $user]);
+    }
+
+    public function createrole(Request $request) {
+        $request->validate([
+            'strName'=>'required',
+             'intAccessLevel'=>'required',
+        ]);
+
+        $data = $request->all();
+        $data['intRoleId'] = 8;
+
+        Role::create($data);
+        $user = $request->attributes->get('user');
+        return view("Admin/create_role", ['user' => $user]);
     }
 }

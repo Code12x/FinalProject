@@ -20,14 +20,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
-    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
-<div>
+
     <h1>Patient Page</h1>
-</div>
+
+    <h2>Old Perscriptions</h2>
+
 
 <table id="OldPerscriptions" border="1">
     <thead>
@@ -52,21 +53,42 @@
         
     </tbody>
 </table>
+<br>
+@if ($appointmentToday->isNotEmpty())
+    <h2>New Perscription</h2>
+    <p>{{ $appointmentToday[0]->dteAppointmentDate }}</p>
 
+    <form action="" method="post">
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment" name="strComment">
+        <br>
+        <label for="mmned">Morning Med:</label>
+        <input type="text" id="mmned" name="strMorning">
+        <br>
+        <label for="amed">Afternoon Med:</label>
+        <input type="text" id="amed" name="strAfternoon">
+        <br>
+        <label for="nmed">Night Med:</label>
+        <input type="text" id="nmed" name="strNight">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    @else
+    <p>No appointments today.</p>
+@endif
 
 <script>
 $(document).ready(function () 
     {
-        $('#oldappointmentsTable tbody').append(`
-            <tr>
-                <td>${appointment.intAppointmentId}</td>
-                <td>${appointment.intPatientId}</td>
-                <td>${appointment.intDoctorId}</td>
-                <td>${appointment.dteAppointmentDate}</td>
-            </tr>
-        `);
-    });
+        var newPerscriptionInputs = document.getElementById('newPerscriptionInputs');
 
+
+        if (dropdown.value === '4') {
+            patientInputs.style.display = 'block';
+        } else {
+            patientInputs.style.display = 'none';
+        }
+    });
 
 </script>
 

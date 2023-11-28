@@ -39,8 +39,24 @@ class DoctorController extends Controller
         ->where('intPatientId', '=', $id)
         ->get();
 
-        return view("Doctor/patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions]);
+        $system_date = '2023-11-24';
+
+        $appointmentToday = Appointment::where('intPatientId', '=', $id)
+        ->where('dteAppointmentDate', '=', $system_date)
+        ->get();
+
+        return view("Doctor/patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions, 'appointmentToday' => $appointmentToday]);
     }
 
-    // public function getPatientInfo(Request $request)
+    public function createPerscription(Request $request, $id)
+    {
+        $data = $request->all();
+        $data['intPrescriptionId'] = 9;
+        
+        $data['intAppointmentId'] = $id;
+        
+        Prescription::create($data);
+
+        return redirect('/doctor/home');
+    }
 }

@@ -12,6 +12,8 @@ class Payments extends Model
     
     protected $table = 'tblPayments';
 
+    protected $primaryKey = 'intPaymentId';
+
     protected $fillable = ['intPaymentId',
                             'intPatientId',
                             'dmlAmount',

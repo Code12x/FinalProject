@@ -28,4 +28,5 @@ Route::middleware(['auth:1'])->group(function () {
     Route::get('/admin/approval', [AdminController::class, 'approval']);
 
     Route::post('/admin/approve', [AdminController::class, '_approve']);
+    Route::post('/admin/_user-payment', [AdminController::class, '_payment']);
 });

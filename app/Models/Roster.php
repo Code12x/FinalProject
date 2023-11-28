@@ -12,6 +12,8 @@ class Roster extends Model
     
     protected $table = 'tblRoster';
 
+    protected $primaryKey = 'intRosterId';
+
     protected $fillable = ['intRosterId', 
                             'dteRosterDate',
                             'intSupervisor',

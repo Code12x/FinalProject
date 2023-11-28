@@ -12,6 +12,8 @@ class Appointment extends Model
     
     protected $table = 'tblAppoitment';
 
+    protected $primaryKey = 'intAppointmentId';
+
     protected $fillable = ['intAppointmentId',
                             'intPatientId',
                             'intDoctorId',

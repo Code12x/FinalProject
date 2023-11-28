@@ -12,6 +12,8 @@ class Prescription extends Model
     
     protected $table = 'tblPrescription';
 
+    protected $primaryKey = 'intPrescriptionId';
+
     protected $fillable = ['intPrescriptionId',
                             'intAppointmentId',
                             'strComment',

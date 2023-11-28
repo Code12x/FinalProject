@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\GetDataTools;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
@@ -111,6 +112,24 @@ class AdminController extends Controller
 
     public function Payment(Request $request) {
         $user = $request->attributes->get('user');
-        return "money";
+
+
+
+        return view('Admin/admin_payment', ['user'=>$user]);
+    }
+
+    public function _payment(Request $request) {
+        $id = $request->input('id');
+
+        $patientTest = GetDataTools::TryGetPatient($id);
+        if ($patientTest['success'] == 'true') {
+            $patient = $patientTest['patient'];
+
+            $amountDue = GetDataTools::GetPatientAmountDue($patient);
+
+            return ['success' => true, 'data' => $amountDue];
+        } else {
+            return ['success' => false];
+        }
     }
 }

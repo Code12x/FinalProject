@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <form action="/Authentication/register" method="post" onchange="showInputs()">
+    <form action="/register" method="post" onchange="showInputs()">
         <label for="Email">Email:</label><br>
         <select id="dropdown" name="intRoleId">
             <option value="0">Admin</option>

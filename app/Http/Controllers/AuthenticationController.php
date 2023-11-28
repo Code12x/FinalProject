@@ -29,7 +29,7 @@ class AuthenticationController extends Controller
 
             session(['userId' => $user['intUserId']]);
         } else {
-            return redirect('/Authentication/login');
+            return redirect('/login');
         }
 
         return redirect('/home');
@@ -38,13 +38,13 @@ class AuthenticationController extends Controller
     public function logout()
     {
         session()->flush();
-        return redirect('/Authentication/login');
+        return redirect('/login');
     }
 
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['intUserId'] = 3;
+        $data['intUserId'] = 4;
         $data['intPatientId'] = 10;
         $data['intEmployeeId'] = 10;
         $data['bitApproved'] = 0;
@@ -67,6 +67,6 @@ class AuthenticationController extends Controller
             Employees::create($data);
         }
 
-        return redirect('/Authentication/login');
+        return redirect('/login');
     }
 }

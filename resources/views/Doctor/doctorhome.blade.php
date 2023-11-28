@@ -4,6 +4,12 @@
 
 @section('css')
 <style>
+    table{
+        border-collapse: collapse;
+    }
+    table th, table tr, table td{
+        padding: 5px;
+    }
 </style>
 @endsection
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appointment;
-use App\Models\Perscription;
+use App\Models\Prescription;
+
+// change misspelled table name  tblappoitment patient function
 
 class DoctorController extends Controller
 {
@@ -33,11 +35,11 @@ class DoctorController extends Controller
     {
         $user = $request->attributes->get('user');
 
-        $oldperscriptions = Perscription::join('Appointment', 'Perscription.intAppointmentId', '=', 'Appointment.intAppointmentId')
-        ->where('intAppointmentId', '=', `${id}`)
+        $oldperscriptions = Prescription::join('tblappoitment', 'tblprescription.intAppointmentId', '=', 'tblappoitment.intAppointmentId')
+        ->where('intPatientId', '=', $id)
         ->get();
 
-        return view("Doctor/patientpage", ['user' => $user]);
+        return view("Doctor/patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions]);
     }
 
     // public function getPatientInfo(Request $request)

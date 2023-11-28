@@ -4,6 +4,12 @@
 
 @section('css')
 <style>
+    table{
+        border-collapse: collapse;
+    }
+    table th, table tr, table td{
+        padding: 5px;
+    }
 </style>
 @endsection
 
@@ -23,12 +29,24 @@
     <h1>Patient Page</h1>
 </div>
 
-<table id="" border="1">
+<table id="OldPerscriptions" border="1">
     <thead>
         <tr>
-            <th>test</th>
-            
+            <th>Date</th>
+            <th>Comment</th>
+            <th>Morning Med</th>
+            <th>Afternoon Med</th>
+            <th>Night Med</th>
         </tr>
+        @foreach($oldperscriptions as $prescription)
+            <tr>
+                <td>{{ $prescription->dteAppointmentDate }}</td>
+                <td>{{ $prescription->strComment }}</td>
+                <td>{{ $prescription->strMorning }}</td>
+                <td>{{ $prescription->strAfternoon }}</td>
+                <td>{{ $prescription->strNight }}</td>
+            </tr>
+        @endforeach
     </thead>
     <tbody>
         
@@ -37,6 +55,17 @@
 
 
 <script>
+$(document).ready(function () 
+    {
+        $('#oldappointmentsTable tbody').append(`
+            <tr>
+                <td>${appointment.intAppointmentId}</td>
+                <td>${appointment.intPatientId}</td>
+                <td>${appointment.intDoctorId}</td>
+                <td>${appointment.dteAppointmentDate}</td>
+            </tr>
+        `);
+    });
 
 
 </script>

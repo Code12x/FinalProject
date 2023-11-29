@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Patient;
-use App\Models\Employees;
 use App\Models\Role;
 
 class AuthenticationController extends Controller
@@ -71,7 +71,7 @@ class AuthenticationController extends Controller
         }
         else if($data['intRoleId'] != 5 && $data['intRoleId'] != 6)
         {
-            Employees::create($data);
+            Employee::create($data);
         }
 
         return redirect('/login');

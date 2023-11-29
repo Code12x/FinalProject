@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Prescription;
+use DateTime;
+use Illuminate\Support\Facades\Date;
 
 // change misspelled table name  tblappoitment patient function
 
 class DoctorController extends Controller
 {
+    protected $dateFormat = "Y-m-d";
+    
     public function Home(Request $request) 
     {
         $user = $request->attributes->get('user');
@@ -18,15 +22,15 @@ class DoctorController extends Controller
 
     public function getOldAppointments() 
     {
-        $system_date = '2023-11-24';
-        $appointments = Appointment::where('dteAppointmentDate', '<', $system_date)->get();
+        $system_date = new DateTime();
+        $appointments = Appointment::where('dteAppointmentDate', '<', $system_date->format($this->dateFormat))->get();
         return response()->json($appointments);
     }
 
     public function getNewAppointments($date) 
     {
-        $system_date = '2023-11-24';
-        $appointments = Appointment::where('dteAppointmentDate', '>=', $system_date)
+        $system_date = new DateTime();
+        $appointments = Appointment::where('dteAppointmentDate', '>=', $system_date->format($this->dateFormat))
         ->where('dteAppointmentDate', '<=', $date)->get();
         return response()->json($appointments);
     }
@@ -35,14 +39,14 @@ class DoctorController extends Controller
     {
         $user = $request->attributes->get('user');
 
-        $oldperscriptions = Prescription::join('tblAppoitment', 'tblPrescription.intAppointmentId', '=', 'tblAppoitment.intAppointmentId')
+        $oldperscriptions = Prescription::join('tblAppointments', 'tblPrescriptions.intAppointmentId', '=', 'tblAppointments.intAppointmentId')
         ->where('intPatientId', '=', $id)
         ->get();
 
-        $system_date = '2023-11-24';
+        $system_date = new DateTime();
 
         $appointmentToday = Appointment::where('intPatientId', '=', $id)
-        ->where('dteAppointmentDate', '=', $system_date)
+        ->where('dteAppointmentDate', '=', $system_date->format($this->dateFormat))
         ->get();
 
         return view("Doctor.patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions, 'appointmentToday' => $appointmentToday]);

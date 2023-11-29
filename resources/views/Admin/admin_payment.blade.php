@@ -41,7 +41,11 @@
     $("#patientId").on('input', function(e) {
         let id = e.currentTarget.value;
         $.post('_user-payment', { "id": id }, function(data) {
-            
+            if (data.success) {
+                $("#totalDue").val("$" + data.data);
+            }else {
+                $("#totalDue").val("");
+            }
         });
     });
 </script>

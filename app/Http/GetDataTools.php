@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Models\Appointment;
 use App\Models\Patient;
+use App\Models\Payment;
 use App\Models\Prescription;
 use App\Models\User;
 use DateInterval;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class GetDataTools {
     /* Universal */
+    public static $dateFormat = "Y-m-d";
     
     public static function TryGetUser($userId) {
         try
@@ -50,7 +52,7 @@ class GetDataTools {
         $admissionDate = new DateTime($patient->dteAdmissionDate);
         
         $totalDays = $curr_date->diff($admissionDate)->format('%a');
-        $numOfAppointments = count(GetDataTools::Appointments($patient));
+        $numOfAppointments = count(GetDataTools::Appointments($patient, true));
 
         $numOfMonths = ceil($totalDays / 30);
         $leftDate = $admissionDate;
@@ -59,7 +61,7 @@ class GetDataTools {
 
             $appointments = Appointment
                 ::where('intPatientId', $patient->intPatientId)
-                ->whereBetween('dteAppointmentDate', [$leftDate, $rightDate])
+                ->whereBetween('dteAppointmentDate', [$leftDate->format(GetDataTools::$dateFormat), $rightDate->format(GetDataTools::$dateFormat)])
                 ->get();
 
             $medicines = [];
@@ -78,15 +80,22 @@ class GetDataTools {
             $leftDate = $rightDate;
         }
 
+        $totalPayments = Payment::where('intPatientId', $patient->intPatientId)->get()->sum('dmlAmount');
+
         $total += $totalDays * 10;
         $total += $numOfAppointments * 50;
 
-        dd($total);
+        $total -= $totalPayments;
+
         return $total;
     }
 
-    public static function Appointments(Patient $patient) {
-        return Appointment::where('intPatientId', $patient->intPatientId)->get();
+    public static function Appointments(Patient $patient, $future=false) {
+        if ($future) {
+            return Appointment::where('intPatientId', $patient->intPatientId)->where('dteAppointmentDate', '<=', new DateTime())->get();
+        } else {
+            return Appointment::where('intPatientId', $patient->intPatientId)->get();
+        }
     }
 }
 

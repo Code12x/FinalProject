@@ -73,7 +73,7 @@
         <br>
         <input type="submit" value="Submit">
     </form>
-    @else
+@else
     <p>No appointments today.</p>
 @endif
 

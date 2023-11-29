@@ -6,12 +6,14 @@ use App\Http\GetDataTools;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
+use App\Models\Payment;
 use App\Models\roster;
 use App\Models\User;
 use App\ViewModels\AdminReport;
 use Illuminate\Http\Request;
 use App\Models\Role;
-
+use DateTime;
+use Exception;
 
 class AdminController extends Controller
 {
@@ -120,6 +122,24 @@ class AdminController extends Controller
     }
 
     public function _payment(Request $request) {
+        try {
+            $validated = $request->validate(
+                [
+                    'patientId' => 'required',
+                    'newPayment' => 'required',
+                ]
+            );
+
+            $date = new DateTime();
+
+            Payment::create(['intPatientId' => $validated['patientId'], 'dmlAmount' => $validated['newPayment'], 'dtePaymentDate' => $date->format(GetDataTools::$dateFormat)]);
+            return ['success' => true];
+        } catch (Exception $e) {
+            return ['success'=>false];
+        }
+    }
+
+    public function _totalDue(Request $request) {
         $id = $request->input('id');
 
         $patientTest = GetDataTools::TryGetPatient($id);

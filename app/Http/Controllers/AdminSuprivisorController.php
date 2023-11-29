@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
+use App\Models\Roster;
 
 class AdminSuprivisorController extends Controller
 {
@@ -23,17 +24,27 @@ class AdminSuprivisorController extends Controller
         return response()->json($user);
     }
 
-    public function createAppointment(Request $request, $id)
+    public function searchRoster($date) 
     {
-        $data = $request->all();
-    
-        // $data->validate([
-        //     'intUserId'=>'required',
-        //     // ''=>'required',
-        // ]);
+        $doctors = Roster::join('tblusers', 'tblusers.intUserId', '=', 'tblroster.intDoctor')
+        ->where('dteRosterDate', '=', $date)
+        ->get();
+        return response()->json($doctors);
+    }
 
+    public function createAppointment(Request $request)
+    {
+        $request->validate([
+            'intPatientId'=>'required',
+            'dteAppointmentDate'=>'required',
+            'intDoctorId'=>'required',
+        ]);
+
+        $data = $request->all();
+        $data['intAppointmentId'] = 6;
+    
         Appointment::create($data);
 
-        return redirect('');
+        return redirect('/suprivisor/createAppointment');
     }
 }

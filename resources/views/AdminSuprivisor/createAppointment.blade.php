@@ -30,7 +30,7 @@
     <p>Name:</p> <p id="nameDisplay"> </p>
     <br>
     <label for="date">Date:</label><br>
-    <input type="date" id = "date" name = "dteAppointmentDate">
+    <input type="date" id = "date" name = "dteAppointmentDate" onchange = "displaydoctors()">
     <br>
 
     <label for="docdropdown">Doctor:</label><br>
@@ -45,10 +45,21 @@
 
 
 <script>
-$(document).ready(function () 
+function displaydoctors()
 {
-    
-});
+    $('#docdropdown').html('');
+
+    var date = $("#date").val();
+    $.get(`/suprivisor/searchRoster/${date}`, function (data) 
+    {
+        {
+            $.each(data, function (index, doctor) 
+            {
+                $('#docdropdown').append(`<option value = ${doctor.intUserId}>${doctor.strFirstName} ${doctor.strLastName}</option>`);
+            });
+        }
+    });
+};
 
 function displayname()
 {

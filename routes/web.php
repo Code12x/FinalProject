@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\AdminSuprivisorController;
 
 // -------------------------------- Log in and Registration -------------------------------------------------------
 // Login
@@ -42,5 +43,7 @@ Route::middleware(['auth:3'])->group(function () {
 
 // -------------------------------------------- Admin/Suprivisor ---------------------------------------------------
 Route::middleware(['auth:1,2'])->group(function () {
-    Route::get('/doctor/home', [DoctorController::class, 'home']);
+    Route::get('/suprivisor/createAppointment', [AdminSuprivisorController::class, 'createAppointmentHome']);
+    Route::get('/suprivisor/searchForName/{id}', [AdminSuprivisorController::class, 'searchForName']);
+    Route::post('/suprivisor/createAppointment', [AdminSuprivisorController::class, 'createAppointment']);
 });

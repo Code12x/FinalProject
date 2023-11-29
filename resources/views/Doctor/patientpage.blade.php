@@ -77,21 +77,6 @@
     <p>No appointments today.</p>
 @endif
 
-<script>
-$(document).ready(function () 
-    {
-        var newPerscriptionInputs = document.getElementById('newPerscriptionInputs');
-
-
-        if (dropdown.value === '4') {
-            patientInputs.style.display = 'block';
-        } else {
-            patientInputs.style.display = 'none';
-        }
-    });
-
-</script>
-
 </body>
 </html>
 

@@ -32,8 +32,15 @@ Route::middleware(['auth:1'])->group(function () {
 });
 
 // -------------------------------------------- Doctor ---------------------------------------------------
-Route::get('/doctor/home', [DoctorController::class, 'home'])->middleware('auth:3');
-Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments'])->middleware('auth:3');
-Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments'])->middleware('auth:3');
-Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient'])->middleware('auth:3');
-Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription'])->middleware('auth:3');
+Route::middleware(['auth:3'])->group(function () {
+    Route::get('/doctor/home', [DoctorController::class, 'home']);
+    Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments']);
+    Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments']);
+    Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient']);
+    Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
+});
+
+// -------------------------------------------- Admin/Suprivisor ---------------------------------------------------
+Route::middleware(['auth:1,2'])->group(function () {
+    Route::get('/doctor/home', [DoctorController::class, 'home']);
+});

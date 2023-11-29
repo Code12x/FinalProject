@@ -10,6 +10,7 @@ use App\Models\Roster;
 
 class AdminSuprivisorController extends Controller
 {
+    // Appointment Page
     public function createAppointmentHome(Request $request) 
     {
         $user = $request->attributes->get('user');
@@ -46,5 +47,12 @@ class AdminSuprivisorController extends Controller
         Appointment::create($data);
 
         return redirect('/suprivisor/createAppointment');
+    }
+
+    // Create Roster
+    public function createRosterHome(Request $request) 
+    {
+        $user = $request->attributes->get('user');
+        return view("AdminSuprivisor/createAppointment", ['user' => $user]);
     }
 }

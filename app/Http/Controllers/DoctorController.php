@@ -35,7 +35,7 @@ class DoctorController extends Controller
     {
         $user = $request->attributes->get('user');
 
-        $oldperscriptions = Prescription::join('tblappoitment', 'tblprescription.intAppointmentId', '=', 'tblappoitment.intAppointmentId')
+        $oldperscriptions = Prescription::join('tblAppoitment', 'tblPrescription.intAppointmentId', '=', 'tblAppoitment.intAppointmentId')
         ->where('intPatientId', '=', $id)
         ->get();
 
@@ -45,7 +45,7 @@ class DoctorController extends Controller
         ->where('dteAppointmentDate', '=', $system_date)
         ->get();
 
-        return view("Doctor/patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions, 'appointmentToday' => $appointmentToday]);
+        return view("Doctor.patientpage", ['user' => $user, 'oldperscriptions' => $oldperscriptions, 'appointmentToday' => $appointmentToday]);
     }
 
     public function createPerscription(Request $request, $id)

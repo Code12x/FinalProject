@@ -22,7 +22,7 @@ class Auth
         if (!in_array("*", $accessLevel))
         {
             if (!$user) {
-                return response(Response::HTTP_UNAUTHORIZED);
+                return redirect('/login?url=' . $request->fullUrl());
                 // return view('unauthorized');
             } else if(!in_array($user->role->intAccessLevel, $accessLevel)){
                 return response(Response::HTTP_UNAUTHORIZED);

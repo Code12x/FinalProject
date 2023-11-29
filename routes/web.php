@@ -13,7 +13,7 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 // Logout
 Route::get('/logout', [AuthenticationController::class, 'logout']);
 // Register
-Route::get('/register', function(){ return view('Authentication/Register');});
+Route::get('/register', [AuthenticationController::class, 'getRegister']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
 

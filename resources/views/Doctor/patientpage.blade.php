@@ -54,7 +54,7 @@
     </tbody>
 </table>
 <br>
-@if ($appointmentToday->count() < 1)
+@if ($appointmentToday->count() == 1)
     <h2>New Perscription</h2>
     <p>{{ $appointmentToday[0]->dteAppointmentDate }}</p>
 

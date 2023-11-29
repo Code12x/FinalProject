@@ -10,7 +10,7 @@ class Prescription extends Model
     public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblPrescription';
+    protected $table = 'tblPrescriptions';
 
     protected $primaryKey = 'intPrescriptionId';
 

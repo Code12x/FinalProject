@@ -10,7 +10,7 @@ class Roster extends Model
     public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblRoster';
+    protected $table = 'tblRosters';
 
     protected $primaryKey = 'intRosterId';
 

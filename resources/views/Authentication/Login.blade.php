@@ -14,5 +14,11 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+
+    @if(isset($message))
+        <script>
+            alert("{{ $message }}");
+        </script>
+    @endif
 </body>
 </html>

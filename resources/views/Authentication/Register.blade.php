@@ -14,12 +14,9 @@
     <form action="" method="post" onchange="showInputs()">
         <label for="dropdown">Email:</label><br>
         <select id="dropdown" name="intRoleId">
-            <option value="0">Admin</option>
-            <option value="1">Suprivisor</option>
-            <option value="2">Doctor</option>
-            <option value="3">Caregiver</option>
-            <option value="4">Patient</option>
-            <option value="5">Family Member</option>
+            @foreach ($roles as $role)
+            <option value="{{ $role->intRoleId }}">{{ $role->strName }}</option>
+            @endforeach
         </select>
         <br>
         <label for="firstname">First name:</label><br>
@@ -61,7 +58,7 @@
         var dropdown = document.getElementById('dropdown');
         var patientInputs = document.getElementById('patientInputs');
 
-        if (dropdown.value === '4') {
+        if (dropdown.value === '5') {
             patientInputs.style.display = 'block';
         } else {
             patientInputs.style.display = 'none';

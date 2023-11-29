@@ -13,7 +13,7 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 // Logout
 Route::get('/logout', [AuthenticationController::class, 'logout']);
 // Register
-Route::get('/register', function(){ return view('Authentication/Register');});
+Route::get('/register', [AuthenticationController::class, 'getRegister']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
 
@@ -27,6 +27,8 @@ Route::middleware(['auth:1'])->group(function () {
     Route::get('/admin/report', [AdminController::class, 'report']);
     Route::get('/admin/payment', [AdminController::class, 'payment']);
     Route::get('/admin/approval', [AdminController::class, 'approval']);
+    Route::post('/admin/approve', [AdminController::class, '_approve']);
+    Route::post('/admin/_user-payment', [AdminController::class, '_payment']);
     Route::get('/admin/createrole', [AdminController::class, 'createrolepage']);
     Route::post('/admin/createrole', [AdminController::class, 'createrole']);
 });

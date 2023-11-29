@@ -97,7 +97,7 @@
                 <th>Patient ID</th>
                 <th>Doctor ID</th>
                 <th>Appointment Date</th>
-                <th>test</th>
+                <th>Patient Page Button</th>
             </tr>
         </thead>
         <tbody>

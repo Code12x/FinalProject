@@ -49,4 +49,6 @@ Route::middleware(['auth:1,2'])->group(function () {
     Route::post('/suprivisor/createAppointment', [AdminSuprivisorController::class, 'createAppointment']);
 
     Route::get('/suprivisor/createRoster', [AdminSuprivisorController::class, 'createRosterHome']);
+    Route::post('/suprivisor/createRoster', [AdminSuprivisorController::class, 'createRoster']);
+    Route::get('/suprivisor/updateRosterChoices', [AdminSuprivisorController::class, 'updateRosterChoices']);
 });

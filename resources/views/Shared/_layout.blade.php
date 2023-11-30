@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/_layout.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @yield('head')
     @yield('css')
 
     <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
@@ -27,13 +29,16 @@
                 <li class="nav-li">
                     <a href="/admin/approval">Approve Registration</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/admin/createrole">Create Role</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
                     <a href="#"></a>
                 </li>
             @elseif ($user->role->intAccessLevel == 3) {{-- Doctor --}}
                 <li class="nav-li">
-                    <a href="#"></a>
+                    <a href="/doctor/home">Doctor Home</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 4) {{-- Caregiver --}}
                 <li class="nav-li">
@@ -67,7 +72,7 @@
 
     <script>
         function logout() {
-            window.location = '/Authentication/logout';
+            window.location = '/logout';
         }
     </script>
     @yield('script')

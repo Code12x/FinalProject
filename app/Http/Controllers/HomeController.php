@@ -9,6 +9,9 @@ class HomeController extends Controller
     public function reroute(Request $request)
     {
         $user = $request->attributes->get('user');
+
+        if (is_null($user)) return redirect('/login');
+        
         switch ($user->role->intAccessLevel) {
             case 1:
                 return redirect('/admin/home');

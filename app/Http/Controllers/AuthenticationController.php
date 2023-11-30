@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Patient;
-use App\Models\Employees;
+use App\Models\Role;
 
 class AuthenticationController extends Controller
 {
@@ -26,31 +27,33 @@ class AuthenticationController extends Controller
             $user = $user[0];
             if($user["bitApproved"] == 0)
             {
-                return view('/Authentication/login')->with('message', 'Not Authorized');
+                return view('Authentication.Login')->with('message', 'Not Authorized');
             } else {
                 session(['userId' => $user['intUserId']]);
             }
         } else {
-            return view('/Authentication/login')->with('message', 'Incorrect Log in Information');
+            return view('Authentication.Login')->with('message', 'Incorrect Log in Information');
         }
 
-        return redirect('/home');
+        $url = $request->query('url', '/home');
+
+        return redirect($url);
     }
 
     public function logout()
     {
         session()->flush();
-        return redirect('/home');
+        return redirect('/login');
+    }
+
+    public function getRegister(Request $request) {
+        $roles = Role::all();
+        return view('Authentication.Register', ['roles' => $roles]);
     }
 
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['intUserId'] = 10;
-        $data['intPatientId'] = 10;
-        $data['intEmployeeId'] = 10;
-        $data['bitApproved'] = 0;
-
 
         // $data->validate([
         //     'intUserId'=>'required',
@@ -58,15 +61,17 @@ class AuthenticationController extends Controller
         // ]);
 
 
-        User::create($data);
+        $user = User::create($data);
 
-        if($data['intRoleId'] == 4)
+        $data['intUserId'] = $user->intUserId;
+
+        if($data['intRoleId'] == 5)
         {
             Patient::create($data);
         }
-        else if($data['intRoleId'] != 5)
+        else if($data['intRoleId'] != 5 && $data['intRoleId'] != 6)
         {
-            Employees::create($data);
+            Employee::create($data);
         }
 
         return redirect('/login');

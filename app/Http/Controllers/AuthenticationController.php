@@ -46,7 +46,7 @@ class AuthenticationController extends Controller
         return redirect('/login');
     }
 
-    public function getRegister(Request $request) {
+    public function getRegister() {
         $roles = Role::all();
         return view('Authentication.Register', ['roles' => $roles]);
     }

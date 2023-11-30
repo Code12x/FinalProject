@@ -13,6 +13,12 @@
 </head>
 <body>
     <header>
+        <div class="date-bar">
+            <form action="set-date" method="post" id="set-date-form">
+                <input type="date" name="date" id="currDate" value="{{ $currDate }}" min="{{ $currDate }}">
+                <button type="submit">Change Date</button>
+            </form>
+        </div>
         <nav>
             <ul>{{-- nav links --}}
             @if ($user->role->intAccessLevel == 1) {{-- Admin --}}
@@ -70,6 +76,18 @@
     <script>
         function logout() {
             window.location = '/logout';
+        }
+
+        $("#set-date-form").on('submit', function(e) {
+            e.preventDefault();
+
+            $.post("/update-date", {"date": $("#currDate").val()}, function(data) {
+                $("#currDate").val(data.date);
+                $("#currDate").prop('min', data.date);
+            });
+        });
+
+        function advanceDate() {
         }
     </script>
     @yield('script')

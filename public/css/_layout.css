@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+.date-bar {
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #675dff;
+}
+
 nav {
     background-color: #ddd;
     display: flex;

@@ -35,6 +35,7 @@ class Auth
         }
 
         $request->attributes->add(['user' => $user]);
+        view()->share('user', $user);
 
         return $next($request);
     }

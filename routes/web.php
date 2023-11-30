@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Models\Patient;
+use App\Models\PatientCareLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +14,17 @@ Route::post('/update-date', function(Request $request) {
     $date = $request->input('date');
     DB::table('tblKeyValues')->where('key', 'currDate')->update(['value' => $date]);
     $newDate = DB::table('tblKeyValues')->where('key', 'currDate')->get()[0]->value;
-    return response()->json(['date' => $newDate]);
+
+    // New date has to create a new patient care log for every day
+    $patients = Patient::all();
+    foreach ($patients as $patient) {
+        $patientCareLog = PatientCareLog::make();
+        $patientCareLog->intPatientId = $patient->intPatientId;
+        $patientCareLog->dteLogDate = $newDate;
+        $patientCareLog->save();
+    }
+    
+    return ['success'];
 });
 
 // -------------------------------- Log in and Registration -------------------------------------------------------

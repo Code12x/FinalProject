@@ -1,3 +1,9 @@
+<?php
+$originalDate = new DateTime($currDate);
+$nextDate = $originalDate->modify("+1 day");
+$nextDateStr = $nextDate->format('Y-m-d');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +21,7 @@
     <header>
         <div class="date-bar">
             <form action="set-date" method="post" id="set-date-form">
-                <input type="date" name="date" id="currDate" value="{{ $currDate }}" min="{{ $currDate }}">
+                <input type="date" name="date" id="currDate" value="{{ $currDate }}" min="{{ $nextDateStr }}">
                 <button type="submit">Change Date</button>
             </form>
         </div>
@@ -81,9 +87,8 @@
         $("#set-date-form").on('submit', function(e) {
             e.preventDefault();
 
-            $.post("/update-date", {"date": $("#currDate").val()}, function(data) {
-                $("#currDate").val(data.date);
-                $("#currDate").prop('min', data.date);
+            $.post("/update-date", {"date": $("#currDate").val()}, function() {
+                window.location.href = window.location.href;
             });
         });
 

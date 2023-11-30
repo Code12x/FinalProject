@@ -169,7 +169,6 @@ class AdminController extends Controller
         ]);
 
         $data = $request->all();
-        $data['intRoleId'] = 8;
 
         Role::create($data);
         $user = $request->attributes->get('user');

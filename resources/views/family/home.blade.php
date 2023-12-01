@@ -19,7 +19,7 @@
             </label>
 
             <label>Family Code
-                <input type="text" name="familyCode" id="familyCode" value="">
+                <input type="password" name="familyCode" id="familyCode" value="">
             </label>
 
             <label>Patient ID

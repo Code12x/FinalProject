@@ -63,6 +63,8 @@ class AdminSuprivisorController extends Controller
 
     public function updateRosterChoices(Request $request) 
     {
+        $roster = Roster::get();
+
         $supervisors = User::where('intRoleId', '=', '1')
         ->get();
 
@@ -72,7 +74,7 @@ class AdminSuprivisorController extends Controller
         $caregivers = User::where('intRoleId', '=', '3')
         ->get();
 
-        return response()->json(['supervisors' => $supervisors, 'doctors' => $doctors, 'caregivers' => $caregivers]);
+        return response()->json(['roster' => $roster, 'supervisors' => $supervisors, 'doctors' => $doctors, 'caregivers' => $caregivers]);
 
     }
 }

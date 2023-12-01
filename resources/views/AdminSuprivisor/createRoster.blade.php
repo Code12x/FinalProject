@@ -63,15 +63,37 @@
     
 </form>
 
+<div id = "test"></div>
+
 
 <script>
 $(document).ready(function () 
 {
+    let supervisorsIds = [];
+    let doctorIds = [];
+    let caregiverIds = [];
+
     $.get(`/suprivisor/updateRosterChoices`, function (data) 
     {
-        $.each(data.supervisors, function (index, supervisors) 
+        $.each(data.roster, function (index, roster) 
         {
-            $('#supdropdown').append(`<option value = ${supervisors.intUserId}>${supervisors.strFirstName} ${supervisors.strLastName}</option>`);
+            if(roster.dteRosterDate >= '2023-11-29')
+            {
+                supervisorsIds.push(roster.intSupervisor);
+                doctorIds.push(roster.intDoctor);
+                caregiverIds.push(roster.intCaregiver1);
+                caregiverIds.push(roster.intCaregiver2);
+                caregiverIds.push(roster.intCaregiver3);
+                caregiverIds.push(roster.intCaregiver4);
+            }
+        }); 
+        $('#test').append(`<p>${caregiverIds}</p>`)
+
+        $.each(data.supervisors, function (index, supervisor) 
+        {
+            if ((supervisorsIds.indexOf(supervisor.intUserId) === -1)) {
+                $('#supdropdown').append(`<option value="${supervisor.intUserId}">${supervisor.strFirstName} ${supervisor.strLastName}</option>`);
+            }
         });
 
         $.each(data.doctors, function (index, doctors) 

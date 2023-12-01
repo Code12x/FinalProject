@@ -91,9 +91,6 @@ $nextDateStr = $nextDate->format('Y-m-d');
                 window.location.href = window.location.href;
             });
         });
-
-        function advanceDate() {
-        }
     </script>
     @yield('script')
 </body>

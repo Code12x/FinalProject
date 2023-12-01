@@ -70,7 +70,6 @@ Route::get('family/home', function () {
 });
 Route::get('family/getInfo', [FamilyController::class, 'getInfo']);
 
-
 //data example
 Route::get('family/home', [FamilyController::class, 'example']);
 

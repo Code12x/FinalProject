@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\FamilyController;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ Route::middleware(['auth:1'])->group(function () {
     Route::post('/admin/_user-payment', [AdminController::class, '_totalDue']);
     Route::get('/admin/createrole', [AdminController::class, 'createrolepage']);
     Route::post('/admin/createrole', [AdminController::class, 'createrole']);
-use App\Http\Controllers\FamilyController;
+});
 
 ////* Admin */
 Route::get('/admin/home', [AdminController::class, 'home']);

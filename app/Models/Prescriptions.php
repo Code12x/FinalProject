@@ -11,11 +11,8 @@ class Prescriptions extends Model
     use HasFactory;
     
     protected $table = 'tblPrescriptions';
-<<<<<<< HEAD:app/Models/Prescriptions.php
-=======
 
     protected $primaryKey = 'intPrescriptionId';
->>>>>>> 4f7f6d79d8efa14c4cd00559a98afd7526c8cec3:app/Models/Prescription.php
 
     protected $fillable = ['intPrescriptionId',
                             'intAppointmentId',

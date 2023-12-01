@@ -24,8 +24,8 @@
 </div>
 
 <form action="" method="post">
-    <label for="date">Until Date:</label>
-    <input type="date" id = "date" name = "untilDate">
+    <label for="date">Date:</label>
+    <input type="date" id = "date" name = "date">
     <br>    
 
     <label for="supdropdown">Supervisor:</label>
@@ -87,7 +87,7 @@ $(document).ready(function ()
                 caregiverIds.push(roster.intCaregiver4);
             }
         }); 
-        $('#test').append(`<p>${caregiverIds}</p>`)
+        //$('#test').append(`<p>${caregiverIds}</p>`)
 
         $.each(data.supervisors, function (index, supervisor) 
         {
@@ -96,17 +96,21 @@ $(document).ready(function ()
             }
         });
 
-        $.each(data.doctors, function (index, doctors) 
+        $.each(data.doctors, function (index, doctor) 
         {
-            $('#docdropdown').append(`<option value = ${doctors.intUserId}>${doctors.strFirstName} ${doctors.strLastName}</option>`);
+            if ((doctorIds.indexOf(doctor.intUserId) === -1)) {
+                $('#docdropdown').append(`<option value = ${doctor.intUserId}>${doctor.strFirstName} ${doctor.strLastName}</option>`);
+            }
         });
 
-        $.each(data.caregivers, function (index, caregivers) 
+        $.each(data.caregivers, function (index, caregiver) 
         {
-            $('#cardropdown1').append(`<option value = ${caregivers.intUserId}>${caregivers.strFirstName} ${caregivers.strLastName}</option>`);
-            $('#cardropdown2').append(`<option value = ${caregivers.intUserId}>${caregivers.strFirstName} ${caregivers.strLastName}</option>`);
-            $('#cardropdown3').append(`<option value = ${caregivers.intUserId}>${caregivers.strFirstName} ${caregivers.strLastName}</option>`);
-            $('#cardropdown4').append(`<option value = ${caregivers.intUserId}>${caregivers.strFirstName} ${caregivers.strLastName}</option>`);
+            if ((caregiverIds.indexOf(caregiver.intUserId) === -1)) {
+                $('#cardropdown1').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown2').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown3').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown4').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+            }
         });
     });
 });

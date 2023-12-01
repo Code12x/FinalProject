@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class roster extends Model
+class Rosters extends Model
 {
     public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblRoster';
+    protected $table = 'tblRosters';
 
     protected $fillable = ['intRosterId', 
                             'dteRosterDate',

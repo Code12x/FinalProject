@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\FamilyController;
 
 ////* Admin */
 Route::get('/admin/home', [AdminController::class, 'home']);
@@ -10,12 +11,17 @@ Route::get('/admin/report', [AdminController::class, 'report']);
 Route::get('/admin/payment', [AdminController::class, 'payment']);
 Route::get('/admin/approval', [AdminController::class, 'approval']);
 
-// family home page view
-Route::get('/familyhomepage', function () {
-    return view('shared/familyhomepage');
+////* family home page view */
+Route::get('family/home', function () {
+    return view('family/home');
 });
+Route::get('family/getInfo', [FamilyController::class, 'getInfo']);
 
-// Log in and Registration 
+
+//data example
+Route::get('family/home', [FamilyController::class, 'example']);
+
+////* Log in and Registration */
 Route::get('Authentication/login', function(){
     return view('Authentication\Login');
 });

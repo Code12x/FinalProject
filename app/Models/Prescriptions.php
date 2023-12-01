@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prescription extends Model
+class Prescriptions extends Model
 {
     public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblPrescription';
+    protected $table = 'tblPrescriptions';
 
     protected $fillable = ['intPrescriptionId',
                             'intAppointmentId',

@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientCareLog extends Model
+class PatientCareLogs extends Model
 {
     public $timestamps = false;
 
     use HasFactory;
     
-    protected $table = 'tblPatientCareLog';
+    protected $table = 'tblPatientCareLogs';
 
     protected $fillable = ['intPatientId',
                             'dteLogDate',

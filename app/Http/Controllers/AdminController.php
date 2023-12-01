@@ -7,11 +7,12 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
 use App\Models\Payment;
-use App\Models\roster;
+use App\Models\Prescription;
 use App\Models\User;
 use App\ViewModels\AdminReport;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\Roster;
 use DateTime;
 use Exception;
 
@@ -22,77 +23,89 @@ class AdminController extends Controller
         return view("Admin/admin_home");
     }
 
-    // public function Report(Request $request) {
-    //     $user = $request->attributes->get('user');
+    public function Report(Request $request) {
+        $currDate = $request->attributes->get('currDate');
+     
+        $date = $request->query('date', $currDate);
+        // dd($date);
 
-    //     $currDate = new DateTime();
+        $rows = [];
+
+        $patients = Patient::all();
+        foreach ($patients as $patient) {
+            $row = new AdminReport();
+            
+            $patientUser = User::where('intUserId', $patient->intUserId)->first();
+            $row->patientName = $patientUser->strFirstName . " " . $patientUser->strLastName;
+            
+            $appointments = Appointment::where('intPatientId', $patient->intPatientId)
+                ->where('dteAppointmentDate', $date)
+                ->get();
+            if (count($appointments) == 1) {
+                $appointment = $appointments[0];
+                $row->doctorAppointment = true;
+                
+                $prescriptions = Prescription::where('intAppointmentId', $appointment->intAppointmentId)->get();
+
+                if (count($prescriptions) == 1) $row->prescription = true;
+            }
+
+            $rosters = Roster::where("dteRosterDate", $date)->get();
+
+            if (count($rosters) == 1) {
+                $roster = $rosters[0];
+
+                $caregiverId = null;
+                switch ($patient->intGroup) {
+                    case 1:
+                        $caregiverId = $roster->intCaregiver1;
+                        break;
+                    case 2:
+                        $caregiverId = $roster->intCaregiver2;
+                        break;
+                    case 3:
+                        $caregiverId = $roster->intCaregiver3;
+                        break;
+                    case 4:
+                        $caregiverId = $roster->intCaregiver4;
+                        break;
+                    default:
+                        return "error with patient group";
+                        break;
+                }
+
+                $caregiver = User::where('intUserId', $caregiverId)->first();
+
+                $row->caregiverName = $caregiver->strFirstName . " " . $caregiver->strLastName;
+
+                $doctor = User::where('intUserId', $roster->intDoctor)->first();
+
+                $row->doctorName = $doctor->strFirstName . " " . $doctor->strLastName;
+
+                $careLog = PatientCareLog::where('dteLogDate', $date)->first();
+
+                $row->morningMedicine = $careLog->bitMorningMed;
+                $row->afternoonMedicine = $careLog->bitAfternoonMed;
+                $row->nightMedicine = $careLog->bitEveningMed;
+                $row->breakfast = $careLog->bitBreakfast;
+                $row->lunch = $careLog->bitLunch;
+                $row->dinner = $careLog->bitDinner;
+
+                if (($row->doctorAppointment && !$row->prescription) ||
+                    !$row->morningMedicine ||
+                    !$row->afternoonMedicine ||
+                    !$row->nightMedicine ||
+                    !$row->breakfast ||
+                    !$row->lunch ||
+                    !$row->dinner
+                ) {
+                    array_push($rows, $row);
+                }
+            }
+        }
         
-    //     $date = $request->query('date', $currDate->format(GetDataTools::$dateFormat));
-
-    //     $rows = [];
-
-    //     $patients = Patient::all();
-    //     foreach ($patients as $patient) {
-    //         $row = new AdminReport;
-    //         
-    //         $patientUser = User::where('intUserId', $patient->intUserId)->first();
-    //         $row->patientName = $patientUser->strFirstName . " " . $patientUser->strLastName;
-    //         
-    //         $appointment = Appointment::
-    //             where('intPatientId', $patient->intPatientId)->
-    //             where('dteAppointmentDate', $date)->
-    //             get();
-    //         if (sizeof($appointment) > 0) {
-    //             $appointment
-    //             $row->doctorAppointment = true;
-
-    //             $doctor = User::where('intUserId', $appointment->intDoctorId)->first();
-    //             
-    //             $row->doctorName = $doctor->strFirstName . " " . $doctor->strLastName;
-    //             
-    //         } else {
-    //             $row->doctorAppointment = false;
-    //         }
-
-    //         $roster = Roster::where("dteRosterDate", $date)->first();
-
-    //         $caregiverId = null;
-    //         switch($patient->intGroup) {
-    //             case 1:
-    //                 $caregiverId = $roster->intCaregiver1;
-    //                 break;
-    //             case 2:
-    //                 $caregiverId = $roster->intCaregiver2;
-    //                 break;
-    //             case 3:
-    //                 $caregiverId = $roster->intCaregiver3;
-    //                 break;
-    //             case 4:
-    //                 $caregiverId = $roster->intCaregiver4;
-    //                 break;
-    //             default:
-    //                 return "error with patient group";
-    //                 break;
-    //         }
-
-    //         $caregiver = User::where('intUserId', $caregiverId)->first();
-
-    //         $row->caregiverName = $caregiver->strFirstName . " " . $caregiver->strLastName;
-
-    //         $careLog = PatientCareLog::where('dteLogDate', $date)->first();
-    //         
-    //         $row->morningMedicine = $careLog->bitMorningMed;
-    //         $row->afternoonMedicine = $careLog->bitAfternoonMed;
-    //         $row->nightMedicine = $careLog->bitEveningMed;
-    //         $row->breakfast = $careLog->bitBreakfast;
-    //         $row->lunch = $careLog->bitLunch;
-    //         $row->dinner = $careLog->bitDinner;
-
-    //         // if ($row->doctorAppointment && $row->)
-    //     }
-    //     
-    //     return view('Admin/admin_report', ['user' => $user, 'rows' => $rows]);
-    // }
+        return view('Admin/admin_report', ['rows' => $rows]);
+    }
 
     public function Approval(Request $request) {
         $user = $request->attributes->get('user');

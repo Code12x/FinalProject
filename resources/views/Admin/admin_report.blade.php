@@ -4,7 +4,18 @@
 
 @section('css')
 <style>
-
+    .content {
+        padding: 5px;
+    }
+    
+    table {
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        border: 1px solid black;
+        padding: 5px;
+    }
 </style>
 @endsection
 
@@ -14,6 +25,8 @@
     <label for="date">Date</label>
     <input type="date" name="date" id="date">
 </div>
+
+<br>
 
 <table>
     <tr>
@@ -33,8 +46,9 @@
     <tr>
         <td>{{ $row->patientName }}</td>
         <td>{{ $row->doctorName }}</td>
-        <td>{{ $row->doctorAppointment }}</td>
         <td>{{ $row->caregiverName }}</td>
+        <td>{{ $row->doctorAppointment }}</td>
+        <td>{{ $row->prescription }}</td>
         <td>{{ $row->morningMedicine }}</td>
         <td>{{ $row->afternoonMedicine }}</td>
         <td>{{ $row->nightMedicine }}</td>

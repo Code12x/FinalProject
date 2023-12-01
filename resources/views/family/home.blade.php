@@ -99,7 +99,5 @@
 <!-- <th>${intAppointment}</th> -->
 <!-- <th>${CaregiverintFirstName}</th> -->
 
-<p>test</p>
-
 </body>
 </html>

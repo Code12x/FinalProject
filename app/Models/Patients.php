@@ -12,6 +12,8 @@ class Patients extends Model
 
     protected $table = 'tblPatients';
 
+    protected $primaryKey = 'intPatientId';
+
     protected $fillable = [
         'intPatientId',
         'intUserId',

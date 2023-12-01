@@ -12,6 +12,8 @@ class Roles extends Model
 
     protected $table = 'tblRoles';
 
+    protected $primaryKey = 'intRoleId';
+
     protected $fillable = [
         'intRoleId',
         'strName',

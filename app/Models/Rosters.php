@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rosters extends Model
+class Roster extends Model
 {
     public $timestamps = false;
     use HasFactory;

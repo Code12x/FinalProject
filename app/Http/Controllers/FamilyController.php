@@ -3,24 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Appointments;
-use App\Models\Rosters;
-use App\Models\Patients;
-use App\Models\PatientCareLogs;
+use App\Models\Appointment;
+use App\Models\Roster;
+use App\Models\Patient;
+use App\Models\PatientCareLog;
 
 class FamilyController extends Controller
 {
     public function example() {
-        // $Appointments = Appointments::all();
-        $patients = Patients::all();
-        // $PatientCareLogs = PatientCareLogs::all();
-        // $Rosters = Rosters::all();
+        $patients = Patient::all();
         return view('family/home', ['patients' => $patients]);
     }
     
     public function getInfo(Request $request) {
         $date = $request->input('date');
-        // $familyCode = $request->input('familyCode'); 
+        // $familyCode = $request->input('familyCode');
         $patientId = $request->input('patientId');
 
         // $doctor = Appointments::select('')
@@ -30,11 +27,9 @@ class FamilyController extends Controller
     
         // $careGiver = ;
 
-        $patientCareLogs = PatientCareLogs::where('intPatientId', '=', $patientId)
+        $patientCareLogs = PatientCareLog::where('intPatientId', '=', $patientId)
         ->where('dteLogDate', '=', $date)
         ->get();
         return response()->json($patientCareLogs);
-
-        // return view('family/home', ['patientCareLogs'=>$patientCareLogs]);
     }
 };

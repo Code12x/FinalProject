@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientCareLogs extends Model
+class PatientCareLog extends Model
 {
     public $timestamps = false;
 

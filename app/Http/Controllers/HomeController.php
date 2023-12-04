@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Roster;
 
 class HomeController extends Controller
 {
@@ -36,4 +37,13 @@ class HomeController extends Controller
                 break;
         }
     }
+
+    public function viewRosterInfo(Request $request) {
+        $date = $request->input('date');
+
+        $roster = Roster::where('dteRosterDate', '=', $date)
+        ->get();
+        return response()->json($roster);
+    }
+
 }

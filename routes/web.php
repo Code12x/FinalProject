@@ -65,3 +65,9 @@ Route::middleware(['auth:3'])->group(function() {
     Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient']);
     Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
 });
+
+// -------------------------------------------- viewRoster ---------------------------------------------------
+Route::get('roster/viewRoster', function() {
+    return view('roster/viewRoster');
+});
+Route::get('roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);

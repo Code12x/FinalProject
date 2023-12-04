@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Roster;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
+use App\Models\User;
 
 class FamilyController extends Controller
 {
@@ -15,24 +16,29 @@ class FamilyController extends Controller
         return view('family/home', ['patients' => $patients]);
     }
     
-    public function getInfo(Request $request) {
-        $date = $request->input('date');
-        // $familyCode = $request->input('familyCode');
-        $patientId = $request->input('patientId');
+    public function getPatientInfo(Request $request) {
 
-        // why doesnt this work
-        // $doctor = Appointment::where('dteAppointmentDate', '=', $date)
-        // ->join('tblUsers', 'tblUsers.intUserId', '=', 'tblAppointments.intDoctorId')
-        // ->select('tblUsers.*')
-        // ->get();
-        // return response()->json($doctor);
-
-    
-        // $careGiver = Roster::where();
-
-        $patientCareLogs = PatientCareLog::where('intPatientId', '=', $patientId)
+        $patientCareLogs = PatientCareLog::join('tblPatients', 'tblPatientCareLogs.intPatientId', '=', 'tblPatients.intPatientId')
+        ->where('tblPatients.intPatientId', '=', $patientId)
         ->where('dteLogDate', '=', $date)
+        ->where('strFamilyCode', '=', $familyCode)
         ->get();
         return response()->json($patientCareLogs);
+
+    }
+
+    public function getDoctorInfo(Request $request) {
+        $date = $request->input('date');
+        $patientId = $request->input('patientId');
+
+        $doctor = Appointment::join('tblUsers', 'tblUsers.intUserId', '=', 'tblAppointments.intDoctorId')
+        ->where('dteAppointmentDate', '=', $date)
+        ->select('tblUsers.*', 'tblAppointments.*')
+        ->first();
+        return response()->json($doctor);
+
+    
+        // new function needed maybe?
+        // $careGiver = Roster::where();
     }
 };

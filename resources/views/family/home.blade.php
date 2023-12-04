@@ -18,9 +18,9 @@
                 <input type="date" name="date" id="date" value="">
             </label>
 
-            <!-- <label>Family Code
+            <label>Family Code
                 <input type="password" name="familyCode" id="familyCode" value="">
-            </label> -->
+            </label>
 
             <label>Patient ID
                 <input type="int" name="patientId" id="patientId" placeholder="Enter patient's ID">
@@ -36,8 +36,8 @@
 
             <thead>
                 <tr>
-                    <!-- <th>Doctor</th>
-                    <th>Appointment</th> -->
+                    <th>Doctor</th>
+                    <th>Appointment</th>
                     <!-- <th>Caregiver</th> -->
                     <th>Morning Medicine</th>
                     <th>Afternoon Medicine</th>
@@ -69,21 +69,30 @@
     </footer>
 
     <script>
+
         $(document).ready(function () {
             $('#familyform').submit(function (event) {
                 event.preventDefault();
 
                 let date = $('#date').val();
+                let familyCode = $('#familyCode').val();
                 let patientId = $('#patientId').val();
 
-                $.get(`/family/getInfo?date=${date}&patientId=${patientId}`, function (data) {
+                $.get(`/family/getDoctorInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (doctor) {
+                    $.each(doctor, function (index, doctorInfo) {
+                    $('#patientInfoTable tbody').append(`
+                        <tr>
+                            <td>${doctorInfo.strLastName}</td>
+                            <td>${doctorInfo.intAppointment}</td>
+                        </tr>
+                    `);
+                });
+            });
 
-                    $.each(data, function (index, patientCareLog) {
+                $.get(`/family/getPatientInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (patientCareLogs) {
+                    $.each(patientCareLogs, function (index, patientCareLog) {
                         $('#patientInfoTable tbody').append(`
                             <tr>
-
-
-
                                 <td>${patientCareLog.bitMorningMed}</td>
                                 <td>${patientCareLog.bitAfternoonMed}</td>
                                 <td>${patientCareLog.bitEveningMed}</td>
@@ -96,10 +105,40 @@
                 });
             });
         });
+
+
+        // $(document).ready(function () {
+        //     $('#familyform').submit(function (event) {
+        //         event.preventDefault();
+
+        //         let date = $('#date').val();
+        //         let familyCode = $('#familyCode').val();
+        //         let patientId = $('#patientId').val();
+
+
+        //         $.get(`/family/getInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (data) {
+
+        //             $.each(data, function (index, patientCareLog) {
+        //                 $('#patientInfoTable tbody').append(`
+        //                     <tr>
+        //                         <td>${doctor.strLastName}</td>
+        //                         <td>${doctor.intAppointment}</td>
+
+        //                         <td>${patientCareLog.bitMorningMed}</td>
+        //                         <td>${patientCareLog.bitAfternoonMed}</td>
+        //                         <td>${patientCareLog.bitEveningMed}</td>
+        //                         <td>${patientCareLog.bitBreakfast}</td>
+        //                         <td>${patientCareLog.bitLunch}</td>
+        //                         <td>${patientCareLog.bitDinner}</td>
+        //                     </tr>
+        //                 `);
+        //             });
+        //         });
+        //     });
+        // });
     </script>
 
-<!-- <td>${doctor.strLastName}</td>
-<td>${doctor.intAppointment}</td> -->
+<!-- <td>${caregiver}</td> -->
 
 </body>
 </html>

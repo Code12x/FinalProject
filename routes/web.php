@@ -68,7 +68,8 @@ Route::get('/admin/approval', [AdminController::class, 'approval']);
 Route::get('family/home', function () {
     return view('family/home');
 });
-Route::get('family/getInfo', [FamilyController::class, 'getInfo']);
+Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
+Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
 
 //data example
 Route::get('family/home', [FamilyController::class, 'example']);

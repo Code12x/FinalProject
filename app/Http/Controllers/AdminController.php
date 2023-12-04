@@ -27,7 +27,6 @@ class AdminController extends Controller
         $currDate = $request->attributes->get('currDate');
      
         $date = $request->query('date', $currDate);
-        // dd($date);
 
         $rows = [];
 
@@ -43,11 +42,11 @@ class AdminController extends Controller
                 ->get();
             if (count($appointments) == 1) {
                 $appointment = $appointments[0];
-                $row->doctorAppointment = true;
+                $row->doctorAppointment = 1;
                 
                 $prescriptions = Prescription::where('intAppointmentId', $appointment->intAppointmentId)->get();
 
-                if (count($prescriptions) == 1) $row->prescription = true;
+                if (count($prescriptions) == 1) $row->prescription = 1;
             }
 
             $rosters = Roster::where("dteRosterDate", $date)->get();
@@ -82,7 +81,7 @@ class AdminController extends Controller
 
                 $row->doctorName = $doctor->strFirstName . " " . $doctor->strLastName;
 
-                $careLog = PatientCareLog::where('dteLogDate', $date)->first();
+                $careLog = PatientCareLog::where('dteLogDate', $date)->where('intPatientId', $patient->intPatientId)->first();
 
                 $row->morningMedicine = $careLog->bitMorningMed;
                 $row->afternoonMedicine = $careLog->bitAfternoonMed;
@@ -104,7 +103,7 @@ class AdminController extends Controller
             }
         }
         
-        return view('Admin/admin_report', ['rows' => $rows]);
+        return view('Admin/admin_report', ['date' => $date,'rows' => $rows]);
     }
 
     public function Approval(Request $request) {

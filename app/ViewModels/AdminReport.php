@@ -4,14 +4,14 @@ namespace App\ViewModels;
 
 class AdminReport {
     public $patientName = "";
-    public $doctorAppointment = false;
+    public $doctorAppointment = 0;
     public $doctorName = "";
-    public $prescription = false;
+    public $prescription = 0;
     public $caregiverName = "";
-    public $morningMedicine = false;
-    public $afternoonMedicine = false;
-    public $nightMedicine = false;
-    public $breakfast = false;
-    public $lunch = false;
-    public $dinner = false;
+    public $morningMedicine = 0;
+    public $afternoonMedicine = 0;
+    public $nightMedicine = 0;
+    public $breakfast = 0;
+    public $lunch = 0;
+    public $dinner = 0;
 }

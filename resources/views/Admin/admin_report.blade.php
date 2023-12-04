@@ -23,7 +23,8 @@
 
 <div>
     <label for="date">Date</label>
-    <input type="date" name="date" id="date">
+    <input type="date" name="date" id="date" value="{{ $date }}">
+    <button type="submit">Apply</button>
 </div>
 
 <br>
@@ -32,8 +33,9 @@
     <tr>
         <th>Patient's Name</th>
         <th>Doctor's Name</th>
-        <th>Doctor's Appointment</th>
         <th>Caregiver's Name</th>
+        <th>Doctor's Appointment</th>
+        <th>Presciption</th>
         <th>Morning Medicine</th>
         <th>Afternoon Medicine</th>
         <th>Night Medicine</th>
@@ -59,6 +61,13 @@
 
     @endforeach
 </table>
+@endsection
 
-
+@section('script')
+<script>
+    $("button[type='submit']").on('click', function() {
+        let loc = window.location;
+        loc.search = `?date=${$("#date").val()}`;
+    });
+</script>
 @endsection

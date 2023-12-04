@@ -7,12 +7,12 @@
     <title>Unauthorized</title>
 </head>
 <body>
-    <h1>Unauthroized</h1>
-    @if ($message)
+    <h1>Unauthorized</h1>
+    @if (isset($message))
     <p>{{ $message }}</p>
     @endif
     <p>
-        <a href="/">Shady Oaks</a>
+        <a href="/home">Home</a>
     </p>
 </body>
 </html>

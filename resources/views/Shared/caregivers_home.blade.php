@@ -16,7 +16,17 @@
     
     <div class="content">
         <h1>Caregiver's Home</h1>
-        <div class="checkboxSec">
+        <div style="border: 3px solid black;">
+            <h2>Patients</h2>
+            @foreach($patients as $patient)
+            <div style="background-color: gray;">
+            {% if roster->intCaregiver1 == user->intUserId %}
+                    <h3>{{$patient->intUserId}}</h3>
+            </div>
+                {% endif %}
+            @endforeach
+        </div>
+        <!-- <div class="checkboxSec">
             <form>
                 <div class="checkboxInds">
                     <label for="patientName" class="caretaker_checks">Name</label><br>
@@ -48,7 +58,7 @@
                 </div class="checkboxInds"><br>
                 <input type="submit" id="caregiverSubmit" value="Ok" class="caretaker_checks">
             </form>
-        </div>
+        </div> -->
     </div>
     
     @section('footer')

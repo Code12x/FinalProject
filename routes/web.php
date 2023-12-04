@@ -4,6 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\CareGiverController;
+use App\Models\Patient;
+
 
 // -------------------------------- Log in and Registration -------------------------------------------------------
 // Login
@@ -43,3 +46,7 @@ Route::middleware(['auth:3'])->group(function() {
     Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient']);
     Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
 });
+
+//Caregiver
+
+Route::get('/caregivers_home', [CareGiverController::class, 'showPatients']);

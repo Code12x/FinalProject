@@ -21,4 +21,8 @@ class PatientCareLog extends Model
                             'bitBreakfast',
                             'bitLunch',
                             'bitDinner'];
+
+    public function careLogs(){
+        return $this->hasMany(Patient::class, 'intGroup');
+    }
 }

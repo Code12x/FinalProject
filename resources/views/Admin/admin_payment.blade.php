@@ -26,7 +26,7 @@
 
 <p class="alert" hidden></p>
 
-<form action="_payment" method="POST">
+<form action="_payment" method="POST" id="payment-form">
     <label for="patientId">Patient ID: <input type="text" name="patientId" id="patientId"></label>
     <label for="totalDue">Total Due: <input type="text" name="totalDue" id="totalDue" disabled></label>
     <label for="newPayment">New Payment: <input type="text" name="newPayment" id="newPayment"></label>
@@ -46,6 +46,13 @@
             }else {
                 $("#totalDue").val("");
             }
+        });
+    });
+
+    $("#payment-form").on('submit', function(e) {
+        e.preventDefault();
+        $.post("_payment", {patientId: $("#patientId").val(), newPayment: $("#newPayment").val()}, function(data) {
+            window.location.href = window.location.href;
         });
     });
 </script>

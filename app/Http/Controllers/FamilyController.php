@@ -20,12 +20,15 @@ class FamilyController extends Controller
         // $familyCode = $request->input('familyCode');
         $patientId = $request->input('patientId');
 
-        // $doctor = Appointments::select('')
-        // ->join('tblPatientCareLog', 'intPatientId', '=', 'tblPatientCareLog.intPatientId')
-        // ->join()
+        // why doesnt this work
+        // $doctor = Appointment::where('dteAppointmentDate', '=', $date)
+        // ->join('tblUsers', 'tblUsers.intUserId', '=', 'tblAppointments.intDoctorId')
+        // ->select('tblUsers.*')
         // ->get();
+        // return response()->json($doctor);
+
     
-        // $careGiver = ;
+        // $careGiver = Roster::where();
 
         $patientCareLogs = PatientCareLog::where('intPatientId', '=', $patientId)
         ->where('dteLogDate', '=', $date)

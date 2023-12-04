@@ -18,9 +18,9 @@
                 <input type="date" name="date" id="date" value="">
             </label>
 
-            <label>Family Code
+            <!-- <label>Family Code
                 <input type="password" name="familyCode" id="familyCode" value="">
-            </label>
+            </label> -->
 
             <label>Patient ID
                 <input type="int" name="patientId" id="patientId" placeholder="Enter patient's ID">
@@ -37,8 +37,8 @@
             <thead>
                 <tr>
                     <!-- <th>Doctor</th>
-                    <th>Appointment</th>
-                    <th>Caregiver</th> -->
+                    <th>Appointment</th> -->
+                    <!-- <th>Caregiver</th> -->
                     <th>Morning Medicine</th>
                     <th>Afternoon Medicine</th>
                     <th>Night Medicine</th>
@@ -81,6 +81,9 @@
                     $.each(data, function (index, patientCareLog) {
                         $('#patientInfoTable tbody').append(`
                             <tr>
+
+
+
                                 <td>${patientCareLog.bitMorningMed}</td>
                                 <td>${patientCareLog.bitAfternoonMed}</td>
                                 <td>${patientCareLog.bitEveningMed}</td>
@@ -95,9 +98,8 @@
         });
     </script>
 
-<!-- <th>${DoctorintFirstName}</th> -->
-<!-- <th>${intAppointment}</th> -->
-<!-- <th>${CaregiverintFirstName}</th> -->
+<!-- <td>${doctor.strLastName}</td>
+<td>${doctor.intAppointment}</td> -->
 
 </body>
 </html>

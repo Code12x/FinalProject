@@ -67,11 +67,11 @@
 
 
 <script>
+let caregiverIds = [];
 $(document).ready(function () 
 {
     let supervisorsIds = [];
     let doctorIds = [];
-    let caregiverIds = [];
 
     $.get(`/suprivisor/updateRosterChoices`, function (data) 
     {
@@ -87,7 +87,6 @@ $(document).ready(function ()
                 caregiverIds.push(roster.intCaregiver4);
             }
         }); 
-        //$('#test').append(`<p>${caregiverIds}</p>`)
 
         $.each(data.supervisors, function (index, supervisor) 
         {
@@ -117,7 +116,30 @@ $(document).ready(function ()
 
 function updateCaregivers()
 {
+    let selectedSupervisorsIds = [];
+   // $('#cardropdown1').html('');
+    $('#cardropdown2').html('');
+    $('#cardropdown3').html('');
+    $('#cardropdown4').html('');
 
+    selectedSupervisorsIds.push($('#cardropdown1').val());
+    selectedSupervisorsIds.push($('#cardropdown2').val());
+    selectedSupervisorsIds.push($('#cardropdown3').val());
+    selectedSupervisorsIds.push($('#cardropdown4').val());
+
+    console.log(selectedSupervisorsIds);
+    $.get(`/suprivisor/updateRosterChoices`, function (data) 
+    {
+        $.each(data.caregivers, function (index, caregiver) 
+        {
+            if ((caregiverIds.indexOf(caregiver.intUserId) === -1) && (selectedSupervisorsIds.indexOf(caregiverIds.intUserId) === -1)) {
+              //  $('#cardropdown1').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown2').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown3').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                $('#cardropdown4').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+            }
+        });
+    });
 }
 
 </script>

@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
 use App\Models\Roster;
+use App\Models\Employees;
 
 class AdminSuprivisorController extends Controller
 {
@@ -99,4 +100,38 @@ class AdminSuprivisorController extends Controller
         return redirect('/supervisor/createAdditionalPatientInfo');
     }
 
+    // Display Employees
+    public function displayEmployeesHome(Request $request) 
+    {
+        $user = $request->attributes->get('user');
+        return view("AdminSupervisor/displayEmployees", ['user' => $user]);
+    }
+
+    public function getEmployees() 
+    {
+        $employees = Employees::get();
+        return response()->json($employees);
+    }
+
+    public function searchForEmployee($id) 
+    {
+        $user = User::join('tblpatients', 'tblpatients.intUserId', '=', 'tblusers.intUserId')
+        ->where('tblpatients.intPatientId', '=', $id)
+        ->get();
+        return response()->json($user);
+    }
+
+    public function updateSalary(Request $request)
+    {
+        $request->validate([
+            'intGroup'=>'required',
+            'dteAdmissionDate'=>'required',
+            'intPatientId'=>'required',
+        ]);
+
+        $data = $request->all();
+        Patient::find($data['intPatientId'])->update($data);
+
+        return redirect('/supervisor/createAdditionalPatientInfo');
+    }
 }

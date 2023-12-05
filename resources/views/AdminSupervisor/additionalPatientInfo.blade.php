@@ -14,13 +14,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Appointment</title>
+    <title>Create Roster</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
 <div>
-    <h1>Create Appointment</h1>
+    <h1>Create Additoinal Info</h1>
 </div>
 
 <form action="" method="post" onchange = "displayname()">
@@ -28,38 +28,17 @@
     <input type="number" id = "patientId" name = "intPatientId">
     <p>Name:</p> <p id="nameDisplay"> </p>
     <br>
-    <label for="date">Date:</label><br>
-    <input type="date" id = "date" name = "dteAppointmentDate" onchange = "displaydoctors()">
+    <label for="group">Group:</label><br>
+    <input type="int" id = "group" name = "intGroup">
     <br>
-
-    <label for="docdropdown">Doctor:</label><br>
-    <select id="docdropdown" name="intDoctorId">
-        
-    </select>
-
+    <label for="admissionDate">Admission Date:</label><br>
+    <input type="date" id = "admissionDate" name = "dteAdmissionDate">
     <br>
     <input type="submit" value="Submit">
-    
 </form>
 
 
 <script>
-function displaydoctors()
-{
-    $('#docdropdown').html('');
-
-    var date = $("#date").val();
-    $.get(`/supervisor/searchRoster/${date}`, function (data) 
-    {
-        {
-            $.each(data, function (index, doctor) 
-            {
-                $('#docdropdown').append(`<option value = ${doctor.intUserId}>${doctor.strFirstName} ${doctor.strLastName}</option>`);
-            });
-        }
-    });
-};
-
 function displayname()
 {
     var patientId = $("#patientId").val();
@@ -68,8 +47,6 @@ function displayname()
         $('#nameDisplay').html(`${data[0].strFirstName} ${data[0].strLastName}`);
     });
 }
-
-
 </script>
 
 </body>

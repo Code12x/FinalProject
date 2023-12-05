@@ -77,4 +77,26 @@ class AdminSuprivisorController extends Controller
         return response()->json(['roster' => $roster, 'supervisors' => $supervisors, 'doctors' => $doctors, 'caregivers' => $caregivers]);
 
     }
+
+    // Additonal Patient Info
+    public function createAdditionalPatientInfoHome(Request $request) 
+    {
+        $user = $request->attributes->get('user');
+        return view("AdminSupervisor/additionalPatientInfo", ['user' => $user]);
+    }
+
+    public function createAdditionalPatientInfo(Request $request)
+    {
+        $request->validate([
+            'intGroup'=>'required',
+            'dteAdmissionDate'=>'required',
+            'intPatientId'=>'required',
+        ]);
+
+        $data = $request->all();
+        Patient::find($data['intPatientId'])->update($data);
+
+        return redirect('/supervisor/createAdditionalPatientInfo');
+    }
+
 }

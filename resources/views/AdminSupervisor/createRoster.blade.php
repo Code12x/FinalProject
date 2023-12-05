@@ -116,27 +116,56 @@ $(document).ready(function ()
 
 function updateCaregivers()
 {
-    let selectedSupervisorsIds = [];
-    $('#cardropdown1').html('');
-    $('#cardropdown2').html('');
-    $('#cardropdown3').html('');
-    $('#cardropdown4').html('');
+    let selectedCaregiverIds = [];
+    selectedCaregiverIds.push($('#cardropdown1').val());
+    selectedCaregiverIds.push($('#cardropdown2').val());
+    selectedCaregiverIds.push($('#cardropdown3').val());
+    selectedCaregiverIds.push($('#cardropdown4').val());
 
-    selectedSupervisorsIds.push($('#cardropdown1').val());
-    selectedSupervisorsIds.push($('#cardropdown2').val());
-    selectedSupervisorsIds.push($('#cardropdown3').val());
-    selectedSupervisorsIds.push($('#cardropdown4').val());
+    if($('#cardropdown1').attr('id') !== 'cardropdown1') 
+    {
+        $('#cardropdown1').html('');
+    }
+    if($('#cardropdown2').attr('id') !== 'cardropdown1') 
+    {
+        $('#cardropdown2').html('');
+    }
+    if($('#cardropdown3').attr('id') !== 'cardropdown1') 
+    {
+        $('#cardropdown3').html('');
+    }
+    if($('#cardropdown4').attr('id') !== 'cardropdown1') 
+    {
+        $('#cardropdown4').html('');
+    }
 
-    console.log(selectedSupervisorsIds);
+
+
     $.get(`/supervisor/updateRosterChoices`, function (data) 
     {
         $.each(data.caregivers, function (index, caregiver) 
         {
-            if ((caregiverIds.indexOf(caregiver.intUserId) === -1) && (selectedSupervisorsIds.indexOf(caregiverIds.intUserId) === -1)) {
-                $('#cardropdown1').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                $('#cardropdown2').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                $('#cardropdown3').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                $('#cardropdown4').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+            console.log(selectedCaregiverIds.indexOf((caregiver.intUserId).toString()));
+            console.log('sup', selectedCaregiverIds);
+            console.log('care', caregiver.intUserId);
+            if ((caregiverIds.indexOf(caregiver.intUserId) === -1) && (selectedCaregiverIds.indexOf((caregiver.intUserId).toString()) === -1)) 
+            {
+                if($('#cardropdown1').attr('id') !== 'cardropdown1') 
+                {
+                    $('#cardropdown1').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                }
+                if($('#cardropdown2').attr('id') !== 'cardropdown1') 
+                {
+                    $('#cardropdown2').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                }
+                if($('#cardropdown3').attr('id') !== 'cardropdown1') 
+                {
+                    $('#cardropdown3').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                }
+                if($('#cardropdown4').attr('id') !== 'cardropdown1') 
+                {
+                    $('#cardropdown4').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
+                }
             }
         });
     });

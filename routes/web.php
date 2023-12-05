@@ -43,12 +43,12 @@ Route::middleware(['auth:3'])->group(function () {
 
 // -------------------------------------------- Admin/Suprivisor ---------------------------------------------------
 Route::middleware(['auth:1,2'])->group(function () {
-    Route::get('/suprivisor/createAppointment', [AdminSuprivisorController::class, 'createAppointmentHome']);
-    Route::get('/suprivisor/searchForName/{id}', [AdminSuprivisorController::class, 'searchForName']);
-    Route::get('/suprivisor/searchRoster/{date}', [AdminSuprivisorController::class, 'searchRoster']);
-    Route::post('/suprivisor/createAppointment', [AdminSuprivisorController::class, 'createAppointment']);
+    Route::get('/supervisor/createAppointment', [AdminSuprivisorController::class, 'createAppointmentHome']);
+    Route::get('/supervisor/searchForName/{id}', [AdminSuprivisorController::class, 'searchForName']);
+    Route::get('/supervisor/searchRoster/{date}', [AdminSuprivisorController::class, 'searchRoster']);
+    Route::post('/supervisor/createAppointment', [AdminSuprivisorController::class, 'createAppointment']);
 
-    Route::get('/suprivisor/createRoster', [AdminSuprivisorController::class, 'createRosterHome']);
-    Route::post('/suprivisor/createRoster', [AdminSuprivisorController::class, 'createRoster']);
-    Route::get('/suprivisor/updateRosterChoices', [AdminSuprivisorController::class, 'updateRosterChoices']);
+    Route::get('/supervisor/createRoster', [AdminSuprivisorController::class, 'createRosterHome']);
+    Route::post('/supervisor/createRoster', [AdminSuprivisorController::class, 'createRoster']);
+    Route::get('/supervisor/updateRosterChoices', [AdminSuprivisorController::class, 'updateRosterChoices']);
 });

@@ -14,7 +14,7 @@ class AdminSuprivisorController extends Controller
     public function createAppointmentHome(Request $request) 
     {
         $user = $request->attributes->get('user');
-        return view("AdminSuprivisor/createAppointment", ['user' => $user]);
+        return view("AdminSupervisor/createAppointment", ['user' => $user]);
     }
 
     public function searchForName($id) 
@@ -46,19 +46,19 @@ class AdminSuprivisorController extends Controller
     
         Appointment::create($data);
 
-        return redirect('/suprivisor/createAppointment');
+        return redirect('/supervisor/createAppointment');
     }
 
     // Create Roster ----------------------------------------------------------------------------------
     public function createRosterHome(Request $request) 
     {
         $user = $request->attributes->get('user');
-        return view("AdminSuprivisor/createRoster", ['user' => $user]);
+        return view("AdminSupervisor/createRoster", ['user' => $user]);
     }
 
     public function createRoster(Request $request) 
     {
-        return redirect('/suprivisor/createRoster');
+        return redirect('/supervisor/createRoster');
     }
 
     public function updateRosterChoices(Request $request) 

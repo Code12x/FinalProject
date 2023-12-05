@@ -42,14 +42,14 @@
 <script>
  $(document).ready(function () 
     {
-        $.get('/supervisor/displayEmployees', function (data) {
+        $.get('/supervisor/getEmployees', function (data) {
             $.each(data, function (index, employee) 
             {
                 $('#employees tbody').append(`
                     <tr>
-                        <td>${employee.intAppointmentId}</td>
-                        <td>${employee.intPatientId}</td>
-                        <td>${employee.intDoctorId}</td>
+                        <td>${employee.intEmployeeId}</td>
+                        <td>${employee.intUserId}</td>
+                        <td>${employee.dmlSalary}</td>
                     </tr>
                 `);
             });

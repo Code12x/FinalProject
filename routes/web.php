@@ -56,7 +56,7 @@ Route::middleware(['auth:1,2'])->group(function () {
     Route::post('/supervisor/createAdditionalPatientInfo', [AdminSuprivisorController::class, 'createAdditionalPatientInfo']);
 
     Route::get('/supervisor/displayEmployees', [AdminSuprivisorController::class, 'displayEmployeesHome']);
-    Route::get('/supervisor/displayEmployees', [AdminSuprivisorController::class, 'getEmployees']);
+    Route::get('/supervisor/getEmployees', [AdminSuprivisorController::class, 'getEmployees']);
     Route::get('/supervisor/searchEmployee', [AdminSuprivisorController::class, 'searchEmployee']);
     Route::get('/supervisor/updateSalary/{id}/{salary}', [AdminSuprivisorController::class, 'updateSalary']);
 });

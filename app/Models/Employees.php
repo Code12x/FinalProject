@@ -12,6 +12,8 @@ class Employees extends Model
     
     protected $table = 'tblEmployees';
 
+    protected $primaryKey = 'intEmployeeId';
+
     protected $fillable = ['intEmployeeId',
                             'intUserId',
                             'dmlSalary'];

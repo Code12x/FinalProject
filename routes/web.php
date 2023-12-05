@@ -57,6 +57,5 @@ Route::middleware(['auth:1,2'])->group(function () {
 
     Route::get('/supervisor/displayEmployees', [AdminSuprivisorController::class, 'displayEmployeesHome']);
     Route::get('/supervisor/getEmployees', [AdminSuprivisorController::class, 'getEmployees']);
-    Route::get('/supervisor/searchEmployee', [AdminSuprivisorController::class, 'searchEmployee']);
-    Route::get('/supervisor/updateSalary/{id}/{salary}', [AdminSuprivisorController::class, 'updateSalary']);
+    Route::post('/supervisor/updateSalary', [AdminSuprivisorController::class, 'updateSalary']);
 });

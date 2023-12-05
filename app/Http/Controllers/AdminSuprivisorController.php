@@ -113,25 +113,16 @@ class AdminSuprivisorController extends Controller
         return response()->json($employees);
     }
 
-    public function searchForEmployee($id) 
-    {
-        $user = User::join('tblpatients', 'tblpatients.intUserId', '=', 'tblusers.intUserId')
-        ->where('tblpatients.intPatientId', '=', $id)
-        ->get();
-        return response()->json($user);
-    }
-
     public function updateSalary(Request $request)
     {
         $request->validate([
-            'intGroup'=>'required',
-            'dteAdmissionDate'=>'required',
-            'intPatientId'=>'required',
+            'dmlSalary'=>'required',
+            'intEmployeeId'=>'required',
         ]);
 
         $data = $request->all();
-        Patient::find($data['intPatientId'])->update($data);
+        Employees::find($data['intEmployeeId'])->update($data);
 
-        return redirect('/supervisor/createAdditionalPatientInfo');
+        return redirect('/supervisor/displayEmployees');
     }
 }

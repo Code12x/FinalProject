@@ -37,6 +37,20 @@
     </tbody>
 </table>
 
+<div>
+    <h1>Update Salary</h1>
+</div>
+
+<form action="/supervisor/updateSalary" method="post">
+    <label for="patientId">Employee ID:</label>
+    <input type="number" id = "EmployeeId" name = "intEmployeeId">
+    <br>
+    <label for="salary">Salary:</label><br>
+    <input type="int" id = "salary" name = "dmlSalary">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
 
 
 <script>

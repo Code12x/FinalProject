@@ -70,6 +70,7 @@ Route::get('family/home', function () {
 });
 Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
 Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
+Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
 
 //data example
 Route::get('family/home', [FamilyController::class, 'example']);

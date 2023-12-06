@@ -13,7 +13,7 @@
 
     <div class="">
 
-        <form method="get" id="familyform">
+        <form method="get" id="familyForm">
             <label>Date
                 <input type="date" name="date" id="date" value="">
             </label>
@@ -32,19 +32,12 @@
     </div>
 
     <div>
-        <table id="patientInfoTable" border="1">
+        <table id="doctorInfoTable" border="1">
 
             <thead>
                 <tr>
                     <th>Doctor</th>
                     <th>Appointment</th>
-                    <!-- <th>Caregiver</th> -->
-                    <th>Morning Medicine</th>
-                    <th>Afternoon Medicine</th>
-                    <th>Night Medicine</th>
-                    <th>Breakfast</th>
-                    <th>Lunch</th>
-                    <th>Dinner</th>
                 </tr>
             </thead>
             
@@ -53,6 +46,40 @@
             </tbody>
 
         </table>
+
+        <table id="caregiverInfoTable" border="1">
+
+            <thead>
+                <tr>
+                    <th>Caregiver</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+        
+            </tbody>
+
+        </table>
+
+        <table id="patientInfoTable" border="1">
+
+            <thead>
+                <tr>
+                    <th>Morning Medicine</th>
+                    <th>Afternoon Medicine</th>
+                    <th>Night Medicine</th>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Dinner</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
     </div>
 
     <div>
@@ -71,26 +98,42 @@
     <script>
 
         $(document).ready(function () {
-            $('#familyform').submit(function (event) {
+            $('#familyForm').submit(function (event) {
                 event.preventDefault();
 
                 let date = $('#date').val();
                 let familyCode = $('#familyCode').val();
                 let patientId = $('#patientId').val();
 
-                $.get(`/family/getDoctorInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (doctor) {
-                    $.each(doctor, function (index, doctorInfo) {
-                    $('#patientInfoTable tbody').append(`
+                $('#doctorInfoTable tbody').empty();
+                $('#caregiverInfoTable tbody').empty();
+                $('#patientInfoTable tbody').empty();
+
+                $.get(`/family/getDoctorInfo?date=${date}&patientId=${patientId}`, function (data) {
+                    $.each(data, function (index, doctorInfo) {
+                    $('#doctorInfoTable tbody').append(`
                         <tr>
-                            <td>${doctorInfo.strLastName}</td>
-                            <td>${doctorInfo.intAppointment}</td>
+                            <td>${doctorInfo.strFirstName} ${doctorInfo.strLastName}</td>
+                            <td>${doctorInfo.intAppointmentId}</td>
                         </tr>
                     `);
                 });
             });
 
-                $.get(`/family/getPatientInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (patientCareLogs) {
-                    $.each(patientCareLogs, function (index, patientCareLog) {
+            $.get(`/family/getRosterInfo?date=${date}`,{patientId}, function (data) {
+                console.log('hi')
+                console.log(data)
+                    $.each(data, function (index, caregiver) {
+                    $('#caregiverInfoTable tbody').append(`
+                        <tr>
+                            <td>${caregiver.strFirstName} ${caregiver.strLastName}</td>
+                        </tr>
+                    `);
+                });
+            });
+
+                $.get(`/family/getPatientInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (data) {
+                    $.each(data, function (index, patientCareLog) {
                         $('#patientInfoTable tbody').append(`
                             <tr>
                                 <td>${patientCareLog.bitMorningMed}</td>
@@ -104,6 +147,7 @@
                     });
                 });
             });
+
         });
 
 

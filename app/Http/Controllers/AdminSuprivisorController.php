@@ -11,6 +11,13 @@ use App\Models\Employees;
 
 class AdminSuprivisorController extends Controller
 {
+    // Home page
+    public function suprivisorHome(Request $request) 
+    {
+        $user = $request->attributes->get('user');
+        return view("AdminSupervisor/suprivisor_home", ['user' => $user]);
+    }
+
     // Appointment Page ----------------------------------------------------------------------------
     public function createAppointmentHome(Request $request) 
     {
@@ -59,6 +66,18 @@ class AdminSuprivisorController extends Controller
 
     public function createRoster(Request $request) 
     {
+        // $request->validate([
+        //     'dteRosterDate'=>'required',
+        //     'intSupervisor'=>'required',
+        //     'intDoctor'=>'required',
+        // ]);
+
+        $data = $request->all();
+
+        $data['intRosterId'] = 3;
+
+        Roster::create($data);
+
         return redirect('/supervisor/createRoster');
     }
 

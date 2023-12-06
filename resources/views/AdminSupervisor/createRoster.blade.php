@@ -23,9 +23,9 @@
     <h1>Create Roster</h1>
 </div>
 
-<form action="" method="post">
+<form action="/supervisor/createRoster" method="post">
     <label for="date">Date:</label>
-    <input type="date" id = "date" name = "date">
+    <input type="date" id = "date" name = "dteRosterDate">
     <br>    
 
     <label for="supdropdown">Supervisor:</label>
@@ -57,7 +57,6 @@
         <option value = none></option>
     </select>
     <br>   
-    <br>
     <input type="submit" value="Submit">
     
 </form>
@@ -138,8 +137,6 @@ function updateCaregivers()
         $('#cardropdown4').html('<option value = none></option>');
     }
     
-
-
 
     $.get(`/supervisor/updateRosterChoices`, function (data) 
     {

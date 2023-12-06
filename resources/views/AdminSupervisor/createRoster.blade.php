@@ -30,7 +30,6 @@
 
     <label for="supdropdown">Supervisor:</label>
     <select id="supdropdown" name="intSupervisor">
-        
     </select>
     <br>   
     <label for="docdropdown">Doctor:</label>
@@ -40,22 +39,22 @@
     <br>   
     <label for="cardropdown1">Caregiver 1:</label>
     <select id="cardropdown1" name="intCaregiver1" onchange = "updateCaregivers()">
-        
+        <option value = none></option>
     </select>
     <br>   
     <label for="cardropdown2">Caregiver 2:</label>
     <select id="cardropdown2" name="intCaregiver2" onchange = "updateCaregivers()">
-        
+        <option value = none></option>
     </select>
     <br>   
     <label for="cardropdown3">Caregiver 3:</label>
     <select id="cardropdown3" name="intCaregiver3" onchange = "updateCaregivers()">
-        
+        <option value = none></option>
     </select>
     <br>   
     <label for="cardropdown4">Caregiver 4:</label>
     <select id="cardropdown4" name="intCaregiver4" onchange = "updateCaregivers()">
-        
+        <option value = none></option>
     </select>
     <br>   
     <br>
@@ -77,7 +76,7 @@ $(document).ready(function ()
     {
         $.each(data.roster, function (index, roster) 
         {
-            if(roster.dteRosterDate >= '2023-11-29')
+            if(roster.dteRosterDate >= $('date'))
             {
                 supervisorsIds.push(roster.intSupervisor);
                 doctorIds.push(roster.intDoctor);
@@ -122,22 +121,23 @@ function updateCaregivers()
     selectedCaregiverIds.push($('#cardropdown3').val());
     selectedCaregiverIds.push($('#cardropdown4').val());
 
-    if($('#cardropdown1').attr('id') !== 'cardropdown1') 
+    if($('#cardropdown1').val() == 'none') 
     {
-        $('#cardropdown1').html('');
+        $('#cardropdown1').html('<option value = none></option>');
     }
-    if($('#cardropdown2').attr('id') !== 'cardropdown1') 
+    if($('#cardropdown2').val() == 'none') 
     {
-        $('#cardropdown2').html('');
+        $('#cardropdown2').html('<option value = none></option>');
     }
-    if($('#cardropdown3').attr('id') !== 'cardropdown1') 
+    if($('#cardropdown3').val() == 'none') 
     {
-        $('#cardropdown3').html('');
+        $('#cardropdown3').html('<option value = none></option>');
     }
-    if($('#cardropdown4').attr('id') !== 'cardropdown1') 
+    if($('#cardropdown4').val() == 'none') 
     {
-        $('#cardropdown4').html('');
+        $('#cardropdown4').html('<option value = none></option>');
     }
+    
 
 
 
@@ -150,22 +150,22 @@ function updateCaregivers()
             console.log('care', caregiver.intUserId);
             if ((caregiverIds.indexOf(caregiver.intUserId) === -1) && (selectedCaregiverIds.indexOf((caregiver.intUserId).toString()) === -1)) 
             {
-                if($('#cardropdown1').attr('id') !== 'cardropdown1') 
-                {
+                // if(('#cardropdown1').val() == 'none') 
+                // {
                     $('#cardropdown1').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                }
-                if($('#cardropdown2').attr('id') !== 'cardropdown1') 
-                {
+                //}
+                //if(('#cardropdown2').val() == 'none') 
+               // {
                     $('#cardropdown2').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                }
-                if($('#cardropdown3').attr('id') !== 'cardropdown1') 
-                {
+                //}
+                //if(('#cardropdown3').val() == 'none') 
+                //{
                     $('#cardropdown3').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                }
-                if($('#cardropdown4').attr('id') !== 'cardropdown1') 
-                {
+                //}
+               //if(('#cardropdown4').val() == 'none') 
+               // {
                     $('#cardropdown4').append(`<option value = ${caregiver.intUserId}>${caregiver.strFirstName} ${caregiver.strLastName}</option>`);
-                }
+               // }
             }
         });
     });

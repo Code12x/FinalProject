@@ -54,15 +54,17 @@
                 let date = $('#date').val();
 
                 $.get(`/roster/viewRosterInfo?date=${date}`, function (data) {
-                    $.each(data, function (index, roster) {
+                    console.log(data)
+                    console.log(data.roster)
+                    $.each(data.roster, function (index, roster) {
                         $('#rosterTable tbody').append(`
                             <tr>
-                                <td>${roster.intSupervisor}</td>
-                                <td>${roster.intDoctor}</td>
-                                <td>${roster.intCaregiver1}</td>
-                                <td>${roster.intCaregiver2}</td>
-                                <td>${roster.intCaregiver3}</td>
-                                <td>${roster.intCaregiver4}</td>
+                                <td>${roster['supFirstName']} ${roster['supLastName']}</td>
+                                <td>${roster['docFirstName']} ${roster['docLastName']}</td>
+                                <td>${roster['cg1FirstName']} ${roster['cg1LastName']}</td>
+                                <td>${roster['cg2FirstName']} ${roster['cg2LastName']}</td>
+                                <td>${roster['cg3FirstName']} ${roster['cg3LastName']}</td>
+                                <td>${roster['cg4FirstName']} ${roster['cg4LastName']}</td>
                             </tr>
                         `);
                     });

@@ -18,8 +18,7 @@ use Exception;
 
 class AdminController extends Controller
 {
-    public function Home(Request $request) {
-        $user = $request->attributes->get('user');
+    public function Home() {
         return view("Admin/admin_home");
     }
 

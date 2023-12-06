@@ -1,6 +1,6 @@
 @extends('Shared/_layout')
 
-@section('title', 'Report')
+@section('title', 'Home')
 
 @section('css')
 <style>
@@ -20,7 +20,13 @@
 @endsection
 
 @section('content')
-
+<div>
+    <label for="patientId">PatientID</label>
+    <input type="text" disabled value="{{ $row->patientId }}">
+    <label for="patientName">Patient Name</label>
+    <input type="text" disabled value="{{ $row->patientName }}">
+</div>
+<br>
 <div>
     <label for="date">Date</label>
     <input type="date" name="date" id="date" value="{{ $date }}">
@@ -43,29 +49,26 @@
         <th>Lunch</th>
         <th>Dinner</th>
     </tr>
-    @foreach ($rows as $row)
-
     <tr>
         <td>{{ $row->patientName }}</td>
         <td>{{ $row->doctorName }}</td>
         <td>{{ $row->caregiverName }}</td>
-        <td>{{ $row->doctorAppointment }}</td>
+        <td>{{ $row->appointment }}</td>
         <td>{{ $row->prescription }}</td>
-        <td>{{ $row->morningMedicine }}</td>
-        <td>{{ $row->afternoonMedicine }}</td>
-        <td>{{ $row->nightMedicine }}</td>
+        <td>{{ $row->morningMed }}</td>
+        <td>{{ $row->afternoonMed }}</td>
+        <td>{{ $row->nightMed }}</td>
         <td>{{ $row->breakfast }}</td>
         <td>{{ $row->lunch }}</td>
         <td>{{ $row->dinner }}</td>
     </tr>
-
-    @endforeach
 </table>
+
 @endsection
 
 @section('script')
 <script>
-    $("button[type='submit']").on('click', function() {
+    $("button[type='submit']").on('click', function(e) {
         let loc = window.location;
         loc.search = `?date=${$("#date").val()}`;
     });

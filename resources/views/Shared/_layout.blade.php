@@ -1,3 +1,9 @@
+<?php
+$originalDate = new DateTime($currDate);
+$nextDate = $originalDate->modify("+1 day");
+$nextDateStr = $nextDate->format('Y-m-d');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,18 +11,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/_layout.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @yield('head')
     @yield('css')
 
     <title>@yield('title') | Shady Oaks</title>
 </head>
 <body>
     <header>
+        <div class="date-bar">
+            <form action="set-date" method="post" id="set-date-form">
+                <input type="date" name="date" id="currDate" value="{{ $currDate }}" min="{{ $nextDateStr }}">
+                <button type="submit">Change Date</button>
+            </form>
+        </div>
         <nav>
             <ul>{{-- nav links --}}
-            @if ($user->role->intAccessLevel == 1) {{-- Admin --}}
                 <li class="nav-li">
-                    <a href="/admin/home">Home</a>
+                    <a href="/home">Home</a>
                 </li>
+            @if ($user->role->intAccessLevel == 1) {{-- Admin --}}
                 <li class="nav-li">
                     <a href="/admin/report">Report</a>
                 </li>
@@ -29,27 +43,27 @@
                 <li class="nav-li">
                     <a href="/admin/createrole">Create Role</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/patients">Patients</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
-                    <a href="#"></a>
+                    <a href="/patients">Patients</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 3) {{-- Doctor --}}
                 <li class="nav-li">
-                    <a href="/doctor/home">Doctor Home</a>
+                    <a href="/patients">Patients</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 4) {{-- Caregiver --}}
                 <li class="nav-li">
-                    <a href="#"></a>
-            </li>
+                    <a href="/patients">Patients</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 5) {{-- Patient --}}
-                <li class="nav-li">
-                    <a href="#"></a>
-                </li>
             @elseif ($user->role->intAccessLevel == 6) {{-- Family --}}
-                <li class="nav-li">
-                    <a href="#"></a>
-                </li>
             @endif
+            <li class="nav-li">
+                <a href="/roster">Roster</a>
+            </li>
             </ul>{{-- nav links --}}
             
             <div class="logout-div">
@@ -69,6 +83,14 @@
         function logout() {
             window.location = '/logout';
         }
+
+        $("#set-date-form").on('submit', function(e) {
+            e.preventDefault();
+
+            $.post("/update-date", {"date": $("#currDate").val()}, function() {
+                window.location.href = window.location.href;
+            });
+        });
     </script>
     @yield('script')
 </body>

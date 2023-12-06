@@ -11,7 +11,7 @@ class PatientCareLog extends Model
 
     use HasFactory;
     
-    protected $table = 'tblPatientCareLog';
+    protected $table = 'tblPatientCareLogs';
 
     protected $fillable = ['intPatientId',
                             'dteLogDate',

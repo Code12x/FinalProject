@@ -22,11 +22,11 @@ class Auth
         if (!in_array("*", $accessLevel))
         {
             if (!$user) {
-                return response(Response::HTTP_UNAUTHORIZED);
+                return redirect('/login?url=' . $request->fullUrl());
                 // return view('unauthorized');
             } else if(!in_array($user->role->intAccessLevel, $accessLevel)){
-                return response(Response::HTTP_UNAUTHORIZED);
-                // return view('unauthorized');
+                // return response(Response::HTTP_UNAUTHORIZED);
+                return response()->view('unauthorized');
             } else if (!$user->bitApproved) {
                 // return redirect()->route('unauthorized');
                 // return view('unauthorized', ['message' => "Your account is not approved yet!"]);
@@ -35,6 +35,7 @@ class Auth
         }
 
         $request->attributes->add(['user' => $user]);
+        view()->share('user', $user);
 
         return $next($request);
     }

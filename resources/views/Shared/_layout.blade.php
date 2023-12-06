@@ -27,10 +27,10 @@ $nextDateStr = $nextDate->format('Y-m-d');
         </div>
         <nav>
             <ul>{{-- nav links --}}
-            @if ($user->role->intAccessLevel == 1) {{-- Admin --}}
                 <li class="nav-li">
-                    <a href="/admin/home">Home</a>
+                    <a href="/home">Home</a>
                 </li>
+            @if ($user->role->intAccessLevel == 1) {{-- Admin --}}
                 <li class="nav-li">
                     <a href="/admin/report">Report</a>
                 </li>
@@ -43,27 +43,27 @@ $nextDateStr = $nextDate->format('Y-m-d');
                 <li class="nav-li">
                     <a href="/admin/createrole">Create Role</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/patients">Patients</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
-                    <a href="#"></a>
+                    <a href="/patients">Patients</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 3) {{-- Doctor --}}
                 <li class="nav-li">
-                    <a href="/doctor/home">Doctor Home</a>
+                    <a href="/patients">Patients</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 4) {{-- Caregiver --}}
                 <li class="nav-li">
-                    <a href="#"></a>
-            </li>
+                    <a href="/patients">Patients</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 5) {{-- Patient --}}
-                <li class="nav-li">
-                    <a href="#"></a>
-                </li>
             @elseif ($user->role->intAccessLevel == 6) {{-- Family --}}
-                <li class="nav-li">
-                    <a href="#"></a>
-                </li>
             @endif
+            <li class="nav-li">
+                <a href="/roster">Roster</a>
+            </li>
             </ul>{{-- nav links --}}
             
             <div class="logout-div">

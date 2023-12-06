@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
+use App\Models\User;
+use App\ViewModels\PatientsPageVM;
+use DateTime;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -35,5 +39,27 @@ class HomeController extends Controller
                 return redirect('/');
                 break;
         }
+    }
+
+    public function patients(Request $request) {
+        $currDate = $request->attributes->get('currDate');
+        
+        $rows = [];
+
+        $patients = Patient::all();
+        foreach ($patients as $patient) {
+            $row = new PatientsPageVM();
+            $row->id = $patient->intPatientId;
+            $patientUser = User::where('intUserId', $patient->intUserId)->first();
+            $row->name = $patientUser->strFirstName . " " . $patientUser->strLastName;
+            $row->age = date_diff(new DateTime($currDate), new DateTime($patientUser->dteDateOfBirth))->format('%y');
+            $row->emergencyContact = $patient->strEmergencyContactPhone;
+            $row->emergencyContactRelation = $patient->strEmergencyContactRelation;
+            $row->admissionDate = $patient->dteAdmissionDate;
+            
+            array_push($rows, $row);
+        }
+
+        return view('Shared.patients', ['rows'=>$rows]);
     }
 }

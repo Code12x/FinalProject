@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\FamilyController;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
@@ -87,4 +88,14 @@ Route::middleware(['auth:3'])->group(function() {
     Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments']);
     Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient']);
     Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
+});
+
+// ----------------------------------------------- Patient ---------------------------------------------------
+Route::middleware(['auth:5'])->group(function() {
+    Route::get('/patient/home', [PatientController::class, 'home']);
+});
+
+// ------------------------------------------- Shared ------------------------------------------------------
+Route::middleware(['auth:1,2,3,4'])->group(function() {
+    Route::get("/patients", [HomeController::class, 'patients']);
 });

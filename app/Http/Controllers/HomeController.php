@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
-use App\Models\User;
-use App\ViewModels\PatientsPageVM;
-use DateTime;
+use App\Http\GetDataTools;
 use Illuminate\Http\Request;
 use App\Models\Roster;
 
@@ -45,27 +42,70 @@ class HomeController extends Controller
     public function patients(Request $request) {
         $currDate = $request->attributes->get('currDate');
         
-        $rows = [];
-
-        $patients = Patient::all();
-        foreach ($patients as $patient) {
-            $row = new PatientsPageVM();
-            $row->id = $patient->intPatientId;
-            $patientUser = User::where('intUserId', $patient->intUserId)->first();
-            $row->name = $patientUser->strFirstName . " " . $patientUser->strLastName;
-            $row->age = date_diff(new DateTime($currDate), new DateTime($patientUser->dteDateOfBirth))->format('%y');
-            $row->emergencyContact = $patient->strEmergencyContactPhone;
-            $row->emergencyContactRelation = $patient->strEmergencyContactRelation;
-            $row->admissionDate = $patient->dteAdmissionDate;
-            
-            array_push($rows, $row);
-        }
+        $rows = GetDataTools::Patients($currDate);
 
         return view('Shared.patients', ['rows'=>$rows]);
     }
 
-    public function viewRoster(Request $request) {
-        return view('roster/viewRoster');
+    public function patientsSearch(Request $request) {
+        $currDate = $request->attributes->get('currDate');
+        
+        $rows = GetDataTools::Patients($currDate);
+
+        if ($request->has("searchIds")) {
+            $searchId = $request->input("searchIds");
+
+            $rows = array_filter($rows, function($row) use ($searchId) {
+                return stripos($row->id, $searchId) !== false;
+            });
+        }
+
+        if ($request->has("searchNames")) {
+            $searchName = $request->input("searchNames");
+
+            $rows = array_filter($rows, function($row) use ($searchName) {
+                return stripos($row->name, $searchName) !== false;
+            });
+        }
+
+        if ($request->has("searchAges")) {
+            $searchAges = $request->input("searchAges");
+
+            $rows = array_filter($rows, function($row) use ($searchAges) {
+                return stripos($row->age, $searchAges) !== false;
+            });
+        }
+
+        if ($request->has("searchEmergencyContacts")) {
+            return "ec";
+            $searchEmergencyContacts = $request->input("searchEmergencyContacts");
+
+            $rows = array_filter($rows, function($row) use ($searchEmergencyContacts) {
+                return stripos($row->emergencyContact, $searchEmergencyContacts) !== false;
+            });
+        }
+
+        if ($request->has("searchEmergencyContactRelations")) {
+            $searchEmergencyContactRelations = $request->input("searchEmergencyContactRelations");
+
+            $rows = array_filter($rows, function($row) use ($searchEmergencyContactRelations) {
+                return stripos($row->emergencyContactRelation, $searchEmergencyContactRelations) !== false;
+            });
+        }
+
+        if ($request->has("searchAdmissionDates")) {
+            $searchAdmissionDates = $request->input("searchAdmissionDates");
+
+            $rows = array_filter($rows, function($row) use ($searchAdmissionDates) {
+                return stripos($row->admissionDate, $searchAdmissionDates) !== false;
+            });
+        }
+
+        return array_values($rows);
+    }
+
+    public function viewRoster() {
+        return view('Roster.viewRoster');
     }
 
     public function viewRosterInfo(Request $request) {
@@ -90,5 +130,4 @@ class HomeController extends Controller
     
         return response()->json(['roster' => $roster]);
     }
-
 }

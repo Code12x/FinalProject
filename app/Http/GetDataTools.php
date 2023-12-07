@@ -7,6 +7,7 @@ use App\Models\Patient;
 use App\Models\Payment;
 use App\Models\Prescription;
 use App\Models\User;
+use App\ViewModels\PatientsPageVM;
 use DateInterval;
 use DateTime;
 use Exception;
@@ -96,6 +97,26 @@ class GetDataTools {
         } else {
             return Appointment::where('intPatientId', $patient->intPatientId)->get();
         }
+    }
+
+    public static function Patients($currDate) {
+        $rows = [];
+
+        $patients = Patient::all();
+        foreach ($patients as $patient) {
+            $row = new PatientsPageVM();
+            $row->id = $patient->intPatientId;
+            $patientUser = User::where('intUserId', $patient->intUserId)->first();
+            $row->name = $patientUser->strFirstName . " " . $patientUser->strLastName;
+            $row->age = date_diff(new DateTime($currDate), new DateTime($patientUser->dteDateOfBirth))->format('%y');
+            $row->emergencyContact = $patient->strEmergencyContactPhone;
+            $row->emergencyContactRelation = $patient->strEmergencyContactRelation;
+            $row->admissionDate = $patient->dteAdmissionDate;
+            
+            array_push($rows, $row);
+        }
+
+        return $rows;
     }
 }
 

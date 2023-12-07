@@ -105,7 +105,7 @@ class HomeController extends Controller
     }
 
     public function viewRoster() {
-        return view('roster/viewRoster');
+        return view('Roster.viewRoster');
     }
 
     public function viewRosterInfo(Request $request) {

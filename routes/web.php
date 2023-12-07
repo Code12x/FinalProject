@@ -51,7 +51,6 @@ Route::get('/home', [HomeController::class, 'reroute'])->middleware('auth:*');
 Route::middleware(['auth:1'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'home']);
     Route::get('/admin/report', [AdminController::class, 'report']);
-    //Route::get('/admin/report', function() { return view('woops'); });
     Route::get('/admin/payment', [AdminController::class, 'payment']);
     Route::get('/admin/approval', [AdminController::class, 'approval']);
     Route::post('/admin/approve', [AdminController::class, '_approve']);
@@ -59,25 +58,6 @@ Route::middleware(['auth:1'])->group(function () {
     Route::post('/admin/_user-payment', [AdminController::class, '_totalDue']);
     Route::get('/admin/createrole', [AdminController::class, 'createrolepage']);
     Route::post('/admin/createrole', [AdminController::class, 'createrole']);
-});
-
-////* Admin */
-Route::get('/admin/home', [AdminController::class, 'home']);
-Route::get('/admin/report', [AdminController::class, 'report']);
-Route::get('/admin/payment', [AdminController::class, 'payment']);
-Route::get('/admin/approval', [AdminController::class, 'approval']);
-
-////* family home page view */
-Route::middleware(['auth:6'])->group(function() {
-    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
-    Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
-    Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
-    Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
-});
-
-////* Log in and Registration */
-Route::get('Authentication/login', function(){
-    return view('Authentication\Login');
 });
 
 // -------------------------------------------- Doctor ---------------------------------------------------
@@ -115,14 +95,23 @@ Route::middleware(['auth:5'])->group(function() {
     Route::get('/patient/home', [PatientController::class, 'home']);
 });
 
+// -----------------------------------------family home page view -------------------------------------------
+Route::middleware(['auth:6'])->group(function() {
+    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
+    Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
+    Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
+    Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
+});
+
 // ------------------------------------------- Shared ------------------------------------------------------
+// patients page
 Route::middleware(['auth:1,2,3,4'])->group(function() {
     Route::get("/patients", [HomeController::class, 'patients']);
     Route::get("/patients/search", [HomeController::class, 'patientsSearch']);
 });
 
-// -------------------------------------------- viewRoster ---------------------------------------------------
+// view roster
 Route::middleware(['auth:*'])->group(function() {
-    Route::get('roster/viewRoster', [HomeController::class, 'viewRoster']);
-    Route::get('roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
+    Route::get('/roster/viewRoster', [HomeController::class, 'viewRoster']);
+    Route::get('/roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
 });

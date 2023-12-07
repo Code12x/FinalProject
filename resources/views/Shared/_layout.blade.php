@@ -64,7 +64,7 @@ $nextDateStr = $nextDate->format('Y-m-d');
             @elseif ($user->role->intAccessLevel == 6) {{-- Family --}}
             @endif
             <li class="nav-li">
-                <a href="/roster">Roster</a>
+                <a href="/roster/viewRoster">Roster</a>
             </li>
             </ul>{{-- nav links --}}
             

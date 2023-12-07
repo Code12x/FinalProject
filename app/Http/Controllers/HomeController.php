@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\GetDataTools;
-use App\Models\Patient;
-use App\Models\User;
-use App\ViewModels\PatientsPageVM;
-use DateTime;
 use Illuminate\Http\Request;
+use App\Models\Roster;
 
 class HomeController extends Controller
 {
@@ -105,5 +102,32 @@ class HomeController extends Controller
         }
 
         return array_values($rows);
+    }
+
+    public function viewRoster() {
+        return view('roster/viewRoster');
+    }
+
+    public function viewRosterInfo(Request $request) {
+        $date = $request->input('date');
+
+        $roster = Roster::where('dteRosterDate', '=', $date)
+        ->rightjoin('tblUsers as sup', 'sup.intUserId', '=', 'tblRosters.intSupervisor')
+        ->rightjoin('tblUsers as doc', 'doc.intUserId', '=', 'tblRosters.intDoctor')
+        ->rightjoin('tblUsers as cg1', 'cg1.intUserId', '=', 'tblRosters.intCaregiver1')
+        ->rightjoin('tblUsers as cg2', 'cg2.intUserId', '=', 'tblRosters.intCaregiver2')
+        ->rightjoin('tblUsers as cg3', 'cg3.intUserId', '=', 'tblRosters.intCaregiver3')
+        ->rightjoin('tblUsers as cg4', 'cg4.intUserId', '=', 'tblRosters.intCaregiver4')
+        ->select(
+            'sup.strFirstName as supFirstName', 'sup.strLastName as supLastName',
+            'doc.strFirstName as docFirstName', 'doc.strLastName as docLastName',
+            'cg1.strFirstName as cg1FirstName', 'cg1.strLastName as cg1LastName',
+            'cg2.strFirstName as cg2FirstName', 'cg2.strLastName as cg2LastName',
+            'cg3.strFirstName as cg3FirstName', 'cg3.strLastName as cg3LastName',
+            'cg4.strFirstName as cg4FirstName', 'cg4.strLastName as cg4LastName'
+        )
+        ->get();
+    
+        return response()->json(['roster' => $roster]);
     }
 }

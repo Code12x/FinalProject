@@ -12,7 +12,7 @@ use App\Models\User;
 class FamilyController extends Controller
 {    
 
-    public function familyHome() {
+    public function familyHome(Request $request) {
         return view('family/familyHome');
     }
 

@@ -66,6 +66,14 @@
                                 <td>${roster['cg3FirstName']} ${roster['cg3LastName']}</td>
                                 <td>${roster['cg4FirstName']} ${roster['cg4LastName']}</td>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Group 1</td>
+                                <td>Group 2</td>
+                                <td>Group 3</td>
+                                <td>Group 4</td>
+                            </tr>
                         `);
                     });
                 });

@@ -8,7 +8,6 @@ use App\Models\Employee;
 use App\Models\Patient;
 use App\Models\User;
 use App\Models\Roster;
-use App\Models\Employee;
 
 class AdminSuprivisorController extends Controller
 {

@@ -82,15 +82,6 @@
 
     </div>
 
-    <div>
-        <!-- test display data -->
-        <!-- @foreach ($patients as $patient)
-        <div>
-            <p>1. {{ $patient->intPatientId }}</p>
-        </div>
-        @endforeach -->
-    </div>
-
     <footer>
 
     </footer>

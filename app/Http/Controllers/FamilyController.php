@@ -10,12 +10,12 @@ use App\Models\PatientCareLog;
 use App\Models\User;
 
 class FamilyController extends Controller
-{
-    public function example() {
-        $patients = Patient::all();
-        return view('family/home', ['patients' => $patients]);
+{    
+
+    public function familyHome() {
+        return view('family/familyHome');
     }
-    
+
     public function getPatientInfo(Request $request) {
         $date = $request->input('date');
         $familyCode = $request->input('familyCode');

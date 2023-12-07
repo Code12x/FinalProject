@@ -68,15 +68,12 @@ Route::get('/admin/payment', [AdminController::class, 'payment']);
 Route::get('/admin/approval', [AdminController::class, 'approval']);
 
 ////* family home page view */
-Route::get('family/home', function () {
-    return view('family/home');
+Route::middleware(['auth:6'])->group(function() {
+    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
+    Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
+    Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
+    Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
 });
-Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
-Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
-Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
-
-//data example
-Route::get('family/home', [FamilyController::class, 'example']);
 
 ////* Log in and Registration */
 Route::get('Authentication/login', function(){

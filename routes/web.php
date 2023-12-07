@@ -10,6 +10,7 @@ use App\Models\Patient;
 use App\Models\PatientCareLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AdminSuprivisorController;
 
 // ----------------------------------- Advance Date ---------------------------------------------------------
 Route::post('/update-date', function(Request $request) {
@@ -28,6 +29,7 @@ Route::post('/update-date', function(Request $request) {
     
     return ['success'];
 });
+
 
 // -------------------------------- Log in and Registration -------------------------------------------------------
 // Login
@@ -82,7 +84,7 @@ Route::get('Authentication/login', function(){
 });
 
 // -------------------------------------------- Doctor ---------------------------------------------------
-Route::middleware(['auth:3'])->group(function() {
+Route::middleware(['auth:3'])->group(function () {
     Route::get('/doctor/home', [DoctorController::class, 'home']);
     Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments']);
     Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments']);
@@ -90,12 +92,23 @@ Route::middleware(['auth:3'])->group(function() {
     Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
 });
 
-// ----------------------------------------------- Patient ---------------------------------------------------
-Route::middleware(['auth:5'])->group(function() {
-    Route::get('/patient/home', [PatientController::class, 'home']);
-});
+// -------------------------------------------- Admin/Suprivisor ---------------------------------------------------
+Route::middleware(['auth:1,2'])->group(function () {
+    Route::get('/supervisor/home', [AdminSuprivisorController::class, 'suprivisorHome']);
 
-// ------------------------------------------- Shared ------------------------------------------------------
-Route::middleware(['auth:1,2,3,4'])->group(function() {
-    Route::get("/patients", [HomeController::class, 'patients']);
+    Route::get('/supervisor/createAppointment', [AdminSuprivisorController::class, 'createAppointmentHome']);
+    Route::get('/supervisor/searchForName/{id}', [AdminSuprivisorController::class, 'searchForName']);
+    Route::get('/supervisor/searchRoster/{date}', [AdminSuprivisorController::class, 'searchRoster']);
+    Route::post('/supervisor/createAppointment', [AdminSuprivisorController::class, 'createAppointment']);
+
+    Route::get('/supervisor/createRoster', [AdminSuprivisorController::class, 'createRosterHome']);
+    Route::post('/supervisor/createRoster', [AdminSuprivisorController::class, 'createRoster']);
+    Route::get('/supervisor/updateRosterChoices', [AdminSuprivisorController::class, 'updateRosterChoices']);
+
+    Route::get('/supervisor/createAdditionalPatientInfo', [AdminSuprivisorController::class, 'createAdditionalPatientInfoHome']);
+    Route::post('/supervisor/createAdditionalPatientInfo', [AdminSuprivisorController::class, 'createAdditionalPatientInfo']);
+
+    Route::get('/supervisor/displayEmployees', [AdminSuprivisorController::class, 'displayEmployeesHome']);
+    Route::get('/supervisor/getEmployees', [AdminSuprivisorController::class, 'getEmployees']);
+    Route::post('/supervisor/updateSalary', [AdminSuprivisorController::class, 'updateSalary']);
 });

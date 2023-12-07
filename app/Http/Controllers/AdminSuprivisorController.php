@@ -7,7 +7,7 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
 use App\Models\Roster;
-use App\Models\Employees;
+use App\Models\Employee;
 
 class AdminSuprivisorController extends Controller
 {
@@ -128,7 +128,7 @@ class AdminSuprivisorController extends Controller
 
     public function getEmployees() 
     {
-        $employees = Employees::get();
+        $employees = Employee::get();
         return response()->json($employees);
     }
 
@@ -140,7 +140,7 @@ class AdminSuprivisorController extends Controller
         ]);
 
         $data = $request->all();
-        Employees::find($data['intEmployeeId'])->update($data);
+        Employee::find($data['intEmployeeId'])->update($data);
 
         return redirect('/supervisor/displayEmployees');
     }

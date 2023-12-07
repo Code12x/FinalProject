@@ -75,4 +75,5 @@ Route::middleware(['auth:5'])->group(function() {
 // ------------------------------------------- Shared ------------------------------------------------------
 Route::middleware(['auth:1,2,3,4'])->group(function() {
     Route::get("/patients", [HomeController::class, 'patients']);
+    Route::get("/patients/search", [HomeController::class, 'patientsSearch']);
 });

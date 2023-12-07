@@ -101,6 +101,8 @@ class AdminController extends Controller
                 }
             }
         }
+
+        
         
         return view('Admin/admin_report', ['date' => $date,'rows' => $rows]);
     }

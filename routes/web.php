@@ -89,3 +89,31 @@ Route::middleware(['auth:1,2'])->group(function () {
     Route::get('/supervisor/getEmployees', [AdminSuprivisorController::class, 'getEmployees']);
     Route::post('/supervisor/updateSalary', [AdminSuprivisorController::class, 'updateSalary']);
 });
+Route::get('/doctor/home', [DoctorController::class, 'home'])->middleware('auth:3');
+Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments'])->middleware('auth:3');
+Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments'])->middleware('auth:3');
+Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient'])->middleware('auth:3');
+Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription'])->middleware('auth:3');
+Route::middleware(['auth:3'])->group(function() {
+    Route::get('/doctor/home', [DoctorController::class, 'home']);
+    Route::get('/doctor/getOldAppointments', [DoctorController::class, 'getOldAppointments']);
+    Route::get('/doctor/getNewAppointments/{date}', [DoctorController::class, 'getNewAppointments']);
+    Route::get('/doctor/patientpage/{id}', [DoctorController::class, 'patient']);
+    Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
+});
+
+// ----------------------------------------------- Patient ---------------------------------------------------
+Route::middleware(['auth:5'])->group(function() {
+    Route::get('/patient/home', [PatientController::class, 'home']);
+});
+
+// ------------------------------------------- Shared ------------------------------------------------------
+Route::middleware(['auth:1,2,3,4'])->group(function() {
+    Route::get("/patients", [HomeController::class, 'patients']);
+});
+
+// -------------------------------------------- viewRoster ---------------------------------------------------
+Route::middleware(['auth:*'])->group(function() {
+    Route::get('roster/viewRoster', [HomeController::class, 'viewRoster']);
+    Route::get('roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
+});

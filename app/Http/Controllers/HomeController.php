@@ -64,6 +64,10 @@ class HomeController extends Controller
         return view('Shared.patients', ['rows'=>$rows]);
     }
 
+    public function viewRoster(Request $request) {
+        return view('roster/viewRoster');
+    }
+
     public function viewRosterInfo(Request $request) {
         $date = $request->input('date');
 

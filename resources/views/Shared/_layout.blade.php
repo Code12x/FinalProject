@@ -11,7 +11,9 @@ $nextDateStr = $nextDate->format('Y-m-d');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/_layout.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     @yield('head')
     @yield('css')
 
@@ -62,7 +64,7 @@ $nextDateStr = $nextDate->format('Y-m-d');
             @elseif ($user->role->intAccessLevel == 6) {{-- Family --}}
             @endif
             <li class="nav-li">
-                <a href="/roster">Roster</a>
+                <a href="/roster/viewRoster">Roster</a>
             </li>
             </ul>{{-- nav links --}}
             

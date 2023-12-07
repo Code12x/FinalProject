@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\FamilyController;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
 use Illuminate\Http\Request;
@@ -58,6 +59,25 @@ Route::middleware(['auth:1'])->group(function () {
     Route::post('/admin/_user-payment', [AdminController::class, '_totalDue']);
     Route::get('/admin/createrole', [AdminController::class, 'createrolepage']);
     Route::post('/admin/createrole', [AdminController::class, 'createrole']);
+});
+
+////* Admin */
+Route::get('/admin/home', [AdminController::class, 'home']);
+Route::get('/admin/report', [AdminController::class, 'report']);
+Route::get('/admin/payment', [AdminController::class, 'payment']);
+Route::get('/admin/approval', [AdminController::class, 'approval']);
+
+////* family home page view */
+Route::middleware(['auth:6'])->group(function() {
+    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
+    Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
+    Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
+    Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
+});
+
+////* Log in and Registration */
+Route::get('Authentication/login', function(){
+    return view('Authentication\Login');
 });
 
 // -------------------------------------------- Doctor ---------------------------------------------------

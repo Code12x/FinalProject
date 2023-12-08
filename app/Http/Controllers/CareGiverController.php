@@ -17,8 +17,9 @@ class CareGiverController extends Controller
 
     public function getPatients(Request $request)
     {
-        $logs = PatientCareLog::get(); //::where('dteAppointmentDate', '==', $system_date->format($this->dateFormat))
-        //->get();
+        $currDate = $request->attributes->get('currDate');
+        $logs = PatientCareLog::where('dteLogDate', '=', $currDate)
+        ->get();
 
         return response()->json($logs);     
     }

@@ -12,6 +12,7 @@
     
  
 <h1>Caregiver's Home</h1>
+{{$currDate}}
         
 <div id="forms">
 
@@ -31,25 +32,25 @@ $(document).ready(function ()
             $('#forms').append(`
 
             <form action="" method="post">
-                <p>Name</p>
-                
+                <p>Name: ${patient.intPatientId}</p>
+
                 <label for="mmed">Morning Med:</label>
-                <input type="checkbox" id="mmed" name="">
+                <input type="checkbox" id="mmed" name="" ${patient.bitMorningMed === 1 ? 'checked disabled' : ''}>
                 
                 <label for="amed">Afternoon Med:</label>
-                <input type="checkbox" id="amed" name="">
+                <input type="checkbox" id="amed" name="" ${patient.bitAfternoonMed === 1 ? 'checked disabled' : ''}>
 
                 <label for="nmed">Night Med:</label>
-                <input type="checkbox" id="nmed" name="">
+                <input type="checkbox" id="nmed" name="" ${patient.bitEveningMed === 1 ? 'checked disabled' : ''}>
                 
                 <label for="breakfast">Breakfast:</label>
-                <input type="checkbox" id="breakfast" name="">
+                <input type="checkbox" id="breakfast" name="" ${patient.bitBreakfast === 1 ? 'checked disabled' : ''}>
 
                 <label for="lunch">Lunch:</label>
-                <input type="checkbox" id="lunch" name="">
+                <input type="checkbox" id="lunch" name="" ${patient.bitLunch === 1 ? 'checked disabled' : ''}>
 
-                <label for="dinner">Dinenr:</label>
-                <input type="checkbox" id="dinner" name="">
+                <label for="dinner">Dinner:</label>
+                <input type="checkbox" id="dinner" name="" ${patient.bitDinner === 1 ? 'checked disabled' : ''}>
                 
                 <input type="submit" value="Submit">
             </form>

@@ -118,6 +118,7 @@ Route::middleware(['auth:*'])->group(function() {
 });
 
 // -------------------------------------------- Caregiver ---------------------------------------------------
-Route::get('shared/caregivers_home', [CareGiverController::class, 'caregiverHome']);
-Route::get('shared/showPatients', [CareGiverController::class, 'showPatients']);
-Route::get('shared/sendCheckboxValue', [CareGiverController::class, 'sendCheckboxValue']);
+Route::middleware(['auth:4'])->group(function() {
+    Route::get('caregiver/home', [CareGiverController::class, 'caregiverHome']);
+    Route::get('caregiver/getPatients', [CareGiverController::class, 'getPatients']);
+});

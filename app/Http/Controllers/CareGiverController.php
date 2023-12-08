@@ -3,27 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Http\Models\PatientCareLog;
-use app\Http\Models\Patient;
-use DB;
+use App\Models\PatientCareLog;
+use App\Models\Patient;
+use DateTime;
+use Illuminate\Support\Facades\Date;
 
 class CareGiverController extends Controller
 {
-    public function caregiverHome(Request $request) {
-        return view('Shared/caregivers_home');
+    public function caregiverHome(Request $request) 
+    {
+        return view('Caregiver/caregivers_home');
     }
 
-    public function showPatients(Request $request){
-        // need to grab caregiver ID to display each patient the caregiver will be taking care of        
-    }
+    public function getPatients(Request $request)
+    {
+        $logs = PatientCareLog::get(); //::where('dteAppointmentDate', '==', $system_date->format($this->dateFormat))
+        //->get();
 
-    public function sendCheckboxValue(Request $request) {
-        $morningMed = $request->input('morningMed');
-        $afternoonMed = $request->input('afternoonMed');
-        $eveningMed = $request->input('eveningMed');
-        $breakfast = $request->input('breakfast');
-        $lunch = $request->input('lunch');
-        $dinner = $request->input('dinner');
-
+        return response()->json($logs);     
     }
 }

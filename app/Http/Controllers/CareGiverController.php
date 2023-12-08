@@ -9,14 +9,21 @@ use DB;
 
 class CareGiverController extends Controller
 {
-    public function showPatients(){
-        $user = DB::table('tblusers')->where('intUserId', '2')->get();
-        $roster = DB::table('tblroster')->get();
-        // $patients = DB::table('tblpatients')->get();
-        $patients = DB::table('tblpatients')
-                ->join('tblUsers', 'tblpatients.intPatientid', '=', 'tblUsers.intUserId')
-                ->select('tblUsers.*', 'tblPatients.*')
-                ->get();
-        return view('shared/caregivers_home', ['patients' => $patients], ['roster' => $roster], ['user' => $user]);
+    public function caregiverHome(Request $request) {
+        return view('Shared/caregivers_home');
+    }
+
+    public function showPatients(Request $request){
+        // need to grab caregiver ID to display each patient the caregiver will be taking care of        
+    }
+
+    public function sendCheckboxValue(Request $request) {
+        $morningMed = $request->input('morningMed');
+        $afternoonMed = $request->input('afternoonMed');
+        $eveningMed = $request->input('eveningMed');
+        $breakfast = $request->input('breakfast');
+        $lunch = $request->input('lunch');
+        $dinner = $request->input('dinner');
+
     }
 }

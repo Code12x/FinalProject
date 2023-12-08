@@ -67,6 +67,7 @@ Route::middleware(['auth:3'])->group(function() {
     Route::post('/doctor/patientpage/{id}', [DoctorController::class, 'createPerscription']);
 });
 
-//Caregiver
-
-Route::get('/caregivers_home', [CareGiverController::class, 'showPatients']);
+// -------------------------------------------- Caregiver ---------------------------------------------------
+Route::get('shared/caregivers_home', [CareGiverController::class, 'caregiverHome']);
+Route::get('shared/showPatients', [CareGiverController::class, 'showPatients']);
+Route::get('shared/sendCheckboxValue', [CareGiverController::class, 'sendCheckboxValue']);

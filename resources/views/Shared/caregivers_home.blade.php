@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
     <title>Shady Oaks Retirement Village</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
     <header>
@@ -18,49 +19,60 @@
         <h1>Caregiver's Home</h1>
         <div style="border: 3px solid black;">
             <h2>Patients</h2>
-            @foreach($patients as $patient)
+
+            <?php
+                // @foreach($patients as $patient)
+            ?>
+            
             <div style="background-color: gray;">
-            {% if roster->intCaregiver1 == user->intUserId %}
-                    <h3>{{$patient->intUserId}}</h3>
-            </div>
-                {% endif %}
-            @endforeach
-        </div>
-        <!-- <div class="checkboxSec">
-            <form>
+            <?php
+            //     {% if roster->intCaregiver1 == user->intUserId %}
+            //             <h3>{{$patient->intUserId}}</h3>
+            //     </div>
+            //         {% endif %}
+            //     @endforeach
+                
+            // </div>
+        ?>
+        <div class="checkboxSec">
+            <form id="caregiverForm">
                 <div class="checkboxInds">
                     <label for="patientName" class="caretaker_checks">Name</label><br>
                     <input type="text" id="patientName" name="patientName" class="caretaker_checks">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="morningMed" class="caretaker_checks">Morning Medicine</label><br>
-                    <input type="checkbox" id="morningMed" name="morningMed" class="caretaker_checks">
+                    <input type="checkbox" id="morningMed" name="morningMed" class="caretaker_checks" value="">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="afternoonMed" class="caretaker_checks">Afternoon Medicine</label><br>
-                    <input type="checkbox" id="afternoonMed" name="afternoonMed" class="caretaker_checks">
+                    <input type="checkbox" id="afternoonMed" name="afternoonMed" class="caretaker_checks" value="">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="nightMed" class="caretaker_checks">Night Medicine</label><br>
-                    <input type="checkbox" id="nightMed" name="nightMed" class="caretaker_checks">
+                    <input type="checkbox" id="eveningMed" name="eveningMed" class="caretaker_checks" value="">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="breakfast" class="caretaker_checks">Breakfast</label><br>
-                    <input type="checkbox" id="breakfast" name="breakfast" class="caretaker_checks">
+                    <input type="checkbox" id="breakfast" name="breakfast" class="caretaker_checks" value="">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="lunch" class="caretaker_checks">Lunch</label><br>
-                    <input type="checkbox" id="lunch" name="lunch" class="caretaker_checks">
+                    <input type="checkbox" id="lunch" name="lunch" class="caretaker_checks" value="">
                 </div class="checkboxInds">
                 <div class="checkboxInds">
                     <label for="dinner" class="caretaker_checks">Dinner</label><br>
-                    <input type="checkbox" id="dinner" name="dinner" class="caretaker_checks">
+                    <input type="checkbox" id="dinner" name="dinner" class="caretaker_checks" value="">
                 </div class="checkboxInds"><br>
                 <input type="submit" id="caregiverSubmit" value="Ok" class="caretaker_checks">
             </form>
-        </div> -->
+        </div>
     </div>
     
+    <script>
+
+    </script>
+
     @section('footer')
         <footer>
         </footer>

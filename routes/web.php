@@ -46,6 +46,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 //--------------------------------- Routing to sub home pages -----------------------------------------------------
 Route::get('/home', [HomeController::class, 'reroute'])->middleware('auth:*');
 
+Route::get('/', function() { return redirect('/home'); });
 
 //----------------------------------------- Admin -----------------------------------------------------------------
 Route::middleware(['auth:1'])->group(function () {

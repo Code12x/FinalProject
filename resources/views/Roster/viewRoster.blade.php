@@ -2,6 +2,12 @@
 
 @section('title', 'View Roster')
 
+@section('css')
+<style>
+
+</style>
+@endsection
+
 @section('content')
     <div class="">
 

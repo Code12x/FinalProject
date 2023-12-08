@@ -4,28 +4,35 @@
 
 @section('css')
 <style>
+    .content {
+        padding: 5px;
+    }
+    
+    #rosterTable {
+        border-collapse: collapse;
+    }
 
+    th, td {
+        padding: 5px;
+    }
 </style>
 @endsection
 
 @section('content')
-    <div class="">
-
+    <div>
         <form method="get" id="familyform">
-
             <label>Date
                 <input type="date" name="date" id="date" value="">
             </label>
 
             <input type="submit" name="submit" id="submit">
-
         </form>
-
     </div>
+
+    <br>
 
     <div>
         <table id="rosterTable" border="1">
-
             <thead>
                 <tr>
                     <th>Supervisor</th>
@@ -37,10 +44,7 @@
                 </tr>
             </thead>
             
-            <tbody>
-        
-            </tbody>
-
+            <tbody></tbody>
         </table>
     </div>
 @endsection
@@ -51,11 +55,11 @@
             $('#familyform').submit(function (event) {
                 event.preventDefault();
 
+                $("#rosterTable tbody").empty();
+
                 let date = $('#date').val();
 
                 $.get(`/roster/viewRosterInfo?date=${date}`, function (data) {
-                    console.log(data)
-                    console.log(data.roster)
                     $.each(data.roster, function (index, roster) {
                         $('#rosterTable tbody').append(`
                             <tr>
@@ -65,17 +69,10 @@
                                 <td>${roster['cg2FirstName']} ${roster['cg2LastName']}</td>
                                 <td>${roster['cg3FirstName']} ${roster['cg3LastName']}</td>
                                 <td>${roster['cg4FirstName']} ${roster['cg4LastName']}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>Group 1</td>
-                                <td>Group 2</td>
-                                <td>Group 3</td>
-                                <td>Group 4</td>
-                            </tr>
-                        `);
+                            </tr>`
+                        );
                     });
+
                 });
             });
         });

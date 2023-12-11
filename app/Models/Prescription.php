@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prescription extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblPrescription';
+    protected $table = 'tblPrescriptions';
+
+    protected $primaryKey = 'intPrescriptionId';
 
     protected $fillable = ['intPrescriptionId',
                             'intAppointmentId',

@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientCareLog extends Model
 {
+    public $timestamps = false;
+
     use HasFactory;
     
-    protected $table = 'tblPatientCareLog';
+    protected $table = 'tblPatientCareLogs';
 
     protected $fillable = ['intPatientId',
                             'dteLogDate',

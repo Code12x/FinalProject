@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
+    public $timestamps = false;
     use HasFactory;
     
-    protected $table = 'tblAppoitment';
+    protected $table = 'tblAppointments';
+
+    protected $primaryKey = 'intAppointmentId';
 
     protected $fillable = ['intAppointmentId',
                             'intPatientId',

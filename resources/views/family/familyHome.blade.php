@@ -1,3 +1,14 @@
+@extends('Shared/_layout')
+
+@section('title', 'Home')
+
+@section('css')
+<style>
+
+</style>
+@endsection
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,3 +188,4 @@
 
 </body>
 </html>
+@endsection

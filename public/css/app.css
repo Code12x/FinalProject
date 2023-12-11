@@ -1,90 +1,38 @@
-.checkboxSec {
-    display: flex;
-    margin: 0 auto;
-    width: 100%;
-}
-.checkboxInds {
-    display: inline-block;
-    border: 1px solid black;
-    min-width: 150px;
-    min-height: 150px;
-    justify-content: center;
-    align-items: center;
-    padding-top: 2%;
-    background-color: #c16228;
-}
+/* HOMEPAGE */
 
-label.caretaker_checks {
-    color: white;
-}
-
-input.caretaker_checks {
-    float: left;
-}
-
-input[type=text].caretaker_checks {
-    border: none;
-    background-color: #c16228;
-}
-
-input[type=submit]#caregiverSubmit {
-    background-color: #d39829;
-    color: white;
-    margin-top: 5%;
-    border: none;
-    width: 8%;
-    height: 20%;
-}
-
-html {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-input[type=submit]#caregiverSubmit:hover {
-    background-color: #c16228;
-    transition: 1s;
-}
-
-div.header {
-    justify-content: center;
-    display: flex;
-    margin: 0;
-    padding: 1%;
-    color: white;
-    background-color: #603c1c;
-    box-shadow: 0 5px 5px #888888;
-}
-
-body {
-    margin: 0;
+* {
     padding: 0;
-    height: 100%;
-}
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-h1 {
-    margin: none;
-    padding: none;
-}
+  header {
 
-button.buttonsHome {
-    display: inline-block;
-    background-color: #d39829;
-    color: white;
-    padding: 2% 4%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    border: solid black 1px;
-}
+  }
 
-button.buttonsHome:hover {
-    background-color: #c16228;
-    transition: 1s;
-}
+  #navigationBar {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
 
-div.content {
-    margin-left: 1%;
-}
+  #navigationBar a:link, #navigationBar a:visited, #navigationBar a:active {
+    text-decoration: none;
+    color: black;
+  }
 
-img {
-    border: none;
-}
+  #navigationBar a:hover {
+    cursor: pointer;
+  }
+
+  #logInSignUp a:link, #logInSignUp a:visited, #logInSignUp a:active {
+    text-decoration: none;
+    color: black;
+  }
+
+  #logInSignUp a:hover {
+    cursor: pointer;
+  }
+
+  /* END HOMEPAGE */

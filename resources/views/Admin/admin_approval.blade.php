@@ -30,26 +30,34 @@
 @endsection
 
 @section('content')
-
 <form method="post" action="approve">
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Approve</th>
-            <th>Deny</th>
-        </tr>
-        @foreach ($unapprovedUsers as $unapprovedUser)
-        <tr>
-            <td>{{ $unapprovedUser->strFirstName }} {{ $unapprovedUser->strLastName }}</td>
-            <td>{{ $unapprovedUser->strName }}</td>
-            <td><input name="approval-{{ $unapprovedUser->intUserId }}" type="radio" value='approve'></td>
-            <td><input name="approval-{{ $unapprovedUser->intUserId }}" type="radio" value='deny'></td>
-        </tr>
-        @endforeach
+    <table id="approval-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Approve</th>
+                <th>Deny</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($unapprovedUsers as $unapprovedUser)
+            <tr>
+                <td>{{ $unapprovedUser->strFirstName }} {{ $unapprovedUser->strLastName }}</td>
+                <td>{{ $unapprovedUser->strName }}</td>
+                <td><input name="approval-{{ $unapprovedUser->intUserId }}" type="radio" value='approve'></td>
+                <td><input name="approval-{{ $unapprovedUser->intUserId }}" type="radio" value='deny'></td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 
     <input type="submit" value="Apply">
 </form>
+@endsection
 
+@section('script')
+<script>
+    
+</script>
 @endsection

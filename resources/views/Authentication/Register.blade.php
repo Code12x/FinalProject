@@ -11,15 +11,12 @@
     </style>
 </head>
 <body>
-    <form action="/Authentication/register" method="post" onchange="showInputs()">
-        <label for="Email">Email:</label><br>
-        <select id="dropdown" name="dropdown">
-            <option value="admin">Admin</option>
-            <option value="suprivisor">Suprivisor</option>
-            <option value="doctor">Doctor</option>
-            <option value="caregiver">Caregiver</option>
-            <option value="patient">Patient</option>
-            <option value="familymember">Family Member</option>
+    <form action="" method="post" onchange="showInputs()">
+        <label for="dropdown">Email:</label><br>
+        <select id="dropdown" name="intRoleId">
+            @foreach ($roles as $role)
+            <option value="{{ $role->intRoleId }}">{{ $role->strName }}</option>
+            @endforeach
         </select>
         <br>
         <label for="firstname">First name:</label><br>
@@ -42,13 +39,13 @@
 
         <div id="patientInputs" class="hidden">
             <label for="familycode">Family Code:</label>
-            <input type="password" id="familycode" name="familycode">
+            <input type="password" id="familycode" name="strFamilyCode">
             <br>
             <label for="emergancycontact">Emergency Contact:</label>
-            <input type="text" id="emergencycontact" name="emergencycontact">
+            <input type="text" id="emergencycontact" name="strEmergencyContactPhone">
             <br>
             <label for="relationemergancycontact">Relation to emergancy contact:</label>
-            <input type="text" id="relationemergancycontact" name="relationemergancycontact">
+            <input type="text" id="relationemergancycontact" name="strEmergencyContactRelation">
         </div>
 
         <input type="submit" value="Submit">
@@ -61,7 +58,7 @@
         var dropdown = document.getElementById('dropdown');
         var patientInputs = document.getElementById('patientInputs');
 
-        if (dropdown.value === 'patient') {
+        if (dropdown.value === '5') {
             patientInputs.style.display = 'block';
         } else {
             patientInputs.style.display = 'none';

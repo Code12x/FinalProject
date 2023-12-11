@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+.date-bar {
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #675dff;
+}
+
 nav {
     background-color: #ddd;
     display: flex;
@@ -21,6 +27,7 @@ nav > ul {
 
 .nav-li {
     margin-right: 30px;
+    align-self: center;
 }
 
 .nav-li > a {
@@ -28,15 +35,21 @@ nav > ul {
     color: #444;
 }
 
+.role {
+    align-self: center;
+    margin-right: 10px;
+}
+
 .logout-div {
-    width: 60px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .logout-btn {
     border: none;
     background-color: #aaa;
     height: 100%;
-    width: 100%;
+    padding: 10px;
 }
 
 .logout-btn:hover {

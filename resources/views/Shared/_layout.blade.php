@@ -17,6 +17,7 @@ $nextDateStr = $nextDate->format('Y-m-d');
     @yield('head')
     @yield('css')
 
+    <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
     <title>@yield('title') | Shady Oaks</title>
 </head>
 <body>
@@ -48,9 +49,33 @@ $nextDateStr = $nextDate->format('Y-m-d');
                 <li class="nav-li">
                     <a href="/patients">Patients</a>
                 </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createAppointment">Create Appointment</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createRoster">Create Roster</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createAdditionalPatientInfo">Add Patient Info</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/displayEmployees">Employees</a>
+                </li>
             @elseif ($user->role->intAccessLevel == 2) {{-- Supervisor --}}
                 <li class="nav-li">
                     <a href="/patients">Patients</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createAppointment">Create Appointment</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createRoster">Create Roster</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/createAdditionalPatientInfo">Add Patient Info</a>
+                </li>
+                <li class="nav-li">
+                    <a href="/supervisor/displayEmployees">Employees</a>
                 </li>
             @elseif ($user->role->intAccessLevel == 3) {{-- Doctor --}}
                 <li class="nav-li">
@@ -72,7 +97,9 @@ $nextDateStr = $nextDate->format('Y-m-d');
                 <div class="role">{{ $user->strFirstName }} {{ $user->strLastName }} ({{ $user->role->strName }})</div>
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
-        </nav>
+        </nav>        <div class="header">
+            <img src="{{url('/images/logo.jpg')}}" alt="logo">
+        </div>
     </header>
 
     <div class="content">

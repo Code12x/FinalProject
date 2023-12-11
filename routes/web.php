@@ -46,7 +46,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 //--------------------------------- Routing to sub home pages -----------------------------------------------------
 Route::get('/home', [HomeController::class, 'reroute'])->middleware('auth:*');
 
-Route::get('/', function() { return redirect('/home'); });
+Route::get('/', function() { return view('/shared/homepage' });
 
 //----------------------------------------- Admin -----------------------------------------------------------------
 Route::middleware(['auth:1'])->group(function () {
@@ -94,27 +94,6 @@ Route::middleware(['auth:1,2'])->group(function () {
 // ----------------------------------------------- Patient ---------------------------------------------------
 Route::middleware(['auth:5'])->group(function() {
     Route::get('/patient/home', [PatientController::class, 'home']);
-});
-
-////* Admin */
-Route::get('/admin/home', [AdminController::class, 'home']);
-Route::get('/admin/report', [AdminController::class, 'report']);
-Route::get('/admin/payment', [AdminController::class, 'payment']);
-Route::get('/admin/approval', [AdminController::class, 'approval']);
-
-
-// route for launchpage
-Route::get('/', function () {
-    return view('/shared/homepage');
-});
-
-// Log in and Registration 
-Route::get('Authentication/login', function(){
-    return view('Authentication\Login');
-});
-
-Route::get('Authentication/register', function(){
-    return view('Authentication\Register');
 });
 
 // -----------------------------------------family home page view -------------------------------------------

@@ -136,3 +136,4 @@ Route::middleware(['auth:*'])->group(function() {
     Route::get('/roster/viewRoster', [HomeController::class, 'viewRoster']);
     Route::get('/roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
 });
+});

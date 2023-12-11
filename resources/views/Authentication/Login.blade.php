@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 
     <style>
+        
         * {
             padding: 0;
             margin: 0;
@@ -43,6 +44,7 @@
         .divName {
             height: 100vh;
             background-color: rgba(165, 129, 91, .9);
+            /* background-color: rgba(86, 100, 84, 0.9); */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -63,6 +65,20 @@
             align-items: center;
         }
 
+        a {
+            margin-top: 10px;
+        }
+
+        a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+        }
+
+        a:hover {
+        cursor: pointer;
+        color: #566454;
+        transition: color .5s;
+        }
     </style>
 
 </head>
@@ -75,6 +91,7 @@
             <input type="password" id = "password" name = "Password">
             <br>
             <input type="submit" value="Log in" id="submitButton">
+            <a href="/register">Not registered?</a>
         </form>
     </div>
 

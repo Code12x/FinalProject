@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <style>
         .hidden {
             display: none;
@@ -45,6 +45,7 @@
 
         #submitButton {
             background-color: #3B2712;
+            /* background-color: #566454; */
             /* background-color: rgba(165, 129, 91, 1); */
             border-style: none;
             cursor: pointer;
@@ -60,6 +61,7 @@
         .divName {
             height: 100vh;
             background-color: rgba(165, 129, 91, .9);
+            /* background-color: rgba(86, 100, 84, 0.9); */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -78,6 +80,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        a {
+            margin-top: 10px;
+        }
+
+        a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+        }
+
+        a:hover {
+        cursor: pointer;
+        color: #566454;
+        transition: color .5s;
         }
 
     </style>
@@ -126,7 +143,7 @@
             <input type="submit" value="Register" id="submitButton">
         </div>
 
-
+        <a href="/login">Already a user? Log in here!</a>
 
     </form>
 

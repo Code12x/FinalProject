@@ -13,6 +13,8 @@ class PatientCareLog extends Model
     
     protected $table = 'tblPatientCareLogs';
 
+    protected $primaryKey = 'intLogId';
+
     protected $fillable = ['intPatientId',
                             'dteLogDate',
                             'bitMorningMed',
@@ -20,5 +22,10 @@ class PatientCareLog extends Model
                             'bitEveningMed',
                             'bitBreakfast',
                             'bitLunch',
-                            'bitDinner'];
+                            'bitDinner',
+                            'intLogId'];
+
+    public function careLogs(){
+        return $this->hasMany(Patient::class, 'intGroup');
+    }
 }

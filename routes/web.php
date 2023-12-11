@@ -94,6 +94,7 @@ Route::middleware(['auth:1,2'])->group(function () {
 // ----------------------------------------------- Patient ---------------------------------------------------
 Route::middleware(['auth:5'])->group(function() {
     Route::get('/patient/home', [PatientController::class, 'home']);
+});
 
 ////* Admin */
 Route::get('/admin/home', [AdminController::class, 'home']);
@@ -135,5 +136,4 @@ Route::middleware(['auth:1,2,3,4'])->group(function() {
 Route::middleware(['auth:*'])->group(function() {
     Route::get('/roster/viewRoster', [HomeController::class, 'viewRoster']);
     Route::get('/roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
-});
 });

@@ -27,15 +27,15 @@ class AdminSuprivisorController extends Controller
 
     public function searchForName($id) 
     {
-        $user = User::join('tblpatients', 'tblpatients.intUserId', '=', 'tblusers.intUserId')
-        ->where('tblpatients.intPatientId', '=', $id)
+        $user = User::join('tblPatients', 'tblPatients.intUserId', '=', 'tblUsers.intUserId')
+        ->where('tblPatients.intPatientId', '=', $id)
         ->get();
         return response()->json($user);
     }
 
     public function searchRoster($date) 
     {
-        $doctors = Roster::join('tblusers', 'tblusers.intUserId', '=', 'tblroster.intDoctor')
+        $doctors = Roster::join('tblUsers', 'tblUsers.intUserId', '=', 'tblRosters.intDoctor')
         ->where('dteRosterDate', '=', $date)
         ->get();
         return response()->json($doctors);
@@ -74,8 +74,6 @@ class AdminSuprivisorController extends Controller
 
         $data = $request->all();
 
-        $data['intRosterId'] = 3;
-
         Roster::create($data);
 
         return redirect('/supervisor/createRoster');
@@ -85,13 +83,13 @@ class AdminSuprivisorController extends Controller
     {
         $roster = Roster::get();
 
-        $supervisors = User::where('intRoleId', '=', '1')
+        $supervisors = User::where('intRoleId', '=', '2')
         ->get();
 
-        $doctors = User::where('intRoleId', '=', '2')
+        $doctors = User::where('intRoleId', '=', '3')
         ->get();
 
-        $caregivers = User::where('intRoleId', '=', '3')
+        $caregivers = User::where('intRoleId', '=', '4')
         ->get();
 
         return response()->json(['roster' => $roster, 'supervisors' => $supervisors, 'doctors' => $doctors, 'caregivers' => $caregivers]);

@@ -49,7 +49,7 @@
 <div>
     <h1>New appointments</h1>
     <label for="tilldate">Display appointments until:</label><br>
-    <input type="date" id = "tilldate" name = "tilldate" value="2023-11-25">
+    <input type="date" id = "tilldate" name = "tilldate" value="{{ $currDate }}">
     <input type="submit" value="Submit" id="submitbtn">
 </div>
 

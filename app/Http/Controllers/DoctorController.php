@@ -20,16 +20,16 @@ class DoctorController extends Controller
         return view("Doctor/doctorhome", ['user' => $user]);
     }
 
-    public function getOldAppointments() 
+    public function getOldAppointments(Request $request) 
     {
-        $system_date = new DateTime();
+        $system_date = new DateTime($request->attributes->get('currDate'));
         $appointments = Appointment::where('dteAppointmentDate', '<', $system_date->format($this->dateFormat))->get();
         return response()->json($appointments);
     }
 
-    public function getNewAppointments($date) 
+    public function getNewAppointments(Request $request, $date) 
     {
-        $system_date = new DateTime();
+        $system_date = new DateTime($request->attributes->get('currDate'));
         $appointments = Appointment::where('dteAppointmentDate', '>=', $system_date->format($this->dateFormat))
         ->where('dteAppointmentDate', '<=', $date)->get();
         return response()->json($appointments);
@@ -38,12 +38,11 @@ class DoctorController extends Controller
     public function patient(Request $request, $id) 
     {
         $user = $request->attributes->get('user');
+        $system_date = new DateTime($request->attributes->get('currDate'));
 
         $oldperscriptions = Prescription::join('tblAppointments', 'tblPrescriptions.intAppointmentId', '=', 'tblAppointments.intAppointmentId')
         ->where('intPatientId', '=', $id)
         ->get();
-
-        $system_date = new DateTime();
 
         $appointmentToday = Appointment::where('intPatientId', '=', $id)
         ->where('dteAppointmentDate', '=', $system_date->format($this->dateFormat))
@@ -55,7 +54,6 @@ class DoctorController extends Controller
     public function createPerscription(Request $request, $id)
     {
         $data = $request->all();
-        $data['intPrescriptionId'] = 9;
         
         $data['intAppointmentId'] = $id;
 

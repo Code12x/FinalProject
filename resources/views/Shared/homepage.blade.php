@@ -21,8 +21,8 @@
 
 
     <div id="logInSignUpButtons">
-        <button action="Authentication/Login" method="get">Login</button>
-        <button action="Authentication/Register" method="get">Register</button>
+        <button action="/login" method="get">Login</button>
+        <button action="/register" method="get">Register</button>
     </div>
 
 

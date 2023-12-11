@@ -121,4 +121,5 @@ Route::middleware(['auth:*'])->group(function() {
 Route::middleware(['auth:4'])->group(function() {
     Route::get('caregiver/home', [CareGiverController::class, 'caregiverHome']);
     Route::get('caregiver/getPatients', [CareGiverController::class, 'getPatients']);
+    Route::post('caregiver/updatePatient', [CareGiverController::class, 'updatePatient']);
 });

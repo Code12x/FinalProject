@@ -46,7 +46,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 //--------------------------------- Routing to sub home pages -----------------------------------------------------
 Route::get('/home', [HomeController::class, 'reroute'])->middleware('auth:*');
 
-Route::get('/', function() { return view('/shared/homepage') });
+Route::get('/', function() { return view('/shared/homepage'); });
 
 //----------------------------------------- Admin -----------------------------------------------------------------
 Route::middleware(['auth:1'])->group(function () {

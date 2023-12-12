@@ -101,7 +101,7 @@ Route::middleware(['auth:5'])->group(function() {
 
 // -----------------------------------------family home page view -------------------------------------------
 Route::middleware(['auth:6'])->group(function() {
-    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
+    Route::get('family/home', [FamilyController::class, 'familyHome']);
     Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
     Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
     Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);

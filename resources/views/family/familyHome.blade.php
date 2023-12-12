@@ -147,9 +147,7 @@
             });
 
             $.get(`/family/getRosterInfo?date=${date}`,{patientId}, function (data) {
-                console.log('hi')
-                console.log(data)
-                    $.each(data, function (index, caregiver) {
+                $.each(data, function (index, caregiver) {
                     $('#caregiverInfoTable tbody').append(`
                         <tr>
                             <td>${caregiver.strFirstName} ${caregiver.strLastName}</td>
@@ -158,8 +156,9 @@
                 });
             });
 
-                $.get(`/family/getPatientInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (data) {
-                    $.each(data, function (index, patientCareLog) {
+            $.get(`/family/getPatientInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`)
+                .then(function(data) {
+                    $.each(data, function(index, patientCareLog) {
                         $('#patientInfoTable tbody').append(`
                             <tr>
                                 <td>${patientCareLog.bitMorningMed}</td>
@@ -170,45 +169,51 @@
                                 <td>${patientCareLog.bitDinner}</td>
                             </tr>
                         `);
+
+                        let table = document.getElementById("patientInfoTable").rows;
+                        let newRow = table[table.length - 1];
+
+                            if (patientCareLog.bitMorningMed === 1) {
+                                newRow.cells[0].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[0].innerHTML = '';
+                            }
+
+                            if (patientCareLog.bitAfternoonMed === 1) {
+                                newRow.cells[1].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[1].innerHTML = '';
+                            }
+
+                            if (patientCareLog.bitEveningMed === 1) {
+                                newRow.cells[2].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[2].innerHTML = '';
+                            }
+
+                            if (patientCareLog.bitBreakfast === 1) {
+                                newRow.cells[3].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[3].innerHTML = '';
+                            }
+
+                            if (patientCareLog.bitLunch === 1) {
+                                newRow.cells[4].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[4].innerHTML = '';
+                            }
+
+                            if (patientCareLog.bitDinner === 1) {
+                                newRow.cells[5].innerHTML = '&#10003;';
+                            } else {
+                                newRow.cells[5].innerHTML = '';
+                            }
                     });
                 });
             });
-
         });
-
-
-        // $(document).ready(function () {
-        //     $('#familyform').submit(function (event) {
-        //         event.preventDefault();
-
-        //         let date = $('#date').val();
-        //         let familyCode = $('#familyCode').val();
-        //         let patientId = $('#patientId').val();
-
-
-        //         $.get(`/family/getInfo?date=${date}&familyCode=${familyCode}&patientId=${patientId}`, function (data) {
-
-        //             $.each(data, function (index, patientCareLog) {
-        //                 $('#patientInfoTable tbody').append(`
-        //                     <tr>
-        //                         <td>${doctor.strLastName}</td>
-        //                         <td>${doctor.intAppointment}</td>
-
-        //                         <td>${patientCareLog.bitMorningMed}</td>
-        //                         <td>${patientCareLog.bitAfternoonMed}</td>
-        //                         <td>${patientCareLog.bitEveningMed}</td>
-        //                         <td>${patientCareLog.bitBreakfast}</td>
-        //                         <td>${patientCareLog.bitLunch}</td>
-        //                         <td>${patientCareLog.bitDinner}</td>
-        //                     </tr>
-        //                 `);
-        //             });
-        //         });
-        //     });
-        // });
+        
     </script>
-
-<!-- <td>${caregiver}</td> -->
 
 </body>
 </html>

@@ -18,9 +18,9 @@ class CareGiverController extends Controller
     public function getPatients(Request $request)
     {
         $currDate = $request->attributes->get('currDate');
-        $logs = PatientCareLog::join('tblpatients', 'tblpatients.intPatientId', '=', 'tblpatientcarelogs.intPatientId')
-        ->join('tblusers', 'tblusers.intUserId', '=', 'tblpatients.intUserId')
-        ->where('tblpatientcarelogs.dteLogDate', '=', $currDate)
+        $logs = PatientCareLog::join('tblPatients', 'tblPatients.intPatientId', '=', 'tblPatientCareLogs.intPatientId')
+        ->join('tblUsers', 'tblUsers.intUserId', '=', 'tblPatients.intUserId')
+        ->where('tblPatientCareLogs.dteLogDate', '=', $currDate)
         ->get();
 
         return response()->json($logs);     

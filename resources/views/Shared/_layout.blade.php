@@ -10,15 +10,181 @@ $nextDateStr = $nextDate->format('Y-m-d');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/_layout.css') }}">
+    <!-- commented it out bc im going to do in-line bc idk we agreed to just do that -->
+    <!-- <link rel="stylesheet" href="{{ asset('css/_layout.css') }}"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     @yield('head')
-    @yield('css')
-
-    <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
     <title>@yield('title') | Shady Oaks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .date-bar {
+            justify-content: space-between;
+            padding: 5px 10px;
+            background-color: #566454;
+        }
+
+        nav {
+            background-color: #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav > ul {
+            display: flex;
+            padding: 10px;
+            flex-direction: row;
+            list-style-type: none;
+            
+        }
+
+        body {
+            background-color: #f4f1de;
+        }
+
+        table {
+        border-collapse: collapse;
+        }
+    
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .nav-li {
+            margin-right: 30px;
+            align-self: center;
+        }
+
+        .nav-li > a {
+            text-decoration: none;
+            color: #444;
+        }
+
+        .role {
+            align-self: center;
+            margin-right: 10px;
+        }
+
+        .logout-div {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .logout-btn {
+            border: none;
+            color: white;
+            background-color: #c16e70;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .logout-btn:hover {
+            cursor: pointer;
+            background-color: #c44536;
+            color: black;
+            transition: .3s;
+        }
+
+        tr, th, td {
+            /* color: white; */
+            border-style: none;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3d405b;
+            color: white;
+        }
+
+        /* td {
+            background-color: white;
+        } */
+
+        tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        td:nth-child(even) {
+            background-color: #fff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        td:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .dateBar {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        input {
+            height: 25px;
+        }
+
+        select {
+            height: 25px;
+        }
+
+        button {
+            border-style: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #submit {
+            border-style: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 30px;
+            background-color: #566454;
+            color: white;
+            height: 40px !important;
+        }
+
+        .date-bar {
+            background-color: #603c1c;
+        }
+
+        nav{
+            background-color: #603c1c;
+            color: white;
+        }
+
+        .nav-li a{
+            color: white;
+        }
+
+        .nav-li a:hover{
+            color: #d4982a;
+            transition: .5s;
+        }
+
+        .logout-div{
+            background-color: #603c1c;
+        }
+
+        .role{
+            background-color: #603c1c;
+        }
+
+        .logout-btn{
+            background-color: #603c1c;
+            color: white;
+        }
+    </style>
+    @yield('css')
 </head>
 <body>
     <header>
@@ -95,10 +261,10 @@ $nextDateStr = $nextDate->format('Y-m-d');
             
             <div class="logout-div">
                 <div class="role">{{ $user->strFirstName }} {{ $user->strLastName }} ({{ $user->role->strName }})</div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                <button class="logout-btn" onclick="logout()">LOG OUT</button>
             </div>
         </nav>        <div class="header">
-            <img src="{{url('/images/logo.jpg')}}" alt="logo">
+            <!-- <img src="{{url('/images/logo.jpg')}}" alt="logo"> -->
         </div>
     </header>
 

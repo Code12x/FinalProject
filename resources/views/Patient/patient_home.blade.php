@@ -53,14 +53,62 @@
         <td>{{ $row->patientName }}</td>
         <td>{{ $row->doctorName }}</td>
         <td>{{ $row->caregiverName }}</td>
-        <td>{{ $row->appointment }}</td>
-        <td>{{ $row->prescription }}</td>
-        <td>{{ $row->morningMed }}</td>
-        <td>{{ $row->afternoonMed }}</td>
-        <td>{{ $row->nightMed }}</td>
-        <td>{{ $row->breakfast }}</td>
-        <td>{{ $row->lunch }}</td>
-        <td>{{ $row->dinner }}</td>
+        <!-- <td>{{ $row->appointment }}</td> -->
+            @if ($row->appointment === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->prescription }}</td> -->
+            @if ($row->prescription === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->morningMed }}</td> -->
+            @if ($row->morningMed === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->afternoonMed }}</td> -->
+            @if ($row->afternoonMed === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->nightMed }}</td> -->
+            @if ($row->nightMed === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->breakfast }}</td> -->
+            @if ($row->breakfast === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+        
+        <!-- <td>{{ $row->lunch }}</td> -->
+            @if ($row->lunch === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
+        <!-- <td>{{ $row->dinner }}</td> -->
+            @if ($row->dinner === 1)
+                <td>&#10003;</td>
+            @else
+                <td>&times;</td>
+            @endif
+
     </tr>
 </table>
 

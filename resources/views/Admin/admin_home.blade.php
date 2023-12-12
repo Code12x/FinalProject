@@ -8,5 +8,5 @@
 @endsection
 
 @section('content')
-<h1>Howdy!</h1>
+<h1>Welcome back!</h1>
 @endsection

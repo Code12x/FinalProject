@@ -4,6 +4,43 @@
 
 @section('css')
 <style>
+.form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+label {
+    /* display: inline-block;
+    width: 120px; 
+    margin-right: 10px; */
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
 
 </style>
 @endsection
@@ -12,7 +49,8 @@
     
  
 <h1>Caregiver's Home</h1>
-{{$currDate}}
+<div>{{$currDate}}</div>
+
         
 <div id="forms">
 
@@ -31,7 +69,7 @@ $(document).ready(function ()
         {
             $('#forms').append(`
 
-            <form action="updatePatient" method="post">
+            <form class = "form" action="updatePatient" method="post">
                 <p>Name: ${patient.strFirstName} ${patient.strLastName}</p>
                 <input type="hidden" id="patientId" name="intLogId" value="${patient.intLogId}" readonly>
 

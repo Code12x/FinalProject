@@ -16,9 +16,40 @@ $nextDateStr = $nextDate->format('Y-m-d');
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     @yield('head')
     @yield('css')
-
-    <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
     <title>@yield('title') | Shady Oaks</title>
+
+    <style>
+        .date-bar {
+            background-color: #603c1c;
+        }
+
+        nav{
+            background-color: #603c1c;
+            color: white;
+        }
+
+        .nav-li a{
+            color: white;
+        }
+
+        .nav-li a:hover{
+            color: #d4982a;
+            transition: .5s;
+        }
+
+        .logout-div{
+            background-color: #603c1c;
+        }
+
+        .role{
+            background-color: #603c1c;
+        }
+
+        .logout-btn{
+            background-color: #603c1c;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>

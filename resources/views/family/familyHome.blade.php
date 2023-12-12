@@ -173,46 +173,46 @@
                         let table = document.getElementById("patientInfoTable").rows;
                         let newRow = table[table.length - 1];
 
-                            if (patientCareLog.bitMorningMed === 1) {
-                                newRow.cells[0].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[0].innerHTML = '';
-                            }
+                        if (patientCareLog.bitMorningMed === 1) {
+                            newRow.cells[0].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[0].innerHTML = '&times;';
+                        }
 
-                            if (patientCareLog.bitAfternoonMed === 1) {
-                                newRow.cells[1].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[1].innerHTML = '';
-                            }
+                        if (patientCareLog.bitAfternoonMed === 1) {
+                            newRow.cells[1].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[1].innerHTML = '&times;';
+                        }
 
-                            if (patientCareLog.bitEveningMed === 1) {
-                                newRow.cells[2].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[2].innerHTML = '';
-                            }
+                        if (patientCareLog.bitEveningMed === 1) {
+                            newRow.cells[2].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[2].innerHTML = '&times;';
+                        }
 
-                            if (patientCareLog.bitBreakfast === 1) {
-                                newRow.cells[3].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[3].innerHTML = '';
-                            }
+                        if (patientCareLog.bitBreakfast === 1) {
+                            newRow.cells[3].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[3].innerHTML = '&times;';
+                        }
 
-                            if (patientCareLog.bitLunch === 1) {
-                                newRow.cells[4].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[4].innerHTML = '';
-                            }
+                        if (patientCareLog.bitLunch === 1) {
+                            newRow.cells[4].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[4].innerHTML = '&times;';
+                        }
 
-                            if (patientCareLog.bitDinner === 1) {
-                                newRow.cells[5].innerHTML = '&#10003;';
-                            } else {
-                                newRow.cells[5].innerHTML = '';
-                            }
+                        if (patientCareLog.bitDinner === 1) {
+                            newRow.cells[5].innerHTML = '&#10003;';
+                        } else {
+                            newRow.cells[5].innerHTML = '&times;';
+                        }
                     });
                 });
             });
         });
-        
+
     </script>
 
 </body>

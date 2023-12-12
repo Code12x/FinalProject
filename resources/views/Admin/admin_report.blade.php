@@ -36,7 +36,7 @@
 </div>
 
 <div class="infoTable">
-    <table>
+    <table id="table">
         <tr>
             <th>Patient's Name</th>
             <th>Doctor's Name</th>
@@ -51,21 +51,68 @@
             <th>Dinner</th>
         </tr>
         @foreach ($rows as $row)
-
         <tr>
             <td>{{ $row->patientName }}</td>
             <td>{{ $row->doctorName }}</td>
             <td>{{ $row->caregiverName }}</td>
-            <td>{{ $row->doctorAppointment }}</td>
-            <td>{{ $row->prescription }}</td>
-            <td>{{ $row->morningMedicine }}</td>
-            <td>{{ $row->afternoonMedicine }}</td>
-            <td>{{ $row->nightMedicine }}</td>
-            <td>{{ $row->breakfast }}</td>
-            <td>{{ $row->lunch }}</td>
-            <td>{{ $row->dinner }}</td>
-        </tr>
+            
+            <!-- <td>{{ $row->doctorAppointment }}</td> -->
+                @if ($row->doctorAppointment === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
 
+            <!-- <td>{{ $row->prescription }}</td> -->
+                @if ($row->prescription === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->morningMedicine }}</td> -->
+                @if ($row->morningMedicine === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->afternoonMedicine }}</td> -->
+                @if ($row->afternoonMedicine === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->nightMedicine }}</td> -->
+                @if ($row->nightMedicine === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->breakfast }}</td> -->
+                @if ($row->breakfast === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->lunch }}</td> -->
+                @if ($row->lunch === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+            <!-- <td>{{ $row->dinner }}</td> -->
+                @if ($row->dinner === 1)
+                    <td>&#10003;</td>
+                @else
+                    <td>&times;</td>
+                @endif
+
+        </tr>
         @endforeach
     </table>
 </div>

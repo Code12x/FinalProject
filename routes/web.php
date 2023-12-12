@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\CareGiverController;
 use App\Models\Patient;
 use App\Models\PatientCareLog;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 //--------------------------------- Routing to sub home pages -----------------------------------------------------
 Route::get('/home', [HomeController::class, 'reroute'])->middleware('auth:*');
 
-Route::get('/', function() { return view('/shared/homepage'); });
+Route::get('/', function() { return view('Shared.homepage'); });
 
 //----------------------------------------- Admin -----------------------------------------------------------------
 Route::middleware(['auth:1'])->group(function () {
@@ -98,7 +99,7 @@ Route::middleware(['auth:5'])->group(function() {
 
 // -----------------------------------------family home page view -------------------------------------------
 Route::middleware(['auth:6'])->group(function() {
-    Route::get('family/familyHome', [FamilyController::class, 'familyHome']);
+    Route::get('family/home', [FamilyController::class, 'familyHome']);
     Route::get('family/getPatientInfo', [FamilyController::class, 'getPatientInfo']);
     Route::get('family/getDoctorInfo', [FamilyController::class, 'getDoctorInfo']);
     Route::get('family/getRosterInfo', [FamilyController::class, 'getRosterInfo']);
@@ -115,4 +116,11 @@ Route::middleware(['auth:1,2,3,4'])->group(function() {
 Route::middleware(['auth:*'])->group(function() {
     Route::get('/roster/viewRoster', [HomeController::class, 'viewRoster']);
     Route::get('/roster/viewRosterInfo', [HomeController::class, 'viewRosterInfo']);
+});
+
+// -------------------------------------------- Caregiver ---------------------------------------------------
+Route::middleware(['auth:4'])->group(function() {
+    Route::get('caregiver/home', [CareGiverController::class, 'caregiverHome']);
+    Route::get('caregiver/getPatients', [CareGiverController::class, 'getPatients']);
+    Route::post('caregiver/updatePatient', [CareGiverController::class, 'updatePatient']);
 });

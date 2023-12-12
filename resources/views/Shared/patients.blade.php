@@ -22,6 +22,11 @@
         margin: 5px auto;
         display: block;
     }
+
+    .input {
+        width: 100%;
+    }
+
 </style>
 @endsection
 
@@ -32,13 +37,12 @@
 <table id="patients-table">
     <thead>
         <tr>
-            <td><input id="search-ids" type="text" placeholder="Search IDs"></td>
-            <td><input id="search-names" type="text" placeholder="Search Names"></td>
-            <td><input id="search-ages" type="text" placeholder="Search Ages"></td>
-            <td><input id="search-emergency-contacts" type="text" placeholder="Search Emergency Contacts"></td>
-            <td><input id="search-emergency-contact-relations" type="text" placeholder="Search Emergency Contact Relations"></td>
-            <td><input id="search-admission-dates" type="text" placeholder="Search Admission Dates"></td>
-
+            <td><input class="input" id="search-ids" type="text" placeholder="Search IDs"></td>
+            <td><input class="input" id="search-names" type="text" placeholder="Search Names"></td>
+            <td><input class="input" id="search-ages" type="text" placeholder="Search Ages"></td>
+            <td><input class="input" id="search-emergency-contacts" type="text" placeholder="Search Emergency Contacts"></td>
+            <td><input class="input" id="search-emergency-contact-relations" type="text" placeholder="Search Emergency Contact Relations"></td>
+            <td><input class="input" id="search-admission-dates" type="text" placeholder="Search Admission Dates"></td>
         </tr>
         <tr>
             <th>ID</th>

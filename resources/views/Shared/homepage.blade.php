@@ -172,7 +172,7 @@ footer {
     <p class="pText" id="about">
       Nestled in the serene embrace of nature, our retirement home provides a haven of tranquility 
       and comfort for those seeking an enriched and relaxed lifestyle during their golden years. 
-      Our commitment to creating a warm and inviting environment is evident from the moment you step into our community.
+      We offer top of the line health care to treat your loved ones.
     </p>
 
   <div class="squaresContainer">

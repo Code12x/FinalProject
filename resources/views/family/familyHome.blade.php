@@ -5,6 +5,37 @@
 @section('css')
 <style>
 
+    .tables {
+        display: flex;
+    }
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    #familyForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fields {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        line-height: 25px;
+    }
+
+    #submit {
+        margin-top: 10px;
+        width: 50%;
+    }
+
 </style>
 @endsection
 
@@ -18,84 +49,77 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-    <header>
 
-    </header>
-
-    <div class="">
+    <div class="center">
 
         <form method="get" id="familyForm">
-            <label>Date
+            <div class="fields">
+                <label>Date</label>
                 <input type="date" name="date" id="date" value="">
-            </label>
 
-            <label>Family Code
+                <label>Family Code</label>
                 <input type="password" name="familyCode" id="familyCode" value="">
-            </label>
 
-            <label>Patient ID
+                <label>Patient ID</label>
                 <input type="int" name="patientId" id="patientId" placeholder="Enter patient's ID">
-            </label>
+            </div>
 
-            <input type="submit" name="submit" id="submit">
+                <input type="submit" name="submit" id="submit" value="GO">
         </form>
 
     </div>
 
-    <div>
-        <table id="doctorInfoTable" border="1">
+    <div class="center">
+        <div class="tables">
+            <table id="doctorInfoTable" border="1">
 
-            <thead>
-                <tr>
-                    <th>Doctor</th>
-                    <th>Appointment</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Appointment</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
             
-            <tbody>
-        
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
 
-        <table id="caregiverInfoTable" border="1">
+            <table id="caregiverInfoTable" border="1">
 
-            <thead>
-                <tr>
-                    <th>Caregiver</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Caregiver</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
             
-            <tbody>
-        
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
 
-        <table id="patientInfoTable" border="1">
+            <table id="patientInfoTable" border="1">
 
-            <thead>
-                <tr>
-                    <th>Morning Medicine</th>
-                    <th>Afternoon Medicine</th>
-                    <th>Night Medicine</th>
-                    <th>Breakfast</th>
-                    <th>Lunch</th>
-                    <th>Dinner</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Morning Medicine</th>
+                        <th>Afternoon Medicine</th>
+                        <th>Night Medicine</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-            </tbody>
+                </tbody>
 
-        </table>
-
+            </table>
+        </div>
     </div>
-
-    <footer>
-
-    </footer>
 
     <script>
 

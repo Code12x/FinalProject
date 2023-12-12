@@ -16,13 +16,8 @@ $nextDateStr = $nextDate->format('Y-m-d');
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     @yield('head')
-    @yield('css')
-
-    <link rel="stylesheet" href="<?php echo asset('css/app.css')?>" type="text/css">
     <title>@yield('title') | Shady Oaks</title>
-
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -55,7 +50,7 @@ $nextDateStr = $nextDate->format('Y-m-d');
 
         table {
         border-collapse: collapse;
-    }
+        }
     
         th, td {
             border: 1px solid black;
@@ -158,8 +153,38 @@ $nextDateStr = $nextDate->format('Y-m-d');
             height: 40px !important;
         }
 
-    </style>
+        .date-bar {
+            background-color: #603c1c;
+        }
 
+        nav{
+            background-color: #603c1c;
+            color: white;
+        }
+
+        .nav-li a{
+            color: white;
+        }
+
+        .nav-li a:hover{
+            color: #d4982a;
+            transition: .5s;
+        }
+
+        .logout-div{
+            background-color: #603c1c;
+        }
+
+        .role{
+            background-color: #603c1c;
+        }
+
+        .logout-btn{
+            background-color: #603c1c;
+            color: white;
+        }
+    </style>
+    @yield('css')
 </head>
 <body>
     <header>
